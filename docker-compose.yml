@@ -2,11 +2,14 @@ version: '3.5'
 
 services:
   db:
+    command: --innodb_use_native_aio=0
     container_name: flask-mysql
     image: mysql
     restart: always
     ports:
       - '8083:3306'
+    volumes:
+      - ./data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
   backend:
