@@ -9,6 +9,7 @@ class App extends Component {
     console.log(res);
     console.log(1);
     console.log(2);
+    console.log(3);
   }
 
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Edit <code>src/App.js</code> and save to reload. Hot reaload.
           </p>
           <a
             className="App-link"
