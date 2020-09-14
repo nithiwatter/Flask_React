@@ -9,11 +9,11 @@ import {
   Paper,
   makeStyles,
   Typography,
-  IconButton,
   Button,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import StarRateIcon from '@material-ui/icons/StarRate';
+import SmallMenu from './SmallMenu';
 
 const useStyles = makeStyles((theme) => ({
   mainTitleContainer: {
@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
   headerCell: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
+  },
+  rankContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   rank: {
     fontWeight: 700,
@@ -113,12 +118,15 @@ const RankTable = () => {
                   </div>
                 </div>
               </TableCell>
-              <TableCell align="right">9.22</TableCell>
+              <TableCell align="right">
+                <div className={classes.rankContainer}>
+                  <StarRateIcon></StarRateIcon>
+                  <div>9.22</div>
+                </div>
+              </TableCell>
               <TableCell align="right">N/A</TableCell>
               <TableCell align="right">
-                <IconButton>
-                  <MoreVertIcon></MoreVertIcon>
-                </IconButton>
+                <SmallMenu></SmallMenu>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -142,12 +150,15 @@ const RankTable = () => {
                   </div>
                 </div>
               </TableCell>
-              <TableCell align="right">9.22</TableCell>
+              <TableCell align="right">
+                <div className={classes.rankContainer}>
+                  <StarRateIcon></StarRateIcon>
+                  <div>9.22</div>
+                </div>
+              </TableCell>
               <TableCell align="right">N/A</TableCell>
               <TableCell align="right">
-                <IconButton>
-                  <MoreVertIcon></MoreVertIcon>
-                </IconButton>
+                <SmallMenu></SmallMenu>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -171,12 +182,15 @@ const RankTable = () => {
                   </div>
                 </div>
               </TableCell>
-              <TableCell align="right">9.22</TableCell>
+              <TableCell align="right">
+                <div className={classes.rankContainer}>
+                  <StarRateIcon></StarRateIcon>
+                  <div>9.22</div>
+                </div>
+              </TableCell>
               <TableCell align="right">N/A</TableCell>
               <TableCell align="right">
-                <IconButton>
-                  <MoreVertIcon></MoreVertIcon>
-                </IconButton>
+                <SmallMenu></SmallMenu>
               </TableCell>
             </TableRow>
           </TableBody>

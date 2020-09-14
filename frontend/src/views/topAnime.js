@@ -1,5 +1,5 @@
 import React from 'react';
-import RankTable from '../common/RankTable';
+import RankTable from '../common/table/RankTable';
 
 const TopAnime = () => {
   return (
