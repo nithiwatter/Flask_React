@@ -4,8 +4,8 @@ import RouteWithLayout from './common/RouteWithLayout';
 import SideBar from './layouts/MainLayout/SideBar';
 import TopAnime from './views/topAnime';
 import TopManga from './views/topManga';
-import AnimeSearch from './views/animeSearch';
-import MangaSearch from './views/mangaSearch';
+import SearchAnime from './views/searchAnime';
+import SearchManga from './views/searchManga';
 
 const Routes = () => {
   return (
@@ -23,13 +23,13 @@ const Routes = () => {
         path="/topManga"
       />
       <RouteWithLayout
-        component={AnimeSearch}
+        component={SearchAnime}
         exact
         layout={SideBar}
         path="/anime"
       />
       <RouteWithLayout
-        component={MangaSearch}
+        component={SearchManga}
         exact
         layout={SideBar}
         path="/manga"

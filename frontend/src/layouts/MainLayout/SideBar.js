@@ -1,61 +1,58 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Link, useRouteMatch } from 'react-router-dom';
 import {
   CssBaseline,
   Drawer,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   IconButton,
   Divider,
+  makeStyles,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MovieIcon from '@material-ui/icons/Movie';
+import ViewListIcon from '@material-ui/icons/ViewList';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import FindInPageTwoToneIcon from '@material-ui/icons/FindInPageTwoTone';
 import Header from './Header';
+import NavMenuItem from './NavMenuItem';
 
 const pages = [
   {
-    title: 'Top Anime',
-    href: '/topAnime',
+    title: 'Anime',
     icon: <MovieIcon />,
+    color: 'primary',
+    items: [
+      {
+        title: 'Top Anime',
+        href: '/topAnime',
+        icon: <ViewListIcon />,
+      },
+      {
+        title: 'Search Anime',
+        href: '/anime',
+        icon: <FindInPageIcon />,
+      },
+    ],
   },
   {
-    title: 'Top Manga',
-    href: '/topManga',
+    title: 'Manga',
     icon: <MenuBookIcon />,
-  },
-  {
-    title: 'Anime Search',
-    href: '/anime',
-    icon: <FindInPageIcon />,
-  },
-  {
-    title: 'Manga Search',
-    href: '/manga',
-    icon: <FindInPageTwoToneIcon />,
+    color: 'primary',
+    items: [
+      {
+        title: 'Top Manga',
+        href: '/topManga',
+        icon: <ViewListIcon />,
+      },
+      {
+        title: 'Search Manga',
+        href: '/manga',
+        icon: <FindInPageTwoToneIcon />,
+      },
+    ],
   },
 ];
-
-function activeRoute(title, path) {
-  switch (title) {
-    case 'Top Anime':
-      return path.includes('/topAnime');
-    case 'Top Manga':
-      return path.includes('/topManga');
-    case 'Anime Search':
-      return path.includes('/anime');
-    case 'Manga Search':
-      return path.includes('/manga');
-    default:
-      return false;
-  }
-}
 
 const drawerWidth = 240;
 
@@ -108,7 +105,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SideBar = (props) => {
   const classes = useStyles();
-  const match = useRouteMatch();
   const { children } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -145,16 +141,7 @@ const SideBar = (props) => {
         <Divider />
         <List>
           {pages.map((page) => (
-            <ListItem
-              button
-              key={page.title}
-              component={Link}
-              to={page.href}
-              selected={activeRoute(page.title, match.url)}
-            >
-              <ListItemIcon>{page.icon}</ListItemIcon>
-              <ListItemText primary={page.title} />
-            </ListItem>
+            <NavMenuItem page={page} key={page.title}></NavMenuItem>
           ))}
         </List>
       </Drawer>

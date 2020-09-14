@@ -1,7 +1,7 @@
 import React from 'react';
 
-const MangaSearch = () => {
+const SearchManga = () => {
   return <div>Manga Search</div>;
 };
 
-export default MangaSearch;
+export default SearchManga;

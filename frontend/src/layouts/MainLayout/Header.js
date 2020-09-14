@@ -6,6 +6,8 @@ import {
   IconButton,
   Typography,
   Button,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
@@ -46,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const { open, handleDrawerOpen } = props;
 
   return (
@@ -69,24 +73,25 @@ function Header(props) {
         <Typography variant="h6" noWrap>
           Anime Database
         </Typography>
-        <div className={classes.buttons}>
-          <Button
-            variant="contained"
-            color="secondary"
-            disableElevation
-            className={classes.button}
-          >
-            Register
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            disableElevation
-            className={clsx(classes.logIn, classes.button)}
-          >
-            Log In
-          </Button>
-        </div>
+
+        {matches ? (
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Register
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={clsx(classes.logIn, classes.button)}
+            >
+              Log In
+            </Button>
+          </div>
+        ) : null}
       </Toolbar>
     </AppBar>
   );

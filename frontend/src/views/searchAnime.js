@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AnimeSearch = () => {
+const SearchAnime = () => {
   return <div>Anime Search</div>;
 };
 
-export default AnimeSearch;
+export default SearchAnime;
