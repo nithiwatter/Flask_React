@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import AuthGuard from './common/AuthGuard';
 import Routes from './Routes';
 
 class App extends Component {
@@ -9,7 +10,9 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline></CssBaseline>
         <Router>
-          <Routes></Routes>
+          <AuthGuard>
+            <Routes></Routes>
+          </AuthGuard>
         </Router>
       </React.Fragment>
     );
