@@ -1,7 +1,12 @@
 import React from 'react';
+import RankTable from '../common/RankTable';
 
 const TopAnime = () => {
-  return <div>Top Anime</div>;
+  return (
+    <div>
+      <RankTable></RankTable>
+    </div>
+  );
 };
 
 export default TopAnime;
