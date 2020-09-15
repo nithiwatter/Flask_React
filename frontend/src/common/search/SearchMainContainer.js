@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SearchFilterContainer from './SearchFilterContainer';
 import SearchDisplayContainer from './SearchDisplayContainer';
+import { startSearching } from '../../actions/searchActions';
 
 class SearchMainContainer extends Component {
   componentDidMount() {
@@ -18,6 +20,7 @@ class SearchMainContainer extends Component {
       this.props.location.search !== prevProps.location.search
     ) {
       console.log('Searching!');
+      this.props.dispatch(startSearching());
     }
   }
 
@@ -33,4 +36,4 @@ class SearchMainContainer extends Component {
   }
 }
 
-export default withRouter(SearchMainContainer);
+export default connect()(withRouter(SearchMainContainer));

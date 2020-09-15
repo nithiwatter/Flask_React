@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableRow,
   Paper,
   Typography,
+  CircularProgress,
   makeStyles,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
@@ -36,10 +38,24 @@ const useStyles = makeStyles((theme) => ({
   readMore: {
     color: theme.palette.primary.main,
   },
+  loading: {
+    marginTop: theme.spacing(4),
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
-const SearchDisplayResult = () => {
+const SearchDisplayResult = (props) => {
   const classes = useStyles();
+  const { searchPending } = props;
+
+  if (searchPending) {
+    return (
+      <div className={classes.loading}>
+        <CircularProgress></CircularProgress>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -99,4 +115,10 @@ const SearchDisplayResult = () => {
   );
 };
 
-export default SearchDisplayResult;
+const mapStateToProps = (state) => {
+  return {
+    searchPending: state.search.searchPending,
+  };
+};
+
+export default connect(mapStateToProps)(SearchDisplayResult);
