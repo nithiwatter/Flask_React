@@ -8,13 +8,14 @@ class SearchMainContainer extends Component {
     console.log(this.props.history.location);
   }
 
-  componentDidUpdate() {
-    console.log(this.props.history.location);
+  componentDidUpdate(prevProps) {
+    console.log(prevProps.location);
+    console.log(this.props.location);
     // check if the search/query string changes
+    // if the back button goes from some query to no query, then no search is done
     if (
-      this.props.history.location.state &&
-      this.props.history.location.search !==
-        this.props.history.location.state.fromSearch
+      this.props.location.search &&
+      this.props.location.search !== prevProps.location.search
     ) {
       console.log('Searching!');
     }

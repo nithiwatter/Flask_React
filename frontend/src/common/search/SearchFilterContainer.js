@@ -28,8 +28,7 @@ class SearchFilterContainer extends Component {
 
   handleSearch() {
     this.props.history.push(
-      `/anime?${this.state.filter.category}=${this.state.value}`,
-      { fromSearch: this.props.history.location.search }
+      `/anime?${this.state.filter.category}=${this.state.value}`
     );
   }
 
