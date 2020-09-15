@@ -1,10 +1,10 @@
 import React from 'react';
-import SimpleSearchBar from '../common/search/SimpleSearchBar';
+import SearchMainContainer from '../common/search/SearchMainContainer';
 
 const SearchAnime = () => {
   return (
     <React.Fragment>
-      <SimpleSearchBar></SimpleSearchBar>
+      <SearchMainContainer></SearchMainContainer>
     </React.Fragment>
   );
 };

@@ -8,18 +8,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleDropDown = () => {
+const SimpleDropDown = (props) => {
   const classes = useStyles();
-  const [filter, setFilter] = React.useState('All');
+  const { value, handleDropDownChange } = props;
 
   const handleChange = (event) => {
-    setFilter(event.target.value);
+    handleDropDownChange(event.target.value);
   };
 
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <Select value={filter} onChange={handleChange}>
+        <Select value={value} onChange={handleChange}>
           <MenuItem value="All">All</MenuItem>
           <MenuItem value="Anime">Anime</MenuItem>
           <MenuItem value="Manga">Manga</MenuItem>

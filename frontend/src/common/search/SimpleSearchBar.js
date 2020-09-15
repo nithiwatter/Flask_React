@@ -1,20 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import {
-  IconButton,
-  Input,
-  Paper,
-  withStyles,
-  Typography,
-} from '@material-ui/core';
+import { IconButton, Input, Paper, makeStyles } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
-import SimpleDropDown from './SimpleDropDown';
 
-const styles = (theme) => ({
-  mainContainer: {
-    display: 'flex',
-  },
+const useStyles = makeStyles((theme) => ({
   root: {
     height: theme.spacing(6),
     width: '100%',
@@ -33,9 +23,6 @@ const styles = (theme) => ({
   },
   iconButtonHidden: {
     transform: 'scale(0, 0)',
-    '& > $icon': {
-      opacity: 0,
-    },
   },
   input: {
     width: '100%',
@@ -51,60 +38,47 @@ const styles = (theme) => ({
   mainTitle: {
     fontWeight: 700,
   },
-});
+}));
 
-class SimpleSearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+const SimpleSearchBar = (props) => {
+  const classes = useStyles();
+  const { value, handleInputChange, handleSearch } = props;
 
-  handleInputChange(e) {
-    this.setState({ value: e.target.value });
-  }
+  const handleSubmit = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
 
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <React.Fragment>
-        <div className={classes.mainTitleContainer}>
-          <Typography variant="h5" className={classes.mainTitle}>
-            Search Anime
-          </Typography>
+  return (
+    <React.Fragment>
+      <Paper className={classes.root}>
+        <div className={classes.searchContainer}>
+          <Input
+            fullWidth
+            disableUnderline
+            onChange={handleInputChange}
+            onKeyDown={handleSubmit}
+          />
         </div>
+        <IconButton
+          className={clsx(classes.iconButton, classes.searchIconButton, {
+            [classes.iconButtonHidden]: value !== '',
+          })}
+        >
+          <SearchIcon></SearchIcon>
+        </IconButton>
+        <IconButton
+          className={clsx(classes.iconButton, {
+            [classes.iconButtonHidden]: value === '',
+          })}
+        >
+          <ClearIcon></ClearIcon>
+        </IconButton>
+      </Paper>
+    </React.Fragment>
+  );
+};
 
-        <div className={classes.mainContainer}>
-          <SimpleDropDown></SimpleDropDown>
-          <Paper className={classes.root}>
-            <div className={classes.searchContainer}>
-              <Input
-                fullWidth
-                disableUnderline
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <IconButton
-              className={clsx(classes.iconButton, classes.searchIconButton, {
-                [classes.iconButtonHidden]: value !== '',
-              })}
-            >
-              <SearchIcon></SearchIcon>
-            </IconButton>
-            <IconButton
-              className={clsx(classes.iconButton, {
-                [classes.iconButtonHidden]: value === '',
-              })}
-            >
-              <ClearIcon></ClearIcon>
-            </IconButton>
-          </Paper>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
-export default withStyles(styles)(SimpleSearchBar);
+export default SimpleSearchBar;
