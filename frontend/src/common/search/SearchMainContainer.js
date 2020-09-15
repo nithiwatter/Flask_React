@@ -11,8 +11,6 @@ class SearchMainContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps.location);
-    console.log(this.props.location);
     // check if the search/query string changes
     // if the back button goes from some query to no query, then no search is done
     if (

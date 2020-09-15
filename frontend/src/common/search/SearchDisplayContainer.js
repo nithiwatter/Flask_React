@@ -16,7 +16,7 @@ class SearchDisplayContainer extends Component {
   state = {};
   render() {
     const { history, classes } = this.props;
-    console.log('render');
+    console.log('render results');
 
     if (history.location.search !== '') {
       return (

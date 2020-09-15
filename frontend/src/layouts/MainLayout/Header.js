@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+// import blue from '@material-ui/core/colors/blue';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
@@ -34,13 +34,13 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: 'auto',
   },
-  button: {
-    color: theme.palette.getContrastText(blue[500]),
-    backgroundColor: blue[500],
-    '&:hover': {
-      backgroundColor: blue[700],
-    },
-  },
+  // button: {
+  //   color: theme.palette.getContrastText(blue[500]),
+  //   backgroundColor: blue[500],
+  //   '&:hover': {
+  //     backgroundColor: blue[700],
+  //   },
+  // },
   logIn: {
     marginLeft: theme.spacing(2),
   },

@@ -1,54 +1,78 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
+import { Formik } from 'formik';
 import SimpleSearchBar from './SimpleSearchBar';
 import SimpleDropDown from './SimpleDropDown';
+import AdvanceSearchOptions from './AdvanceSearchOptions';
 
 const styles = (theme) => ({
   mainContainer: {
     display: 'flex',
   },
+  searchOptionsContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
 });
 
+const formObj = {
+  animeGenre: ['All', 'Action', 'Comedy', 'Romance'],
+  animeType: ['All', 'TV', 'OVA', 'Movie', 'Special'],
+  animeStatus: ['All', 'Finished Airing', 'Currently Airing', 'Not Yet Aired'],
+  animeProducer: [
+    'All',
+    'Production I.G.',
+    'Sunrise',
+    'Shaft',
+    'Kyoto Animation',
+    'A1 Pictures',
+  ],
+};
+
 class SearchFilterContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '', filter: { category: 'All' } };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleDropDownChange = this.handleDropDownChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  handleInputChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  handleDropDownChange(category) {
-    this.setState({ filter: { ...this.state.filter, category } });
-  }
-
-  handleSearch() {
-    this.props.history.push(
-      `/anime?${this.state.filter.category}=${this.state.value}`
-    );
-  }
-
   render() {
-    const { classes } = this.props;
-    const { value, filter } = this.state;
+    const { classes, history } = this.props;
+
     return (
-      <div>
-        <div className={classes.mainContainer}>
-          <SimpleDropDown
-            value={filter.category}
-            handleDropDownChange={this.handleDropDownChange}
-          ></SimpleDropDown>
-          <SimpleSearchBar
-            value={value}
-            handleInputChange={this.handleInputChange}
-            handleSearch={this.handleSearch}
-          ></SimpleSearchBar>
-        </div>
-      </div>
+      <Formik
+        validateOnChange={false}
+        initialValues={{
+          animeTitle: '',
+          animeGenre: 'All',
+          animeType: 'All',
+          animeStatus: 'All',
+          animeProducer: 'All',
+        }}
+        onSubmit={(values) => {
+          console.log(values);
+          history.push(`/anime?${values.animeGenre}=${values.animeTitle}`);
+        }}
+      >
+        {({ values, setFieldValue, submitForm }) => {
+          return (
+            <div>
+              <div className={classes.mainContainer}>
+                <SimpleDropDown
+                  value={values.animeGenre}
+                  valueType="animeGenre"
+                  valueOptions={formObj.animeGenre}
+                  handleDropDownChange={setFieldValue}
+                ></SimpleDropDown>
+                <SimpleSearchBar
+                  valueType="animeTitle"
+                  handleSearch={setFieldValue}
+                  formikSubmit={submitForm}
+                ></SimpleSearchBar>
+              </div>
+              <AdvanceSearchOptions
+                formObj={formObj}
+                values={values}
+                handleChange={setFieldValue}
+              ></AdvanceSearchOptions>
+            </div>
+          );
+        }}
+      </Formik>
     );
   }
 }

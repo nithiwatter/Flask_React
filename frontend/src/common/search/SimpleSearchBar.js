@@ -42,12 +42,32 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleSearchBar = (props) => {
   const classes = useStyles();
-  const { value, handleInputChange, handleSearch } = props;
+  const { valueType, handleSearch, formikSubmit } = props;
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    // delay on every keystroke until the user stops typing for a while
+    const delayDebounceFn = setTimeout(() => {
+      // send API request here
+    }, 2000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [value]);
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleInputClear = () => {
+    setValue('');
+  };
 
   const handleSubmit = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      handleSearch();
+      // setFieldValue for formik here
+      handleSearch(valueType, value, false);
+      formikSubmit();
     }
   };
 
@@ -58,6 +78,7 @@ const SimpleSearchBar = (props) => {
           <Input
             fullWidth
             disableUnderline
+            value={value}
             onChange={handleInputChange}
             onKeyDown={handleSubmit}
           />
@@ -73,6 +94,7 @@ const SimpleSearchBar = (props) => {
           className={clsx(classes.iconButton, {
             [classes.iconButtonHidden]: value === '',
           })}
+          onClick={handleInputClear}
         >
           <ClearIcon></ClearIcon>
         </IconButton>
