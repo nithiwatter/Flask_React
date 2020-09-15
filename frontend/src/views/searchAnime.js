@@ -1,7 +1,12 @@
 import React from 'react';
+import SimpleSearchBar from '../common/search/SimpleSearchBar';
 
 const SearchAnime = () => {
-  return <div>Anime Search</div>;
+  return (
+    <React.Fragment>
+      <SimpleSearchBar></SimpleSearchBar>
+    </React.Fragment>
+  );
 };
 
 export default SearchAnime;
