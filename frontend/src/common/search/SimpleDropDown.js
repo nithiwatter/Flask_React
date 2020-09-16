@@ -12,6 +12,9 @@ const SimpleDropDown = (props) => {
   const classes = useStyles();
   const { value, handleDropDownChange, valueType, valueOptions } = props;
 
+  console.log('render');
+  console.log(valueType);
+
   const handleChange = (event) => {
     handleDropDownChange(valueType, event.target.value);
   };
@@ -31,4 +34,5 @@ const SimpleDropDown = (props) => {
   );
 };
 
-export default SimpleDropDown;
+// memoize component to increase render performance
+export default React.memo(SimpleDropDown);

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
 import { Formik } from 'formik';
 import SimpleSearchBar from './SimpleSearchBar';
-import SimpleDropDown from './SimpleDropDown';
 import AdvanceSearchOptions from './AdvanceSearchOptions';
 
-const styles = (theme) => ({
+const styles = () => ({
   mainContainer: {
     display: 'flex',
   },
@@ -16,7 +15,6 @@ const styles = (theme) => ({
 });
 
 const formObj = {
-  animeGenre: ['All', 'Action', 'Comedy', 'Romance'],
   animeType: ['All', 'TV', 'OVA', 'Movie', 'Special'],
   animeStatus: ['All', 'Finished Airing', 'Currently Airing', 'Not Yet Aired'],
   animeProducer: [
@@ -26,6 +24,12 @@ const formObj = {
     'Shaft',
     'Kyoto Animation',
     'A1 Pictures',
+  ],
+  animeGenre: [
+    { label: 'All', value: 'all' },
+    { label: 'Romance', value: 'romance' },
+    { label: 'Comedy', value: 'comedy' },
+    { label: 'Action', value: 'action' },
   ],
 };
 
@@ -38,26 +42,25 @@ class SearchFilterContainer extends Component {
         validateOnChange={false}
         initialValues={{
           animeTitle: '',
-          animeGenre: 'All',
           animeType: 'All',
           animeStatus: 'All',
           animeProducer: 'All',
+          animeGenre: {
+            all: true,
+            romance: false,
+            comedy: false,
+            action: false,
+          },
         }}
         onSubmit={(values) => {
           console.log(values);
-          history.push(`/anime?${values.animeGenre}=${values.animeTitle}`);
+          history.push(`/anime?${values.animeType}=${values.animeTitle}`);
         }}
       >
         {({ values, setFieldValue, submitForm }) => {
           return (
             <div>
               <div className={classes.mainContainer}>
-                <SimpleDropDown
-                  value={values.animeGenre}
-                  valueType="animeGenre"
-                  valueOptions={formObj.animeGenre}
-                  handleDropDownChange={setFieldValue}
-                ></SimpleDropDown>
                 <SimpleSearchBar
                   valueType="animeTitle"
                   handleSearch={setFieldValue}
