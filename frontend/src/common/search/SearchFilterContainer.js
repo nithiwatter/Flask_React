@@ -51,6 +51,8 @@ class SearchFilterContainer extends Component {
             comedy: false,
             action: false,
           },
+          animeStartDate: null,
+          animeEndDate: null,
         }}
         onSubmit={(values) => {
           console.log(values);
