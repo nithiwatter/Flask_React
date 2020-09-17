@@ -126,7 +126,7 @@ const AdvanceSearchOptions = (props) => {
               </Grid>
 
               <Grid item xs={12}>
-                <Divider variant="inset"></Divider>
+                <Divider variant="middle" light></Divider>
               </Grid>
 
               <Grid item container xs={6} alignItems="center">
