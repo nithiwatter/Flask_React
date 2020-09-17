@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   container: {
-    border: '3px solid',
-    borderColor: theme.palette.primary.main,
-    borderRadius: 10,
+    // border: '3px solid',
+    // borderColor: theme.palette.primary.main,
+    // borderRadius: 10,
     padding: theme.spacing(2),
   },
   labelContainer: {
@@ -72,7 +72,7 @@ const AdvanceSearchOptions = (props) => {
         />
       </div>
       <Collapse in={checked}>
-        <Paper className={classes.container} elevation={0}>
+        <Paper className={classes.container}>
           <div className={classes.tableContainer}>
             <div className={classes.titleContainer}>
               <Typography variant="body1" className={classes.title}>
