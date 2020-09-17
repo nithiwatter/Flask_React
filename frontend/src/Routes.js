@@ -1,11 +1,12 @@
-import React from 'react';
-import { Switch } from 'react-router-dom';
-import RouteWithLayout from './common/RouteWithLayout';
-import SideBar from './layouts/MainLayout/SideBar';
-import TopAnime from './views/topAnime';
-import TopManga from './views/topManga';
-import SearchAnime from './views/searchAnime';
-import SearchManga from './views/searchManga';
+import React from "react";
+import { Switch } from "react-router-dom";
+import RouteWithLayout from "./common/RouteWithLayout";
+import SideBar from "./layouts/MainLayout/SideBar";
+import TopAnime from "./views/topAnime";
+import TopManga from "./views/topManga";
+import SearchAnime from "./views/searchAnime";
+import SearchManga from "./views/searchManga";
+import DetailedAnime from "./views/detailedAnime";
 
 const Routes = () => {
   return (
@@ -27,6 +28,12 @@ const Routes = () => {
         exact
         layout={SideBar}
         path="/anime"
+      />
+      <RouteWithLayout
+        component={DetailedAnime}
+        exact
+        layout={SideBar}
+        path="/anime/:id"
       />
       <RouteWithLayout
         component={SearchManga}

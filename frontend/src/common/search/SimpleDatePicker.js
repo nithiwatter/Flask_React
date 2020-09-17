@@ -1,6 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import React from "react";
+import { makeStyles } from "@material-ui/core";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleDatePicker = (props) => {
   const classes = useStyles();
-  const { name, value, setDate } = props;
+  const { name, value, label, setDate } = props;
 
   const handleDateChange = (date) => {
     setDate(name, date);
@@ -23,6 +23,7 @@ const SimpleDatePicker = (props) => {
         clearable
         name={name}
         value={value}
+        label={label}
         onChange={handleDateChange}
         format="yyyy/MM/dd"
       />

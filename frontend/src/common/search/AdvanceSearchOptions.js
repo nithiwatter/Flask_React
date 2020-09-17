@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Paper,
   Collapse,
@@ -8,16 +8,16 @@ import {
   Divider,
   Grid,
   makeStyles,
-} from '@material-ui/core';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import SettingsIcon from '@material-ui/icons/Settings';
-import SimpleDropDown from './SimpleDropDown';
-import SimpleCheckBoxGroup from './SimpleCheckBoxGroup';
-import SimpleDatePicker from './SimpleDatePicker';
+} from "@material-ui/core";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import SettingsIcon from "@material-ui/icons/Settings";
+import SimpleDropDown from "./SimpleDropDown";
+import SimpleCheckBoxGroup from "./SimpleCheckBoxGroup";
+import SimpleDatePicker from "./SimpleDatePicker";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing(2),
   },
   container: {
@@ -27,22 +27,22 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   labelContainer: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
   },
   tableContainer: {
     marginBottom: theme.spacing(2),
-    height: 'auto',
+    height: "auto",
   },
   titleContainer: {
-    display: 'flex',
+    display: "flex",
   },
   divider: {
     marginBottom: theme.spacing(1),
   },
   selectContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   selectTitle: {
     fontWeight: 700,
@@ -125,6 +125,10 @@ const AdvanceSearchOptions = (props) => {
                 ></SimpleDropDown>
               </Grid>
 
+              <Grid item xs={12}>
+                <Divider variant="inset"></Divider>
+              </Grid>
+
               <Grid item container xs={6} alignItems="center">
                 <Typography variant="body2" className={classes.selectTitle}>
                   Select Anime Start Date:
@@ -133,6 +137,7 @@ const AdvanceSearchOptions = (props) => {
               <Grid item container xs={6} alignItems="center">
                 <SimpleDatePicker
                   name="animeStartDate"
+                  label="Start Date"
                   value={values.animeStartDate}
                   setDate={handleFieldChange}
                 ></SimpleDatePicker>
@@ -146,6 +151,7 @@ const AdvanceSearchOptions = (props) => {
               <Grid item container xs={6} alignItems="center">
                 <SimpleDatePicker
                   name="animeEndDate"
+                  label="End Date"
                   value={values.animeEndDate}
                   setDate={handleFieldChange}
                 ></SimpleDatePicker>
