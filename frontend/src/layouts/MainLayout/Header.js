@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -80,6 +81,8 @@ function Header(props) {
               variant="contained"
               color="secondary"
               className={classes.button}
+              component={Link}
+              to="/register"
             >
               Register
             </Button>
@@ -87,6 +90,8 @@ function Header(props) {
               variant="contained"
               color="secondary"
               className={clsx(classes.logIn, classes.button)}
+              component={Link}
+              to="/login"
             >
               Log In
             </Button>
