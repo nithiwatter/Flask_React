@@ -164,7 +164,9 @@ const DetailedGridLayout = () => {
                         </Typography>
                       </Grid>
                       <Grid item container xs={12} justify="center">
-                        <Typography variant="h5">8.82</Typography>
+                        <Typography variant="h5" style={{ fontWeight: 700 }}>
+                          8.82
+                        </Typography>
                       </Grid>
                       <Grid item container xs={12} justify="center">
                         <Typography variant="body2">234,467 users</Typography>
