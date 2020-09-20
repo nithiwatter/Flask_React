@@ -1,8 +1,0 @@
-{
-  "workbench.colorTheme": "Solarized Dark",
-  "python.linting.pylintArgs": [
-    "--load-plugins",
-    "pylint-flask",
-    "pylint-flask-sqlalchemy"
-  ]
-}
