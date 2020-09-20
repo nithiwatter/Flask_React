@@ -1,12 +1,11 @@
 # application factory to create the main app for this particular package
-
-import os
-
 from flask import Flask
+import os
+import sys
 
-from flask_sqlalchemy import SQLAlchemy
-
-# globally accessible SQLAlchemy
+# need to import models first
+from .models.anime_model import Anime
+from .models import db
 
 
 def create_app(test_config=None):
@@ -37,10 +36,21 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # initialize the SQLAlchemy plugin
+    # this db has already been passed through model definitions
+    db.init_app(app)
+
+    # bind the db to this particular instance of app
+    with app.app_context():
+        db.create_all()
 
     # a simple page that says hello
+
     @app.route('/hello')
     def hello():
+        print(sys.path)
+        test = Anime(name='test28')
+        db.session.add(test)
+        db.session.commit()
         return 'Hello, World!'
 
     return app
