@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
+# need to bind to 0.0.0.0 to enable outside connections from containers (in addition to enabling port forwarding)
 CMD flask run --host=0.0.0.0
 
 

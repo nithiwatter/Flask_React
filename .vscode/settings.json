@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
     "workbench.colorTheme": "Solarized Dark"
 }
+=======
+    "python.pythonPath": "backend\\backend-env\\Scripts\\python.exe"
+}
+>>>>>>> 48329905e3193f52c2137db9f935b62c58a10c00
