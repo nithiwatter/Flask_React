@@ -2,4 +2,4 @@
 /backend/backend-env
 /frontend/node_modules
 /data
-/.vscode
+**/.vscode/
