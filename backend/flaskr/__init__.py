@@ -40,7 +40,10 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # bind the db to this particular instance of app
+    # no need to to clean up application context (with already handles that)
+    # no need to clean up session of SQLAlchemy (Flask extension already handles that)
     with app.app_context():
+        # creating our tables
         db.create_all()
 
         # import parts of our application
@@ -52,6 +55,9 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/hello')
     def hello():
+        # test with adding a simple anime
+        # db.session.add(Anime(name="test"))
+        # db.session.commit()
         return 'Hello, World!'
 
     return app
