@@ -4,8 +4,8 @@ import os
 import sys
 
 # need to import models first
-from .models.anime_model import Anime
-from .models import db
+from flaskr.models.anime_model import Anime
+from flaskr.models import db
 
 
 def create_app(test_config=None):
@@ -43,14 +43,15 @@ def create_app(test_config=None):
     with app.app_context():
         db.create_all()
 
-    # a simple page that says hello
+        # import parts of our application
+        from flaskr.routes import anime_routes
 
+        # register our blueprints
+        app.register_blueprint(anime_routes.bp)
+
+    # a simple page that says hello
     @app.route('/hello')
     def hello():
-        print(sys.path)
-        test = Anime(name='test28')
-        db.session.add(test)
-        db.session.commit()
         return 'Hello, World!'
 
     return app

@@ -10,4 +10,4 @@ class Anime(db.Model):
     name = db.Column(db.String(80), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<Anime {}>'.format(self.name)
+        return '(Anime {})'.format(self.name)
