@@ -11,7 +11,7 @@ from flaskr.models.anime_model import Anime
 from flaskr.models import db
 
 # importing mock data
-# from flaskr.models.sample_scrape import *
+from flaskr.models.sample_scrape import *
 
 
 def create_app(test_config=None):
