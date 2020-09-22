@@ -6,8 +6,15 @@ from . import db
 class Anime(db.Model):
     """Data model for anime."""
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    anime_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), unique=True, nullable=False)
+    synopsis = db.Column(db.String(2000))
+    rating = db.Column(db.String(4))
+    airing = db.Column(db.String(30))
+
 
     def __repr__(self):
-        return '(Anime {})'.format(self.name)
+        return '(Anime | ID: {} | name:{} | synopsis:{} | rating:{} | airing:{} |)'.format(self.anime_id,self.name,self.synopsis,self.rating,self.airing)
+
+
+
