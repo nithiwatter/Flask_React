@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import {
   Table,
   TableBody,
@@ -48,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
   imageContainer: {
     flexShrink: 0,
   },
+  image: {
+    maxWidth: 75,
+    height: 'auto',
+  },
   textContainer: {
     marginLeft: theme.spacing(2),
   },
@@ -56,8 +61,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RankTable = () => {
+const RankTable = (props) => {
   const classes = useStyles();
+  const { data } = props;
 
   return (
     <React.Fragment>
@@ -96,103 +102,49 @@ const RankTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>
-                <Typography variant="h4" className={classes.rank}>
-                  1
-                </Typography>
-              </TableCell>
-              <TableCell align="left">
-                <div className={classes.titleContainer}>
-                  <div className={classes.imageContainer}>
-                    <Skeleton variant="rect" width={75} height={105} />
-                  </div>
+            {data.map((entry, i) => (
+              <TableRow key={entry.anime_id}>
+                <TableCell>
+                  <Typography variant="h4" className={classes.rank}>
+                    {i + 1}
+                  </Typography>
+                </TableCell>
+                <TableCell align="left">
+                  <div className={classes.titleContainer}>
+                    <div className={classes.imageContainer}>
+                      <img
+                        src={entry.mal_anime_image_path}
+                        className={classes.image}
+                      ></img>
+                      {/* <Skeleton variant="rect" width={75} height={105} /> */}
+                    </div>
 
-                  <div className={classes.textContainer}>
-                    <Typography variant="h6" className={classes.title}>
-                      Fullmetal Alchemist: Brotherhood
-                    </Typography>
-                    <Typography variant="body2">TV (64 eps)</Typography>
-                    <Typography variant="body2">Apr 2009 - Jul 2010</Typography>
-                    <Typography variant="body2">1,942,914 members</Typography>
+                    <div className={classes.textContainer}>
+                      <Typography variant="h6" className={classes.title}>
+                        {entry.name}
+                      </Typography>
+                      <Typography variant="body2">
+                        {entry.anime_type}
+                      </Typography>
+                      <Typography variant="body2">
+                        {format(new Date(entry.airing_start), 'LLL yyyy')}
+                      </Typography>
+                      <Typography variant="body2">1,942,914 members</Typography>
+                    </div>
                   </div>
-                </div>
-              </TableCell>
-              <TableCell align="right">
-                <div className={classes.rankContainer}>
-                  <StarRateIcon></StarRateIcon>
-                  <div>9.22</div>
-                </div>
-              </TableCell>
-              <TableCell align="right">N/A</TableCell>
-              <TableCell align="right">
-                <SmallMenu></SmallMenu>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Typography variant="h4" className={classes.rank}>
-                  1
-                </Typography>
-              </TableCell>
-              <TableCell align="left">
-                <div className={classes.titleContainer}>
-                  <div className={classes.imageContainer}>
-                    <Skeleton variant="rect" width={75} height={105} />
+                </TableCell>
+                <TableCell align="right">
+                  <div className={classes.rankContainer}>
+                    <StarRateIcon></StarRateIcon>
+                    <div>{entry.rating}</div>
                   </div>
-                  <div className={classes.textContainer}>
-                    <Typography variant="h6" className={classes.title}>
-                      Fullmetal Alchemist: Brotherhood
-                    </Typography>
-                    <Typography variant="body2">TV (64 eps)</Typography>
-                    <Typography variant="body2">Apr 2009 - Jul 2010</Typography>
-                    <Typography variant="body2">1,942,914 members</Typography>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell align="right">
-                <div className={classes.rankContainer}>
-                  <StarRateIcon></StarRateIcon>
-                  <div>9.22</div>
-                </div>
-              </TableCell>
-              <TableCell align="right">N/A</TableCell>
-              <TableCell align="right">
-                <SmallMenu></SmallMenu>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Typography variant="h4" className={classes.rank}>
-                  1
-                </Typography>
-              </TableCell>
-              <TableCell align="left">
-                <div className={classes.titleContainer}>
-                  <div className={classes.imageContainer}>
-                    <Skeleton variant="rect" width={75} height={105} />
-                  </div>
-                  <div className={classes.textContainer}>
-                    <Typography variant="h6" className={classes.title}>
-                      Fullmetal Alchemist: Brotherhood
-                    </Typography>
-                    <Typography variant="body2">TV (64 eps)</Typography>
-                    <Typography variant="body2">Apr 2009 - Jul 2010</Typography>
-                    <Typography variant="body2">1,942,914 members</Typography>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell align="right">
-                <div className={classes.rankContainer}>
-                  <StarRateIcon></StarRateIcon>
-                  <div>9.22</div>
-                </div>
-              </TableCell>
-              <TableCell align="right">N/A</TableCell>
-              <TableCell align="right">
-                <SmallMenu></SmallMenu>
-              </TableCell>
-            </TableRow>
+                </TableCell>
+                <TableCell align="right">N/A</TableCell>
+                <TableCell align="right">
+                  <SmallMenu></SmallMenu>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

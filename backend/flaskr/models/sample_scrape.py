@@ -15,6 +15,7 @@ synopsis_anime = []
 rating_anime = []
 type_anime = []
 airing_start_anime = []
+mal_image_path_anime = []
 image_path_anime = []
 num_images = 0
 
@@ -37,6 +38,7 @@ for k in earth_seasons:
             image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(
                 anime_id)
 
+            mal_image_path_anime.append(image_url)
             image_path_anime.append(image_file_path)
 
             # if num_images < 100 and (not os.path.exists(image_file_path)):

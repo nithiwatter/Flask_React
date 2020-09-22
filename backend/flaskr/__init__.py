@@ -3,6 +3,9 @@ from flask import Flask
 import os
 import sys
 
+# date time utils
+from flaskr.utils import custom_json_encoder
+
 # need to import models first
 from flaskr.models.anime_model import Anime
 from flaskr.models import db
@@ -38,6 +41,8 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
+    app.json_encoder = custom_json_encoder.CustomJSONEncoder
+
     # initialize the SQLAlchemy plugin
     # this db has already been passed through model definitions
     db.init_app(app)
@@ -65,16 +70,13 @@ def create_app(test_config=None):
 
     @app.route('/add_anime')
     def add_animes():
-        # for i in range(len(winter['anime'])):
-        # to_add = Anime(anime_id=winter['anime'][i]['mal_id'],name=winter['anime'][i]['title'],synopsis=winter['anime'][i]['synopsis'],rating=winter['anime'][i]['score'],airing='123')
-
         # committing mock data
-        # for i in range(len(id_anime)):
-        #     to_add = Anime(anime_id=id_anime[i], name=name_anime[i],
-        #                    synopsis=synopsis_anime[i], rating=rating_anime[i], anime_type=type_anime[i],
-        #                    airing_start=airing_start_anime[i], anime_image_path=image_path_anime[i])
-        #     db.session.merge(to_add)
-        #     db.session.commit()
+        for i in range(len(id_anime)):
+            to_add = Anime(anime_id=id_anime[i], name=name_anime[i],
+                           synopsis=synopsis_anime[i], rating=rating_anime[i], anime_type=type_anime[i],
+                           airing_start=airing_start_anime[i], anime_image_path=image_path_anime[i], mal_anime_image_path=mal_image_path_anime[i])
+            db.session.merge(to_add)
+            db.session.commit()
         return 'done'
 
     return app
