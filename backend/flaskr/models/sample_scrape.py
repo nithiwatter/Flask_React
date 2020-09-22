@@ -5,48 +5,51 @@ import time
 jikan = Jikan()
 #config.TIMEOUT = 1
 
+earth_seasons = ['spring','summer','fall','winter']
+
 id_anime = []
 name_anime = []
 synopsis_anime = []
 rating_anime = []
 aired_anime = []
 
-for i in range(2015,2017):
-    season = jikan.season(year=i,season='spring')
-    # pprint.pprint(spring, raw_animes)
-    for j in range(len(season['anime'])):
-        id_anime.append(season['anime'][j]['mal_id'])
-        name_anime.append(season['anime'][j]['title'])
-        synopsis_anime.append(season['anime'][j]['synopsis'])
-        rating_anime.append(season['anime'][j]['score'])
-    time.sleep(8)
+for k in earth_seasons:
+    for i in range(2015,2017):
+        season = jikan.season(year=i,season=k)
+        # pprint.pprint(spring, raw_animes)
+        for j in range(len(season['anime'])):
+            id_anime.append(season['anime'][j]['mal_id'])
+            name_anime.append(season['anime'][j]['title'])
+            synopsis_anime.append(season['anime'][j]['synopsis'])
+            rating_anime.append(season['anime'][j]['score'])
+        time.sleep(8)
 
-    season = jikan.season(year=i,season='summer')
-    # pprint.pprint(spring, raw_animes)
-    for j in range(len(season['anime'])):
-        id_anime.append(season['anime'][j]['mal_id'])
-        name_anime.append(season['anime'][j]['title'])
-        synopsis_anime.append(season['anime'][j]['synopsis'])
-        rating_anime.append(season['anime'][j]['score'])
-    time.sleep(8)
+    # season = jikan.season(year=i,season='summer')
+    # # pprint.pprint(spring, raw_animes)
+    # for j in range(len(season['anime'])):
+    #     id_anime.append(season['anime'][j]['mal_id'])
+    #     name_anime.append(season['anime'][j]['title'])
+    #     synopsis_anime.append(season['anime'][j]['synopsis'])
+    #     rating_anime.append(season['anime'][j]['score'])
+    # time.sleep(8)
 
-    season = jikan.season(year=i,season='fall')
-    # pprint.pprint(spring, raw_animes)
-    for j in range(len(season['anime'])):
-        id_anime.append(season['anime'][j]['mal_id'])
-        name_anime.append(season['anime'][j]['title'])
-        synopsis_anime.append(season['anime'][j]['synopsis'])
-        rating_anime.append(season['anime'][j]['score'])
-    time.sleep(8)
+    # season = jikan.season(year=i,season='fall')
+    # # pprint.pprint(spring, raw_animes)
+    # for j in range(len(season['anime'])):
+    #     id_anime.append(season['anime'][j]['mal_id'])
+    #     name_anime.append(season['anime'][j]['title'])
+    #     synopsis_anime.append(season['anime'][j]['synopsis'])
+    #     rating_anime.append(season['anime'][j]['score'])
+    # time.sleep(8)
 
-    season = jikan.season(year=i,season='winter')
-    # pprint.pprint(spring, raw_animes)
-    for j in range(len(season['anime'])):
-        id_anime.append(season['anime'][j]['mal_id'])
-        name_anime.append(season['anime'][j]['title'])
-        synopsis_anime.append(season['anime'][j]['synopsis'])
-        rating_anime.append(season['anime'][j]['score'])
-    time.sleep(8)
+    # season = jikan.season(year=i,season='winter')
+    # # pprint.pprint(spring, raw_animes)
+    # for j in range(len(season['anime'])):
+    #     id_anime.append(season['anime'][j]['mal_id'])
+    #     name_anime.append(season['anime'][j]['title'])
+    #     synopsis_anime.append(season['anime'][j]['synopsis'])
+    #     rating_anime.append(season['anime'][j]['score'])
+    # time.sleep(8)
 
 #winter = jikan.season(year = 2015, season='winter')
 
