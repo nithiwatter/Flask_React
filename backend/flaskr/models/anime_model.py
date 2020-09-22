@@ -1,5 +1,6 @@
 # using the same instance of db initialized in __init__.py
 
+from jikanpy import Jikan
 from . import db
 
 
@@ -11,3 +12,10 @@ class Anime(db.Model):
 
     def __repr__(self):
         return '(Anime {})'.format(self.name)
+
+
+jikan = Jikan()
+
+winter = jikan.season(year=2015, season='winter')
+
+print(winter['anime'][0])

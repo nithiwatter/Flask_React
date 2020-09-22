@@ -56,8 +56,8 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         # test with adding a simple anime
-        # db.session.add(Anime(name="test"))
-        # db.session.commit()
+        db.session.add(Anime(name="testtest"))
+        db.session.commit()
         return 'Hello, World!'
 
     return app
