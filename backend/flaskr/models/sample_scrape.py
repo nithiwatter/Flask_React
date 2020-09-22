@@ -1,27 +1,55 @@
+import os
+import requests
+import time
 from jikanpy import Jikan
 
 #from mal import Anime, config
-import time
 jikan = Jikan()
 #config.TIMEOUT = 1
 
-earth_seasons = ['spring','summer','fall','winter']
+earth_seasons = ['spring', 'summer', 'fall', 'winter']
 
 id_anime = []
 name_anime = []
 synopsis_anime = []
 rating_anime = []
-aired_anime = []
+type_anime = []
+airing_start_anime = []
+image_path_anime = []
+num_images = 0
 
 for k in earth_seasons:
-    for i in range(2015,2017):
-        season = jikan.season(year=i,season=k)
+    for i in range(2015, 2017):
+        season = jikan.season(year=i, season=k)
         # pprint.pprint(spring, raw_animes)
         for j in range(len(season['anime'])):
             id_anime.append(season['anime'][j]['mal_id'])
             name_anime.append(season['anime'][j]['title'])
             synopsis_anime.append(season['anime'][j]['synopsis'])
             rating_anime.append(season['anime'][j]['score'])
+            type_anime.append(season['anime'][j]['type'])
+            airing_start_anime.append(season['anime'][j]['airing_start'])
+
+            # downloading images from MAL cdn
+            # download 100 at a time
+            anime_id = season['anime'][j]['mal_id']
+            image_url = season['anime'][j]['image_url']
+            image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(
+                anime_id)
+
+            image_path_anime.append(image_file_path)
+
+            # if num_images < 100 and (not os.path.exists(image_file_path)):
+            #     print(num_images)
+            #     print(season['anime'][j]['title'])
+            #     print('start downloading image...')
+            #     response = requests.get(image_url)
+            #     file = open(image_file_path, "wb")
+            #     file.write(response.content)
+            #     file.close()
+            #     print('finish downloading image...')
+            #     num_images += 1
+
         time.sleep(8)
 
     # season = jikan.season(year=i,season='summer')
@@ -53,16 +81,13 @@ for k in earth_seasons:
 
 #winter = jikan.season(year = 2015, season='winter')
 
-
-    #aired_anime.append(winter['anime'][j]['mal_id'])
+    # aired_anime.append(winter['anime'][j]['mal_id'])
 
 # for i in id_anime:
 #     name_anime.append(Anime(i).title)
 #     synopsis_anime.append(Anime(i).synopsis)
 #     rating_anime.append(Anime(i).rating)
 #     aired_anime.append(Anime(i).aired)
-
-
 
 
 # for i in id_anime:
@@ -80,10 +105,3 @@ for k in earth_seasons:
 # synopsis_anime = anime['synopsis']
 # rating_anime = anime['score']
 # aired_anime = anime['aired']['string']
-
-
-
-
-
-
-

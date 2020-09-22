@@ -6,7 +6,9 @@ import sys
 # need to import models first
 from flaskr.models.anime_model import Anime
 from flaskr.models import db
-from flaskr.models.sample_scrape import *
+
+# importing mock data
+# from flaskr.models.sample_scrape import *
 
 
 def create_app(test_config=None):
@@ -57,18 +59,22 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         # test with adding a simple anime
-        db.session.add(Anime(name="testtest"))
-        db.session.commit()
+        # db.session.add(Anime(name="testtest"))
+        # db.session.commit()
         return 'Hello, World!'
-    
-    @app.route('/add_animes')
+
+    @app.route('/add_anime')
     def add_animes():
         # for i in range(len(winter['anime'])):
         # to_add = Anime(anime_id=winter['anime'][i]['mal_id'],name=winter['anime'][i]['title'],synopsis=winter['anime'][i]['synopsis'],rating=winter['anime'][i]['score'],airing='123')
-        for i in range(len(id_anime)):
-            to_add = Anime(anime_id=id_anime[i],name=name_anime[i],synopsis=synopsis_anime[i],rating=rating_anime[i],airing='123')
-            db.session.merge(to_add)
-            db.session.commit()
+
+        # committing mock data
+        # for i in range(len(id_anime)):
+        #     to_add = Anime(anime_id=id_anime[i], name=name_anime[i],
+        #                    synopsis=synopsis_anime[i], rating=rating_anime[i], anime_type=type_anime[i],
+        #                    airing_start=airing_start_anime[i], anime_image_path=image_path_anime[i])
+        #     db.session.merge(to_add)
+        #     db.session.commit()
         return 'done'
 
     return app
