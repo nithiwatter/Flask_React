@@ -1,12 +1,10 @@
 import os
 import requests
 import time
-from datetime import datetime
+# from datetime import datetime
 from jikanpy import Jikan
 
-#from mal import Anime, config
 jikan = Jikan()
-#config.TIMEOUT = 1
 
 earth_seasons = ['spring', 'summer', 'fall', 'winter']
 
@@ -16,6 +14,7 @@ synopsis_anime = []
 rating_anime = []
 type_anime = []
 airing_start_anime = []
+# airing_start_anime_str = []
 mal_image_path_anime = []
 image_path_anime = []
 num_images = 0
@@ -25,7 +24,8 @@ for k in earth_seasons:
         season = jikan.season(year=i, season=k)
 
         for j in range(len(season['anime'])):
-            if season['anime'][j]['r18'] is True: #filter out hentais from being put in database
+            # filter out hentais from being put in database
+            if season['anime'][j]['r18'] is True:
                 continue
             else:
                 id_anime.append(season['anime'][j]['mal_id'])
@@ -33,11 +33,17 @@ for k in earth_seasons:
                 synopsis_anime.append(season['anime'][j]['synopsis'])
                 rating_anime.append(season['anime'][j]['score'])
                 type_anime.append(season['anime'][j]['type'])
-                if season['anime'][j]['airing_start'] is not None: #filter out null airing dates
-                    dt = datetime.now().strptime(season['anime'][j]['airing_start'],'%Y-%m-%dT%H:%M:%S%z')
-                    airing_start_anime.append(dt.strftime('%b. %Y'))
-                else:
-                    airing_start_anime.append(datetime(9999,9,9))
+
+                # potential code for storing date as str objects in MySQL db
+                # filter out null airing dates
+                # if season['anime'][j]['airing_start'] is not None:
+                #     dt = datetime.now().strptime(
+                #         season['anime'][j]['airing_start'], '%Y-%m-%dT%H:%M:%S%z')
+                #     airing_start_anime_str.append(dt.strftime('%b. %Y'))
+                # else:
+                #     airing_start_anime_str.append(datetime(9999, 9, 9))
+
+                airing_start_anime.append(season['anime'][j]['airing_start'])
 
             # downloading images from MAL cdn
             # download 100 at a time
