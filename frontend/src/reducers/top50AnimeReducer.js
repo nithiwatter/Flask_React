@@ -1,16 +1,13 @@
 import {
   TOP_50_SWITCH_PAGE,
-  TOP_50_START_API_REQUEST,
   TOP_50_FINISHED_API_REQUEST,
 } from "../actionConstants/actionTypes";
 
 const top50AnimeReducer = (
-  state = { didMount: false, loading: false, top50Anime: [] },
+  state = { loading: true, top50Anime: [] },
   action
 ) => {
   switch (action.type) {
-    case TOP_50_START_API_REQUEST:
-      return { ...state, didMount: true, loading: true };
     case TOP_50_FINISHED_API_REQUEST:
       return {
         ...state,
@@ -18,7 +15,7 @@ const top50AnimeReducer = (
         loading: false,
       };
     case TOP_50_SWITCH_PAGE:
-      return { ...state, didMount: false };
+      return { ...state, loading: true };
     default:
       return state;
   }

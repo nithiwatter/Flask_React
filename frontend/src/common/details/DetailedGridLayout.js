@@ -12,7 +12,6 @@ import {
 import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   gridLayout: {
     padding: theme.spacing(1),
   },
@@ -73,16 +72,16 @@ const DetailedGridLayout = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <Grid container className={classes.titleContainer}>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.title}>
-            <Skeleton width="40%"></Skeleton>
+            Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.subTitle}>
-            <Skeleton width="40%"></Skeleton>
+            Kaguya-sama: Love is War Season 2
           </Typography>
         </Grid>
       </Grid>
