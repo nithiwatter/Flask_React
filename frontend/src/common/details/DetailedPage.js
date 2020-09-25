@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "date-fns";
 import {
   Grid,
   ButtonGroup,
@@ -12,7 +13,6 @@ import {
 import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   gridLayout: {
     padding: theme.spacing(1),
   },
@@ -67,22 +67,27 @@ const useStyles = makeStyles((theme) => ({
   videoContainer: {
     padding: theme.spacing(2),
   },
+  image: {
+    width: 255,
+    height: "auto",
+  },
 }));
 
-const DetailedGridLayout = () => {
+const DetailedPage = (props) => {
   const classes = useStyles();
+  const { data } = props;
 
   return (
-    <div className={classes.root}>
+    <div>
       <Grid container className={classes.titleContainer}>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.title}>
-            <Skeleton width="40%"></Skeleton>
+            {data.name}
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.subTitle}>
-            <Skeleton width="40%"></Skeleton>
+            {data.name}
           </Typography>
         </Grid>
       </Grid>
@@ -97,7 +102,11 @@ const DetailedGridLayout = () => {
           justify="center"
           className={classes.gridLayout}
         >
-          <Skeleton variant="rect" width={255} height={350}></Skeleton>
+          <img
+            src={data.mal_anime_image_path}
+            alt=""
+            className={classes.image}
+          ></img>
 
           <Grid
             item
@@ -166,7 +175,7 @@ const DetailedGridLayout = () => {
                       </Grid>
                       <Grid item container xs={12} justify="center">
                         <Typography variant="h5" style={{ fontWeight: 700 }}>
-                          8.82
+                          {data.rating}
                         </Typography>
                       </Grid>
                       <Grid item container xs={12} justify="center">
@@ -226,7 +235,9 @@ const DetailedGridLayout = () => {
                       </Grid>
 
                       <Grid item container xs={6} alignItems="center">
-                        <Typography component="div">Spring 2020</Typography>
+                        <Typography component="div">
+                          {format(new Date(data.airing_start), "LLL yyyy")}
+                        </Typography>
 
                         <Divider
                           orientation="vertical"
@@ -265,9 +276,7 @@ const DetailedGridLayout = () => {
                   Summary
                 </Typography>
                 <Divider className={classes.divider}></Divider>
-                <Skeleton variant="rect" width="100%" height={118} />
-                <Skeleton />
-                <Skeleton width="60%" />
+                <div>{data.synopsis}</div>
               </Grid>
 
               <Grid item xs={12} className={classes.topicContainer}>
@@ -287,4 +296,4 @@ const DetailedGridLayout = () => {
   );
 };
 
-export default DetailedGridLayout;
+export default DetailedPage;
