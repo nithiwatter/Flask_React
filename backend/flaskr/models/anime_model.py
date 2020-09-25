@@ -17,6 +17,8 @@ class Anime(db.Model):
     rating: float
     anime_type: str
     airing_start: datetime.datetime
+    # airing_start_str: str
+    anime_image_path: str
     mal_anime_image_path: str
 
     anime_id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +27,7 @@ class Anime(db.Model):
     rating = db.Column(db.Float)
     anime_type = db.Column(db.String(30))
     airing_start = db.Column(db.DateTime)
+    # airing_start_str = db.Column(db.String(30))
     anime_image_path = db.Column(db.String(150))
     mal_anime_image_path = db.Column(db.String(150))
 
