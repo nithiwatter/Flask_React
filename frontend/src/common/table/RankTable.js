@@ -12,7 +12,7 @@ import {
   Typography,
   Button,
 } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+// import { Skeleton } from '@material-ui/lab';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import SmallMenu from './SmallMenu';
 
