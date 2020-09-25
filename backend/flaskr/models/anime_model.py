@@ -16,8 +16,8 @@ class Anime(db.Model):
     synopsis: str
     rating: float
     anime_type: str
-    airing_start: datetime.datetime
-    # airing_start_str: str
+    #airing_start: datetime.datetime
+    airing_start_str: str
     anime_image_path: str
     mal_anime_image_path: str
 
@@ -26,8 +26,8 @@ class Anime(db.Model):
     synopsis = db.Column(db.Text)
     rating = db.Column(db.Float)
     anime_type = db.Column(db.String(30))
-    airing_start = db.Column(db.DateTime)
-    # airing_start_str = db.Column(db.String(30))
+    #airing_start = db.Column(db.DateTime)
+    airing_start_str = db.Column(db.String(30))
     anime_image_path = db.Column(db.String(150))
     mal_anime_image_path = db.Column(db.String(150))
 

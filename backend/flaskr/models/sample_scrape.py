@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+import json
 # from datetime import datetime
 from jikanpy import Jikan
 
@@ -14,25 +15,50 @@ synopsis_anime = []
 rating_anime = []
 type_anime = []
 airing_start_anime = []
+#genres_anime = []
 # airing_start_anime_str = []
 mal_image_path_anime = []
 image_path_anime = []
 num_images = 0
 
-for k in earth_seasons:
-    for i in range(2015, 2017):
-        season = jikan.season(year=i, season=k)
+# cur_path = os.path.dirname(__file__)
 
-        for j in range(len(season['anime'])):
-            # filter out hentais from being put in database
-            if season['anime'][j]['r18'] is True:
-                continue
-            else:
-                id_anime.append(season['anime'][j]['mal_id'])
-                name_anime.append(season['anime'][j]['title'])
-                synopsis_anime.append(season['anime'][j]['synopsis'])
-                rating_anime.append(season['anime'][j]['score'])
-                type_anime.append(season['anime'][j]['type'])
+# new_path = os.path.relpath('animes_json.txt', cur_path)
+with open('..\\animes_json.txt','r') as json_file:
+    data = json.load(json_file)
+    for i in range(len(data)):
+        if "Hentai" in data[i]['rating']:
+            continue
+        id_anime.append(data[i]['mal_id'])
+        name_anime.append(data[i]['title'])
+        synopsis_anime.append(data[i]['synopsis'])
+        rating_anime.append(data[i]['score'])
+        type_anime.append(data[i]['type'])
+        airing_start_anime.append(data[i]['aired']['string'])
+
+        # genre = []
+        # for j in range(len(data[i]['genres'])):
+        #     genre.append(data[i]['genres'][j]['name'])
+        # genres_anime.append(genre)
+        # downloading images from MAL cdn
+        image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(data[i]['mal_id'])
+        mal_image_path_anime.append(data[i]['image_url'])
+        image_path_anime.append(image_file_path)
+
+# for k in earth_seasons:
+#     for i in range(2015, 2017):
+#         season = jikan.season(year=i, season=k)
+
+#         for j in range(len(season['anime'])):
+#             # filter out hentais from being put in database
+#             if season['anime'][j]['r18'] is True:
+#                 continue
+#             else:
+#                 id_anime.append(season['anime'][j]['mal_id'])
+#                 name_anime.append(season['anime'][j]['title'])
+#                 synopsis_anime.append(season['anime'][j]['synopsis'])
+#                 rating_anime.append(season['anime'][j]['score'])
+#                 type_anime.append(season['anime'][j]['type'])
 
                 # potential code for storing date as str objects in MySQL db
                 # filter out null airing dates
@@ -43,17 +69,16 @@ for k in earth_seasons:
                 # else:
                 #     airing_start_anime_str.append(datetime(9999, 9, 9))
 
-                airing_start_anime.append(season['anime'][j]['airing_start'])
+                # airing_start_anime.append(season['anime'][j]['airing_start'])
 
             # downloading images from MAL cdn
             # download 100 at a time
-            anime_id = season['anime'][j]['mal_id']
-            image_url = season['anime'][j]['image_url']
-            image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(
-                anime_id)
+            # anime_id = season['anime'][j]['mal_id']
+            # image_url = season['anime'][j]['image_url']
+            # image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(anime_id)
 
-            mal_image_path_anime.append(image_url)
-            image_path_anime.append(image_file_path)
+            # mal_image_path_anime.append(image_url)
+            # image_path_anime.append(image_file_path)
 
             # if num_images < 100 and (not os.path.exists(image_file_path)):
             #     print(num_images)
@@ -66,7 +91,7 @@ for k in earth_seasons:
             #     print('finish downloading image...')
             #     num_images += 1
 
-        time.sleep(8)
+        # time.sleep(8)
 
     # season = jikan.season(year=i,season='summer')
     # # pprint.pprint(spring, raw_animes)

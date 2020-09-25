@@ -75,7 +75,7 @@ def create_app(test_config=None):
         # for i in range(len(id_anime)):
         #     to_add = Anime(anime_id=id_anime[i], name=name_anime[i],
         #                    synopsis=synopsis_anime[i], rating=rating_anime[i], anime_type=type_anime[i],
-        #                    airing_start=airing_start_anime[i], anime_image_path=image_path_anime[i], mal_anime_image_path=mal_image_path_anime[i])
+        #                    airing_start_str=airing_start_anime[i], anime_image_path=image_path_anime[i], mal_anime_image_path=mal_image_path_anime[i])
         #     db.session.merge(to_add)
         #     db.session.commit()
         return 'done'
