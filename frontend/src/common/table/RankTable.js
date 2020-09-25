@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { format } from "date-fns";
 import {
   Table,
@@ -8,12 +9,14 @@ import {
   TableHead,
   TableRow,
   Paper,
-  makeStyles,
   Typography,
   Button,
   LinearProgress,
+  makeStyles,
 } from "@material-ui/core";
 import StarRateIcon from "@material-ui/icons/StarRate";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SmallMenu from "./SmallMenu";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,14 +60,33 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
   },
   title: {
+    color: theme.palette.primary.main,
     fontWeight: 700,
+    textDecoration: "none",
+    "&:active": {
+      color: theme.palette.primary.main,
+    },
+    "&:visited": {
+      color: theme.palette.primary.main,
+    },
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
+  paginationContainer: {
+    marginLeft: "auto",
+  },
+  bottomPaginationContainer: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: theme.spacing(2),
   },
 }));
 
 const RankTable = (props) => {
   const classes = useStyles();
-  const { data, loading } = props;
-
+  const { data, loading, page, size } = props;
+  console.log("render");
   return (
     <React.Fragment>
       {loading ? <LinearProgress></LinearProgress> : null}
@@ -96,6 +118,25 @@ const RankTable = (props) => {
             >
               Waifu Tier List
             </Button>
+            <div className={classes.paginationContainer}>
+              {page > 0 ? (
+                <Button
+                  startIcon={<ChevronLeftIcon></ChevronLeftIcon>}
+                  component={NavLink}
+                  to={`/topAnime?page=${page - 1}`}
+                >
+                  Prev 50
+                </Button>
+              ) : null}
+
+              <Button
+                endIcon={<ChevronRightIcon></ChevronRightIcon>}
+                component={NavLink}
+                to={`/topAnime?page=${page + 1}`}
+              >
+                Next 50
+              </Button>
+            </div>
           </div>
 
           <TableContainer component={Paper}>
@@ -136,7 +177,7 @@ const RankTable = (props) => {
                   <TableRow key={entry.anime_id}>
                     <TableCell>
                       <Typography variant="h4" className={classes.rank}>
-                        {i + 1}
+                        {page * size + i + 1}
                       </Typography>
                     </TableCell>
                     <TableCell align="left">
@@ -150,7 +191,12 @@ const RankTable = (props) => {
                         </div>
 
                         <div className={classes.textContainer}>
-                          <Typography variant="h6" className={classes.title}>
+                          <Typography
+                            variant="h6"
+                            className={classes.title}
+                            component={NavLink}
+                            to={`/anime/${entry.anime_id}`}
+                          >
                             {entry.name}
                           </Typography>
                           <Typography variant="body2">
@@ -180,6 +226,25 @@ const RankTable = (props) => {
               </TableBody>
             </Table>
           </TableContainer>
+          <div className={classes.bottomPaginationContainer}>
+            {page > 0 ? (
+              <Button
+                startIcon={<ChevronLeftIcon></ChevronLeftIcon>}
+                component={NavLink}
+                to={`/topAnime?page=${page - 1}`}
+              >
+                Prev 50
+              </Button>
+            ) : null}
+
+            <Button
+              endIcon={<ChevronRightIcon></ChevronRightIcon>}
+              component={NavLink}
+              to={`/topAnime?page=${page + 1}`}
+            >
+              Next 50
+            </Button>
+          </div>
         </React.Fragment>
       ) : null}
     </React.Fragment>
