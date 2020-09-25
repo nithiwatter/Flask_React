@@ -1,5 +1,6 @@
-from flask import jsonify
+from flask import jsonify, request
 from flaskr.models.anime_model import db, Anime
+from flaskr.utils.helperFunctions import getPagination
 
 
 def test_method():
@@ -7,9 +8,36 @@ def test_method():
 
     return jsonify(test_result)
 
+# need to work on caching to improve offset performance
+# is size really important?
+
 
 def get_top_50_anime():
-    result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
+    # getting the query strings
+    args = request.args
+
+    # default values of page and size
+    page = 0
+    if 'page' in args.keys():
+        page = int(args['page'])
+
+    size = 50
+    if 'size' in args.keys():
+        size = int(args['size'])
+
+    limit, offset = getPagination(page, size)
+
+    result = Anime.query.order_by(Anime.rating.desc()).limit(
+        limit).offset(offset).all()
+    res = {}
+    res['status'] = 'success'
+    res['data'] = result
+    return jsonify(res)
+
+
+def get_specific_anime(anime_id):
+    print(anime_id)
+    result = Anime.query.get(anime_id)
     res = {}
     res['status'] = 'success'
     res['data'] = result
