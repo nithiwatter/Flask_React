@@ -15,6 +15,7 @@ import PollTwoToneIcon from '@material-ui/icons/PollTwoTone';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import FindInPageTwoToneIcon from '@material-ui/icons/FindInPageTwoTone';
+import RestorePageIcon from '@material-ui/icons/RestorePage';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Header from './Header';
 import NavMenuItem from './NavMenuItem';
@@ -53,6 +54,12 @@ const pages = [
         icon: <FindInPageTwoToneIcon />,
       },
     ],
+  },
+  {
+    title: 'Search History',
+    icon: <RestorePageIcon />,
+    href: '/searchHistory',
+    color: 'primary',
   },
   {
     title: 'Profile',
