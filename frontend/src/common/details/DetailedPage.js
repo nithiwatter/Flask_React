@@ -1,5 +1,5 @@
 import React from "react";
-import { format } from "date-fns";
+import ReactPlayer from "react-player/lazy";
 import {
   Grid,
   ButtonGroup,
@@ -87,7 +87,7 @@ const DetailedPage = (props) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.subTitle}>
-            {data.name}
+            {data.name_eng}
           </Typography>
         </Grid>
       </Grid>
@@ -102,58 +102,100 @@ const DetailedPage = (props) => {
           justify="center"
           className={classes.gridLayout}
         >
-          <img
-            src={data.mal_anime_image_path}
-            alt=""
-            className={classes.image}
-          ></img>
+          <div>
+            <img
+              src={data.mal_anime_image_path}
+              alt=""
+              className={classes.image}
+            ></img>
 
-          <Grid
-            item
-            container
-            xs={12}
-            justify="center"
-            className={classes.buttonGroup}
-          >
-            <ButtonGroup
-              orientation="vertical"
-              color="primary"
-              variant="contained"
+            <Grid
+              item
+              container
+              xs={12}
+              justify="center"
+              className={classes.buttonGroup}
             >
-              <Button>Add to My List</Button>
-              <Button>Add to Favorites</Button>
-            </ButtonGroup>
-          </Grid>
+              <div>
+                <ButtonGroup
+                  orientation="vertical"
+                  color="primary"
+                  variant="contained"
+                >
+                  <Button>Add to My List</Button>
+                  <Button>Add to Favorites</Button>
+                </ButtonGroup>
+              </div>
+            </Grid>
 
-          <Grid item xs={12} className={classes.topicContainer}>
-            <Typography variant="body2" className={classes.topics}>
-              Alternative Titles
-            </Typography>
-            <Divider className={classes.divider}></Divider>
-            <Skeleton variant="rect" width="100%" height={118} />
-            <Skeleton />
-            <Skeleton width="60%" />
-          </Grid>
+            <Grid item xs={12} className={classes.topicContainer}>
+              <Typography variant="body2" className={classes.topics}>
+                Alternative Titles
+              </Typography>
+              <Divider className={classes.divider}></Divider>
+              <div>
+                <span style={{ fontWeight: 700 }}>English:</span>{" "}
+                {data.name_eng}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Japanese:</span>{" "}
+                {data.name_jpn}
+              </div>
+            </Grid>
 
-          <Grid item xs={12} className={classes.topicContainer}>
-            <Typography variant="body2" className={classes.topics}>
-              Information
-            </Typography>
-            <Divider className={classes.divider}></Divider>
-            <Skeleton variant="rect" width="100%" height={118} />
-            <Skeleton />
-            <Skeleton width="60%" />
-          </Grid>
+            <Grid item xs={12} className={classes.topicContainer}>
+              <Typography variant="body2" className={classes.topics}>
+                Information
+              </Typography>
+              <Divider className={classes.divider}></Divider>
+              <div>
+                <span style={{ fontWeight: 700 }}>Type:</span> {data.anime_type}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Episodes:</span>{" "}
+                {data.num_episodes}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Status:</span> {data.status}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Aired:</span>{" "}
+                {data.airing_str}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Source:</span> {data.source}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Duration:</span>{" "}
+                {data.duration}
+              </div>
+            </Grid>
 
-          <Grid item xs={12} className={classes.topicContainer}>
-            <Typography variant="body2" className={classes.topics}>
-              Statistics
-            </Typography>
-            <Divider className={classes.divider}></Divider>
-            <Skeleton variant="rect" width="100%" height={118} />
-            <Skeleton />
-            <Skeleton width="60%" />
-          </Grid>
+            <Grid item xs={12} className={classes.topicContainer}>
+              <Typography variant="body2" className={classes.topics}>
+                Statistics
+              </Typography>
+              <Divider className={classes.divider}></Divider>
+              <div>
+                <span style={{ fontWeight: 700 }}>Score:</span> {data.rating}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Rank:</span> #{data.rank}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Popularity:</span> #
+                {data.popularity}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Members:</span>{" "}
+                {data.members.toLocaleString()}
+              </div>
+              <div>
+                <span style={{ fontWeight: 700 }}>Favorites:</span>{" "}
+                {data.favorites.toLocaleString()}
+              </div>
+            </Grid>
+          </div>
         </Grid>
 
         <Divider orientation="vertical" flexItem></Divider>
@@ -179,7 +221,9 @@ const DetailedPage = (props) => {
                         </Typography>
                       </Grid>
                       <Grid item container xs={12} justify="center">
-                        <Typography variant="body2">234,467 users</Typography>
+                        <Typography variant="body2">
+                          {data.scored_by.toLocaleString()} users
+                        </Typography>
                       </Grid>
                     </Grid>
                     <Divider
@@ -199,7 +243,7 @@ const DetailedPage = (props) => {
                             display="inline"
                             m={1}
                           >
-                            #22
+                            #{data.rank}
                           </Box>
                         </Typography>
                       </Grid>
@@ -214,7 +258,7 @@ const DetailedPage = (props) => {
                             display="inline"
                             m={1}
                           >
-                            #227
+                            #{data.popularity}
                           </Box>
                         </Typography>
                       </Grid>
@@ -229,14 +273,14 @@ const DetailedPage = (props) => {
                             display="inline"
                             m={1}
                           >
-                            454,151
+                            {data.members.toLocaleString()}
                           </Box>
                         </Typography>
                       </Grid>
 
                       <Grid item container xs={6} alignItems="center">
                         <Typography component="div">
-                          {format(new Date(data.airing_start), "LLL yyyy")}
+                          {data.airing_str}
                         </Typography>
 
                         <Divider
@@ -246,7 +290,9 @@ const DetailedPage = (props) => {
                           className={classes.scoreSubDivider}
                         ></Divider>
 
-                        <Typography component="div">TV</Typography>
+                        <Typography component="div">
+                          {data.anime_type}
+                        </Typography>
                         <Divider
                           orientation="vertical"
                           flexItem
@@ -264,11 +310,12 @@ const DetailedPage = (props) => {
                 item
                 container
                 xs={12}
-                justify="space-between"
+                justify="center"
                 className={classes.videoContainer}
               >
-                <Skeleton variant="rect" width={200} height={150}></Skeleton>
-                <Skeleton variant="rect" width={200} height={150}></Skeleton>
+                {data.trailer_url ? (
+                  <ReactPlayer url={data.trailer_url} controls></ReactPlayer>
+                ) : null}
               </Grid>
 
               <Grid item xs={12} className={classes.topicContainer}>
@@ -277,6 +324,18 @@ const DetailedPage = (props) => {
                 </Typography>
                 <Divider className={classes.divider}></Divider>
                 <div>{data.synopsis}</div>
+              </Grid>
+
+              <Grid item xs={12} className={classes.topicContainer}>
+                <Typography variant="body2" className={classes.topics}>
+                  Background
+                </Typography>
+                <Divider className={classes.divider}></Divider>
+                <div>
+                  {data.background
+                    ? data.background
+                    : "No background information has been added to this title. Help improve our database by adding background information here."}
+                </div>
               </Grid>
 
               <Grid item xs={12} className={classes.topicContainer}>
