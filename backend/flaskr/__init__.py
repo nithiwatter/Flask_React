@@ -1,13 +1,16 @@
 # application factory to create the main app for this particular package
-from flask import Flask
+from flask import Flask, jsonify
+from flask_jwt_extended import JWTManager
 import os
 import sys
+import uuid
 
 # date time utils
 from flaskr.utils import custom_json_encoder
 
 # need to import models first
 from flaskr.models.anime_model import Anime
+from flaskr.models.user_model import User
 from flaskr.models import db
 
 # importing mock data
@@ -41,11 +44,15 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
+    # custom Encoder to parse datetime object
     app.json_encoder = custom_json_encoder.CustomJSONEncoder
 
     # initialize the SQLAlchemy plugin
     # this db has already been passed through model definitions
     db.init_app(app)
+
+    # initialize JWT authentication system
+    JWTManager(app)
 
     # bind the db to this particular instance of app
     # no need to to clean up application context (with already handles that)
@@ -56,9 +63,11 @@ def create_app(test_config=None):
 
         # import parts of our application
         from flaskr.routes import anime_routes
+        from flaskr.routes import user_routes
 
         # register our blueprints
         app.register_blueprint(anime_routes.bp)
+        app.register_blueprint(user_routes.bp)
 
     # a simple page that says hello
     @app.route('/hello')
@@ -66,10 +75,20 @@ def create_app(test_config=None):
         # test with adding a simple anime
         # db.session.add(Anime(name="testtest"))
         # db.session.commit()
-        return 'Hello, World!'
+        # test querying users
+        res = User.query.all()
+        print(res)
+        return jsonify(res)
+
+    @app.route('/add_user')
+    def add_user():
+        new_user = User(user_id=uuid.uuid4(), email="acda", password="bcda")
+        db.session.merge(new_user)
+        db.session.commit()
+        return 'done'
 
     @app.route('/add_anime')
-    def add_animes():
+    def add_anime():
         # committing mock data
         # can always commit airing_start_str additionally
         for i in range(len(id_anime)):

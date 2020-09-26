@@ -57,7 +57,6 @@ with open('..\\animes_json.txt', 'r') as json_file:
         duration_anime.append(data[i]['duration'])
         synopsis_anime.append(data[i]['synopsis'])
         background_anime.append(data[i]['background'])
-        print(data[i]['background'])
         rating_anime.append(data[i]['score'])
         type_anime.append(data[i]['type'])
         airing_start_anime.append(data[i]['aired']['from'])

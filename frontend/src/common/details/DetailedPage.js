@@ -1,5 +1,5 @@
-import React from "react";
-import ReactPlayer from "react-player/lazy";
+import React from 'react';
+import ReactPlayer from 'react-player/lazy';
 import {
   Grid,
   ButtonGroup,
@@ -9,8 +9,8 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+} from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   gridLayout: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subTitle: {
     fontWeight: 700,
-    color: "#9e9e9e",
+    color: '#9e9e9e',
   },
   buttonGroup: {
     marginTop: theme.spacing(2),
@@ -40,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
   scoreBox: {
     backgroundColor: theme.palette.primary.main,
     borderRadius: 2,
-    padding: "2px",
+    padding: '2px',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    color: "white",
-    fontSize: "14px",
+    color: 'white',
+    fontSize: '14px',
   },
   topics: {
     fontWeight: 700,
@@ -62,14 +62,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   scoreDetails: {
-    fontSize: "18px",
+    fontSize: '18px',
   },
   videoContainer: {
     padding: theme.spacing(2),
   },
   image: {
     width: 255,
-    height: "auto",
+    height: 'auto',
   },
 }));
 
@@ -134,11 +134,11 @@ const DetailedPage = (props) => {
               </Typography>
               <Divider className={classes.divider}></Divider>
               <div>
-                <span style={{ fontWeight: 700 }}>English:</span>{" "}
+                <span style={{ fontWeight: 700 }}>English:</span>{' '}
                 {data.name_eng}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Japanese:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Japanese:</span>{' '}
                 {data.name_jpn}
               </div>
             </Grid>
@@ -152,21 +152,21 @@ const DetailedPage = (props) => {
                 <span style={{ fontWeight: 700 }}>Type:</span> {data.anime_type}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Episodes:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Episodes:</span>{' '}
                 {data.num_episodes}
               </div>
               <div>
                 <span style={{ fontWeight: 700 }}>Status:</span> {data.status}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Aired:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Aired:</span>{' '}
                 {data.airing_str}
               </div>
               <div>
                 <span style={{ fontWeight: 700 }}>Source:</span> {data.source}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Duration:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Duration:</span>{' '}
                 {data.duration}
               </div>
             </Grid>
@@ -187,11 +187,11 @@ const DetailedPage = (props) => {
                 {data.popularity}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Members:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Members:</span>{' '}
                 {data.members.toLocaleString()}
               </div>
               <div>
-                <span style={{ fontWeight: 700 }}>Favorites:</span>{" "}
+                <span style={{ fontWeight: 700 }}>Favorites:</span>{' '}
                 {data.favorites.toLocaleString()}
               </div>
             </Grid>
@@ -278,7 +278,7 @@ const DetailedPage = (props) => {
                         </Typography>
                       </Grid>
 
-                      <Grid item container xs={6} alignItems="center">
+                      <Grid item container xs={12} alignItems="center">
                         <Typography component="div">
                           {data.airing_str}
                         </Typography>
@@ -334,7 +334,7 @@ const DetailedPage = (props) => {
                 <div>
                   {data.background
                     ? data.background
-                    : "No background information has been added to this title. Help improve our database by adding background information here."}
+                    : 'No background information has been added to this title. Help improve our database by adding background information here.'}
                 </div>
               </Grid>
 

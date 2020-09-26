@@ -1,5 +1,5 @@
 from flask import jsonify, request
-from flaskr.models.anime_model import db, Anime
+from flaskr.models.anime_model import Anime
 from flaskr.utils.helperFunctions import getPagination
 
 
@@ -36,7 +36,6 @@ def get_top_50_anime():
 
 
 def get_specific_anime(anime_id):
-    print(anime_id)
     result = Anime.query.get(anime_id)
     res = {}
     res['status'] = 'success'

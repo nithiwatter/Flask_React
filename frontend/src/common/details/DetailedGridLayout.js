@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   ButtonGroup,
   Button,
   Typography,
   Divider,
-  Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+} from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subTitle: {
     fontWeight: 700,
-    color: "#9e9e9e",
+    color: '#9e9e9e',
   },
   buttonGroup: {
     marginTop: theme.spacing(2),
@@ -40,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
   scoreBox: {
     backgroundColor: theme.palette.primary.main,
     borderRadius: 2,
-    padding: "2px",
+    padding: '2px',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    color: "white",
-    fontSize: "14px",
+    color: 'white',
+    fontSize: '14px',
   },
   topics: {
     fontWeight: 700,
@@ -62,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   scoreDetails: {
-    fontSize: "18px",
+    fontSize: '18px',
   },
   videoContainer: {
     padding: theme.spacing(2),
