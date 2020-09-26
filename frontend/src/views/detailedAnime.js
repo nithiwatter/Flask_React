@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import DetailedPage from "../common/details/DetailedPage";
-import DetailedGridLayout from "../common/details/DetailedGridLayout";
-import { fetchDetailedAnime } from "../actions/detailedAnimeActions";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import DetailedPage from '../common/details/DetailedPage';
+import DetailedGridLayout from '../common/details/DetailedGridLayout';
+import { fetchDetailedAnime } from '../actions/detailedAnimeActions';
 
 export class DetailedAnime extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ export class DetailedAnime extends Component {
       detailedAnimeDidMount,
       detailedAnimeLoading,
       detailedAnime,
+      history,
     } = this.props;
 
     if (!detailedAnimeDidMount) return null;
@@ -33,7 +35,7 @@ export class DetailedAnime extends Component {
 
     return (
       <React.Fragment>
-        <DetailedPage data={detailedAnime}></DetailedPage>
+        <DetailedPage data={detailedAnime} history={history}></DetailedPage>
       </React.Fragment>
     );
   }
@@ -47,4 +49,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(DetailedAnime);
+export default connect(mapStateToProps)(withRouter(DetailedAnime));

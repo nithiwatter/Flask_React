@@ -10,10 +10,12 @@ import {
 } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MovieIcon from '@material-ui/icons/Movie';
-import ViewListIcon from '@material-ui/icons/ViewList';
+import PollIcon from '@material-ui/icons/Poll';
+import PollTwoToneIcon from '@material-ui/icons/PollTwoTone';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import FindInPageTwoToneIcon from '@material-ui/icons/FindInPageTwoTone';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Header from './Header';
 import NavMenuItem from './NavMenuItem';
 
@@ -26,7 +28,7 @@ const pages = [
       {
         title: 'Top Anime',
         href: '/topAnime',
-        icon: <ViewListIcon />,
+        icon: <PollIcon />,
       },
       {
         title: 'Search Anime',
@@ -43,7 +45,7 @@ const pages = [
       {
         title: 'Top Manga',
         href: '/topManga',
-        icon: <ViewListIcon />,
+        icon: <PollTwoToneIcon />,
       },
       {
         title: 'Search Manga',
@@ -51,6 +53,12 @@ const pages = [
         icon: <FindInPageTwoToneIcon />,
       },
     ],
+  },
+  {
+    title: 'Profile',
+    icon: <AccountCircleIcon />,
+    href: '/user/profile',
+    color: 'primary',
   },
 ];
 

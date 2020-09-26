@@ -4,8 +4,6 @@ import {
   Avatar,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Container,
@@ -45,28 +43,29 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  catImage: {
+  emiliaImage: {
     position: 'absolute',
     bottom: 0,
     right: 0,
-    maxHeight: '400px',
+    maxHeight: '600px',
   },
-  loliImage: {
+  irohaImage: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    maxHeight: '400px',
+    left: '-100px',
+    maxHeight: '700px',
     zIndex: -1,
   },
 }));
 
-const LoginBox = () => {
+const RegisterBox = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <img alt="" src="/shinobu.png" className={classes.loliImage}></img>
-      <img alt="" src="/catgirl.png" className={classes.catImage}></img>
+      <img alt="" src="/iroha.png" className={classes.irohaImage}></img>
+      <img alt="" src="/emilia.png" className={classes.emiliaImage}></img>
+
       <div className={classes.overallContainer}>
         <Container component="div" maxWidth="xs">
           <div className={classes.paper}>
@@ -74,7 +73,7 @@ const LoginBox = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Log in
+              Register
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
@@ -99,10 +98,6 @@ const LoginBox = () => {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -110,17 +105,12 @@ const LoginBox = () => {
                 color="primary"
                 className={classes.submit}
               >
-                Log In
+                Register
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+              <Grid container justify="flex-end">
                 <Grid item>
-                  <Link component={RouterLink} to="/register" variant="body2">
-                    {"Don't have an account? Register"}
+                  <Link component={RouterLink} to="/login" variant="body2">
+                    {'Already have an account? Log in'}
                   </Link>
                 </Grid>
               </Grid>
@@ -139,4 +129,4 @@ const LoginBox = () => {
   );
 };
 
-export default LoginBox;
+export default RegisterBox;

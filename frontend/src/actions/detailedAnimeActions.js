@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   DETAILED_ANIME_START_API_REQUEST,
   DETAILED_ANIME_FINISHED_API_REQUEST,
-} from "../actionConstants/actionTypes";
+} from '../actionConstants/actionTypes';
 
 export function fetchDetailedAnime(animeId) {
   return async function (dispatch) {
@@ -15,7 +15,7 @@ export function fetchDetailedAnime(animeId) {
           type: DETAILED_ANIME_FINISHED_API_REQUEST,
           payload: data.data,
         });
-      }, 1000);
+      }, 100);
     } catch (err) {}
   };
 }

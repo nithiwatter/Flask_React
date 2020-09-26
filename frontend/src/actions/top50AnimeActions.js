@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   TOP_50_SWITCH_PAGE,
   TOP_50_START_API_REQUEST,
   TOP_50_FINISHED_API_REQUEST,
-} from "../actionConstants/actionTypes";
+} from '../actionConstants/actionTypes';
 
 export function switchPage() {
   return { type: TOP_50_SWITCH_PAGE, payload: null };
@@ -19,7 +19,7 @@ export function fetchTop50Anime(page, size) {
 
       setTimeout(() => {
         dispatch({ type: TOP_50_FINISHED_API_REQUEST, payload: data.data });
-      }, 1000);
+      }, 100);
     } catch (err) {}
   };
 }
