@@ -206,7 +206,7 @@ const RankTable = (props) => {
                             {format(new Date(entry.airing_start), "LLL yyyy")}
                           </Typography>
                           <Typography variant="body2">
-                            1,942,914 members
+                            {entry.members.toLocaleString()} members
                           </Typography>
                         </div>
                       </div>

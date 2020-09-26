@@ -11,7 +11,7 @@ from flaskr.models.anime_model import Anime
 from flaskr.models import db
 
 # importing mock data
-# from flaskr.models.sample_scrape import *
+from flaskr.models.sample_scrape import *
 
 
 def create_app(test_config=None):
@@ -72,12 +72,34 @@ def create_app(test_config=None):
     def add_animes():
         # committing mock data
         # can always commit airing_start_str additionally
-        # for i in range(len(id_anime)):
-        #     to_add = Anime(anime_id=id_anime[i], name=name_anime[i],
-        #                    synopsis=synopsis_anime[i], rating=rating_anime[i], anime_type=type_anime[i],
-        #                    airing_start_str=airing_start_anime[i], anime_image_path=image_path_anime[i], mal_anime_image_path=mal_image_path_anime[i])
-        #     db.session.merge(to_add)
-        #     db.session.commit()
+        for i in range(len(id_anime)):
+            to_add = Anime(
+                anime_id=id_anime[i],
+                name=name_anime[i],
+                name_eng=name_eng_anime[i],
+                name_jpn=name_jpn_anime[i],
+                num_episodes=num_episodes_anime[i],
+                source=source_anime[i],
+                members=members_anime[i],
+                favorites=favorites_anime[i],
+                status=status_anime[i],
+                rank=rank_anime[i],
+                popularity=popularity_anime[i],
+                scored_by=scored_by_anime[i],
+                duration=duration_anime[i],
+                synopsis=synopsis_anime[i],
+                background=background_anime[i],
+                rating=rating_anime[i],
+                anime_type=type_anime[i],
+                airing_start=airing_start_anime[i],
+                airing_end=airing_end_anime[i],
+                airing_str=airing_str_anime[i],
+                anime_image_path=image_path_anime[i],
+                mal_anime_image_path=mal_image_path_anime[i],
+                trailer_url=trailer_url_anime[i]
+            )
+            db.session.merge(to_add)
+            db.session.commit()
         return 'done'
 
     return app

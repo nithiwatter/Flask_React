@@ -106,14 +106,16 @@ const DetailedGridLayout = () => {
             justify="center"
             className={classes.buttonGroup}
           >
-            <ButtonGroup
-              orientation="vertical"
-              color="primary"
-              variant="contained"
-            >
-              <Button>Add to My List</Button>
-              <Button>Add to Favorites</Button>
-            </ButtonGroup>
+            <div>
+              <ButtonGroup
+                orientation="vertical"
+                color="primary"
+                variant="contained"
+              >
+                <Button>Add to My List</Button>
+                <Button>Add to Favorites</Button>
+              </ButtonGroup>
+            </div>
           </Grid>
 
           <Grid item xs={12} className={classes.topicContainer}>
@@ -155,96 +157,9 @@ const DetailedGridLayout = () => {
               <Grid item xs={12}>
                 <Paper>
                   <Grid container className={classes.scoreContainer}>
-                    <Grid item xs={2}>
-                      <Grid item container xs={12} justify="center">
-                        <Typography
-                          component="div"
-                          className={classes.scoreBox}
-                        >
-                          SCORE
-                        </Typography>
-                      </Grid>
-                      <Grid item container xs={12} justify="center">
-                        <Typography variant="h5" style={{ fontWeight: 700 }}>
-                          8.82
-                        </Typography>
-                      </Grid>
-                      <Grid item container xs={12} justify="center">
-                        <Typography variant="body2">234,467 users</Typography>
-                      </Grid>
-                    </Grid>
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      className={classes.scoreDivider}
-                    ></Divider>
-                    <Grid item container xs>
-                      <Grid item xs={4} container>
-                        <Typography
-                          component="div"
-                          className={classes.scoreDetails}
-                        >
-                          Ranked
-                          <Box
-                            fontWeight="fontWeightBold"
-                            display="inline"
-                            m={1}
-                          >
-                            #22
-                          </Box>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={4} container>
-                        <Typography
-                          component="div"
-                          className={classes.scoreDetails}
-                        >
-                          Popularity
-                          <Box
-                            fontWeight="fontWeightBold"
-                            display="inline"
-                            m={1}
-                          >
-                            #227
-                          </Box>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={4} container>
-                        <Typography
-                          component="div"
-                          className={classes.scoreDetails}
-                        >
-                          Members
-                          <Box
-                            fontWeight="fontWeightBold"
-                            display="inline"
-                            m={1}
-                          >
-                            454,151
-                          </Box>
-                        </Typography>
-                      </Grid>
-
-                      <Grid item container xs={6} alignItems="center">
-                        <Typography component="div">Spring 2020</Typography>
-
-                        <Divider
-                          orientation="vertical"
-                          flexItem
-                          light
-                          className={classes.scoreSubDivider}
-                        ></Divider>
-
-                        <Typography component="div">TV</Typography>
-                        <Divider
-                          orientation="vertical"
-                          flexItem
-                          light
-                          className={classes.scoreSubDivider}
-                        ></Divider>
-                        <Typography component="div">A-1 Pictures</Typography>
-                      </Grid>
-                    </Grid>
+                    <Skeleton width="100%"></Skeleton>
+                    <Skeleton width="100%"></Skeleton>
+                    <Skeleton width="100%"></Skeleton>
                   </Grid>
                 </Paper>
               </Grid>
@@ -255,10 +170,7 @@ const DetailedGridLayout = () => {
                 xs={12}
                 justify="space-between"
                 className={classes.videoContainer}
-              >
-                <Skeleton variant="rect" width={200} height={150}></Skeleton>
-                <Skeleton variant="rect" width={200} height={150}></Skeleton>
-              </Grid>
+              ></Grid>
 
               <Grid item xs={12} className={classes.topicContainer}>
                 <Typography variant="body2" className={classes.topics}>
