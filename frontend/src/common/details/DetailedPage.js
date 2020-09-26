@@ -95,27 +95,17 @@ const DetailedPage = (props) => {
       <Divider></Divider>
 
       <Grid container>
-        <Grid
-          item
-          container
-          xs={3}
-          justify="center"
-          className={classes.gridLayout}
-        >
+        <Grid item xs={3} className={classes.gridLayout}>
           <div>
-            <img
-              src={data.mal_anime_image_path}
-              alt=""
-              className={classes.image}
-            ></img>
+            <Grid container justify="center">
+              <img
+                src={data.mal_anime_image_path}
+                alt=""
+                className={classes.image}
+              ></img>
+            </Grid>
 
-            <Grid
-              item
-              container
-              xs={12}
-              justify="center"
-              className={classes.buttonGroup}
-            >
+            <Grid container justify="center" className={classes.buttonGroup}>
               <div>
                 <ButtonGroup
                   orientation="vertical"
@@ -128,7 +118,7 @@ const DetailedPage = (props) => {
               </div>
             </Grid>
 
-            <Grid item xs={12} className={classes.topicContainer}>
+            <div className={classes.topicContainer}>
               <Typography variant="body2" className={classes.topics}>
                 Alternative Titles
               </Typography>
@@ -141,9 +131,9 @@ const DetailedPage = (props) => {
                 <span style={{ fontWeight: 700 }}>Japanese:</span>{' '}
                 {data.name_jpn}
               </div>
-            </Grid>
+            </div>
 
-            <Grid item xs={12} className={classes.topicContainer}>
+            <div className={classes.topicContainer}>
               <Typography variant="body2" className={classes.topics}>
                 Information
               </Typography>
@@ -169,9 +159,9 @@ const DetailedPage = (props) => {
                 <span style={{ fontWeight: 700 }}>Duration:</span>{' '}
                 {data.duration}
               </div>
-            </Grid>
+            </div>
 
-            <Grid item xs={12} className={classes.topicContainer}>
+            <div className={classes.topicContainer}>
               <Typography variant="body2" className={classes.topics}>
                 Statistics
               </Typography>
@@ -194,7 +184,7 @@ const DetailedPage = (props) => {
                 <span style={{ fontWeight: 700 }}>Favorites:</span>{' '}
                 {data.favorites.toLocaleString()}
               </div>
-            </Grid>
+            </div>
           </div>
         </Grid>
 
@@ -338,6 +328,15 @@ const DetailedPage = (props) => {
                 </div>
               </Grid>
 
+              <Grid item xs={12} className={classes.topicContainer}>
+                <Typography variant="body2" className={classes.topics}>
+                  Reviews
+                </Typography>
+                <Divider className={classes.divider}></Divider>
+                <Skeleton variant="rect" width="100%" height={118} />
+                <Skeleton />
+                <Skeleton width="60%" />
+              </Grid>
               <Grid item xs={12} className={classes.topicContainer}>
                 <Typography variant="body2" className={classes.topics}>
                   Reviews

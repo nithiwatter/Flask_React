@@ -89,7 +89,7 @@ def create_app(test_config=None):
 
     @app.route('/add_anime')
     def add_anime():
-        # committing mock data
+        # committing mock data (probably real data right now)
         # can always commit airing_start_str additionally
         for i in range(len(id_anime)):
             to_add = Anime(
