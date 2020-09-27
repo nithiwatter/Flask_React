@@ -106,7 +106,13 @@ const RegisterBox = (props) => {
                   );
                   // update the store with this new user
                   props.dispatch(registerSuccess(data.data));
-                  setSubmitting(false);
+                  // artificially generate some timeout for loading bar
+                  await new Promise((resolve) => {
+                    setTimeout(() => {
+                      setSubmitting(false);
+                      resolve();
+                    }, 500);
+                  });
                   openSnackbarExternal({
                     severity: "success",
                     message: "Registered successfully",
