@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AuthGuard from './common/AuthGuard';
-import Routes from './Routes';
+import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import AuthGuard from "./common/AuthGuard";
+import Routes from "./Routes";
+import Notifier from "./common/snackbar/Notifier";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
               <Routes></Routes>
             </AuthGuard>
           </Router>
+          <Notifier></Notifier>
         </MuiPickersUtilsProvider>
       </React.Fragment>
     );
