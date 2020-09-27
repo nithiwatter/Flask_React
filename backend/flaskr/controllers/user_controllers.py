@@ -23,7 +23,7 @@ def register():
         # Integrity error is for duplicated records
         res = {}
         res['status'] = 'failure'
-        res['message'] = 'This email alreadys exists in the record. Pleas log in!'
+        res['message'] = 'This email alreadys exists in the record. Please log in!'
         return jsonify(res), 400
 
 
