@@ -14,6 +14,7 @@ def register():
 
         res = {}
         res['status'] = 'success'
+        res['data'] = new_user
         res['access_token'] = create_access_token(identity=new_uuid)
         return jsonify(res)
     except:
