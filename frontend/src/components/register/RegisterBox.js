@@ -124,8 +124,7 @@ const RegisterBox = (props) => {
                   setSubmitting(false);
                   openSnackbarExternal({
                     severity: 'error',
-                    message:
-                      'Something went wrong during registration. Please try again!',
+                    message: err.response.data.message,
                   });
                 }
               }}
@@ -142,7 +141,6 @@ const RegisterBox = (props) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    autoFocus
                   />
                   <Field
                     component={TextField}

@@ -1,18 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import * as Yup from 'yup';
 import { Link as RouterLink } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
 import {
   Avatar,
   Button,
-  TextField,
   FormControlLabel,
   Checkbox,
   Link,
   Grid,
   Container,
+  Typography,
+  LinearProgress,
 } from '@material-ui/core';
+import { TextField } from 'formik-material-ui';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { loginSuccess, loginFailure } from '../../actions/userActions';
+import { openSnackbarExternal } from '../../common/snackbar/Notifier';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginBox = () => {
+const LoginBox = (props) => {
   const classes = useStyles();
 
   return (
@@ -76,62 +83,127 @@ const LoginBox = () => {
             <Typography component="h1" variant="h5">
               Log in
             </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Log In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link component={RouterLink} to="/register" variant="body2">
-                    {"Don't have an account? Register"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link component={RouterLink} to="/topAnime" variant="body2">
-                    {'Back to main page'}
-                  </Link>
-                </Grid>
-              </Grid>
-            </form>
+            <Formik
+              initialValues={{
+                email: '',
+                password: '',
+                rememberMe: false,
+              }}
+              validationSchema={Yup.object({
+                email: Yup.string()
+                  .email('Invalid email address')
+                  .required('Required'),
+                password: Yup.string().required('Required'),
+              })}
+              onSubmit={async (values, { setSubmitting }) => {
+                try {
+                  const user = {
+                    email: values.email,
+                    password: values.password,
+                  };
+                  const { data } = await axios.post('/api/user/login', user);
+                  // update the store with this new user
+                  props.dispatch(loginSuccess(data));
+                  // artificially generate some timeout for loading bar
+                  await new Promise((resolve) => {
+                    setTimeout(() => {
+                      setSubmitting(false);
+                      resolve();
+                    }, 500);
+                  });
+                  openSnackbarExternal({
+                    severity: 'success',
+                    message: 'Logged in successfully',
+                  });
+                  // push history to previous page?
+                } catch (err) {
+                  // clear the user store
+                  props.dispatch(loginFailure());
+                  setSubmitting(false);
+                  openSnackbarExternal({
+                    severity: 'error',
+                    message: err.response.data.message,
+                  });
+                }
+              }}
+            >
+              {({ submitForm, isSubmitting, values, setFieldValue }) => (
+                <Form className={classes.form}>
+                  <Field
+                    component={TextField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                  <Field
+                    component={TextField}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  {isSubmitting && <LinearProgress />}
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={values.rememberMe}
+                        onClick={() =>
+                          setFieldValue('rememberMe', !values.rememberMe)
+                        }
+                        color="primary"
+                      />
+                    }
+                    label="Remember me"
+                  />
+                  <Button
+                    onClick={submitForm}
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Log in
+                  </Button>
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="#" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link
+                        component={RouterLink}
+                        to="/register"
+                        variant="body2"
+                      >
+                        {"Don't have an account? Register"}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                  <Grid container justify="flex-end">
+                    <Grid item>
+                      <Link
+                        component={RouterLink}
+                        to="/topAnime"
+                        variant="body2"
+                      >
+                        {'Back to main page'}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Form>
+              )}
+            </Formik>
           </div>
         </Container>
       </div>
@@ -139,4 +211,4 @@ const LoginBox = () => {
   );
 };
 
-export default LoginBox;
+export default connect()(LoginBox);
