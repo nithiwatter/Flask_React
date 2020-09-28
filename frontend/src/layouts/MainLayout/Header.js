@@ -15,6 +15,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 // import blue from '@material-ui/core/colors/blue';
 import MenuIcon from '@material-ui/icons/Menu';
+import SmallAccountMenu from './SmallAccountMenu';
 import { redirectToAuthentication } from '../../actions/userActions';
 
 const drawerWidth = 240;
@@ -59,9 +60,25 @@ function Header(props) {
   // const theme = useTheme();
   // const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const { user, open, handleDrawerOpen, dispatch } = props;
+  const [openAccountMenu, setOpenAccountMenu] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleClose = (event) => {
+    // prevent other actions related to clicking anchorRef to close the menu
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpenAccountMenu(false);
+  };
+
+  const handleToggle = () => {
+    setOpenAccountMenu((prevOpen) => !prevOpen);
+  };
 
   const handleProtectedActions = (path) => {
     return () => {
+      // concurrency issue with history object (may get modified first)
       const oldPath = history.location.pathname + history.location.search;
       // set the current location as previous path
       dispatch(redirectToAuthentication(oldPath));
@@ -113,9 +130,16 @@ function Header(props) {
         )}
         {user && (
           <div className={classes.avatarContainer}>
-            <Avatar>{user.email[0].toUpperCase()}</Avatar>
+            <IconButton ref={anchorRef} onClick={handleToggle} size="small">
+              <Avatar>{user.email[0].toUpperCase()}</Avatar>
+            </IconButton>
           </div>
         )}
+        <SmallAccountMenu
+          open={openAccountMenu}
+          anchorRef={anchorRef}
+          handleClose={handleClose}
+        ></SmallAccountMenu>
       </Toolbar>
     </AppBar>
   );
