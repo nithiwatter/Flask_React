@@ -3,6 +3,7 @@ import {
   REGISTER_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
   SET_CALLBACK_ROUTE,
 } from '../actionConstants/actionTypes';
 
@@ -20,6 +21,10 @@ export const loginSuccess = (user) => {
 
 export const loginFailure = () => {
   return { type: LOGIN_FAILURE, payload: null };
+};
+
+export const logout = () => {
+  return { type: LOGOUT, payload: null };
 };
 
 export const redirectToAuthentication = (routePath) => {

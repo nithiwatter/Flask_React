@@ -3,6 +3,7 @@ import {
   REGISTER_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
   SET_CALLBACK_ROUTE,
 } from '../actionConstants/actionTypes';
 
@@ -26,6 +27,8 @@ const userReducer = (
         accessToken: action.payload.access_token,
       };
     case LOGIN_FAILURE:
+      return { ...state, user: null, accessToken: null };
+    case LOGOUT:
       return { ...state, user: null, accessToken: null };
     case SET_CALLBACK_ROUTE:
       return { ...state, previousPath: action.payload };

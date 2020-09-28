@@ -16,7 +16,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // import blue from '@material-ui/core/colors/blue';
 import MenuIcon from '@material-ui/icons/Menu';
 import SmallAccountMenu from './SmallAccountMenu';
-import { redirectToAuthentication } from '../../actions/userActions';
+import { logout, redirectToAuthentication } from '../../actions/userActions';
+import { openSnackbarExternal } from '../../common/snackbar/Notifier';
 
 const drawerWidth = 240;
 
@@ -52,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   logIn: {
     marginLeft: theme.spacing(2),
   },
+  hide: {
+    display: 'none',
+  },
 }));
 
 function Header(props) {
@@ -63,13 +67,29 @@ function Header(props) {
   const [openAccountMenu, setOpenAccountMenu] = React.useState(false);
   const anchorRef = React.useRef(null);
 
-  const handleClose = (event) => {
-    // prevent other actions related to clicking anchorRef to close the menu
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
+  const handleClose = (value) => {
+    return (event) => {
+      // prevent other actions related to clicking anchorRef to close the menu
+      if (anchorRef.current && anchorRef.current.contains(event.target)) {
+        return;
+      }
+      // need this for other cases except log out
+      setOpenAccountMenu(false);
 
-    setOpenAccountMenu(false);
+      // check what kind of menu is pressed
+      switch (value) {
+        case 'Log out':
+          // clear it so next time the user needs to log in
+          localStorage.removeItem('jwt');
+          openSnackbarExternal({
+            severity: 'success',
+            message: 'Logged out successfully!',
+          });
+          return dispatch(logout());
+        default:
+          return;
+      }
+    };
   };
 
   const handleToggle = () => {
@@ -129,17 +149,19 @@ function Header(props) {
           </div>
         )}
         {user && (
-          <div className={classes.avatarContainer}>
-            <IconButton ref={anchorRef} onClick={handleToggle} size="small">
-              <Avatar>{user.email[0].toUpperCase()}</Avatar>
-            </IconButton>
-          </div>
+          <React.Fragment>
+            <div className={classes.avatarContainer}>
+              <IconButton ref={anchorRef} onClick={handleToggle} size="small">
+                <Avatar>{user.email[0].toUpperCase()}</Avatar>
+              </IconButton>
+            </div>
+            <SmallAccountMenu
+              open={openAccountMenu}
+              anchorRef={anchorRef}
+              handleClose={handleClose}
+            ></SmallAccountMenu>
+          </React.Fragment>
         )}
-        <SmallAccountMenu
-          open={openAccountMenu}
-          anchorRef={anchorRef}
-          handleClose={handleClose}
-        ></SmallAccountMenu>
       </Toolbar>
     </AppBar>
   );
