@@ -53,7 +53,7 @@ const DetailedScoreBox = (props) => {
           </Grid>
           <Grid item container xs={12} justify="center">
             <Typography variant="body2">
-              {data.scored_by.toLocaleString()} users
+              {data.scored_by ? data.scored_by.toLocaleString() : '-'} users
             </Typography>
           </Grid>
         </Grid>
