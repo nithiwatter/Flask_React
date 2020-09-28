@@ -1,6 +1,6 @@
 # application factory to create the main app for this particular package
 from flask import Flask, jsonify
-from flask_jwt_extended import JWTManager
+from flaskr.utils.custom_jwt_error import jwt_manager
 import os
 import sys
 import uuid
@@ -52,7 +52,7 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # initialize JWT authentication system
-    JWTManager(app)
+    jwt_manager.init_app(app)
 
     # bind the db to this particular instance of app
     # no need to to clean up application context (with already handles that)

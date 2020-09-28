@@ -1,5 +1,5 @@
 import uuid
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from flask import jsonify, request
 from sqlalchemy import exc
 from flaskr.models.user_model import User, db
@@ -40,6 +40,28 @@ def login():
         res['status'] = 'success'
         res['data'] = user
         res['access_token'] = create_access_token(identity=user.user_id)
+        return jsonify(res)
+    except ValueError as e:
+        res['status'] = 'failure'
+        res['message'] = str(e)
+        return jsonify(res), 400
+
+# protected route that will assess the validity of the jwt token
+# if valid, will return the user data to the frontend
+# used for automatic login
+
+
+@jwt_required
+def getIdentity():
+    try:
+        res = {}
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+        if user is None:
+            raise ValueError(
+                'No user exists for this access token. Please log in again.')
+        res['status'] = 'success'
+        res['data'] = user
         return jsonify(res)
     except ValueError as e:
         res['status'] = 'failure'
