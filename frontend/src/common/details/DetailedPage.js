@@ -6,12 +6,17 @@ import {
   Typography,
   Divider,
   IconButton,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Link,
   makeStyles,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import HistoryIcon from '@material-ui/icons/History';
 import DetailedSideBar from './DetailedSideBar';
 import DetailedScoreBox from './DetailedScoreBox';
+import ReviewContainer from '../reviews/ReviewContainer';
 
 const useStyles = makeStyles((theme) => ({
   gridLayout: {
@@ -44,11 +49,26 @@ const useStyles = makeStyles((theme) => ({
   backButton: {
     marginLeft: theme.spacing(1),
   },
+  reviewTitleContainer: {
+    display: 'flex',
+  },
+  formTitle: {
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 const DetailedPage = (props) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const { data, user, history, dispatch } = props;
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -128,9 +148,19 @@ const DetailedPage = (props) => {
               </Grid>
 
               <Grid item xs={12} className={classes.topicContainer}>
-                <Typography variant="body2" className={classes.topics}>
-                  Reviews
-                </Typography>
+                <div className={classes.reviewTitleContainer}>
+                  <Typography variant="body2" className={classes.topics}>
+                    Reviews
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    className={classes.topics}
+                    style={{ marginLeft: 'auto' }}
+                  >
+                    <Link onClick={handleClickOpen}>Write a review</Link>
+                  </Typography>
+                </div>
+
                 <Divider className={classes.divider}></Divider>
                 <Skeleton variant="rect" width="100%" height={118} />
                 <Skeleton />
@@ -140,6 +170,18 @@ const DetailedPage = (props) => {
           </div>
         </Grid>
       </Grid>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle classes={{ root: classes.formTitle }}>
+          <Typography variant="h6" style={{ fontWeight: 700, color: 'white' }}>
+            Write Your Review
+          </Typography>
+        </DialogTitle>
+        <Divider></Divider>
+        <DialogContent>
+          <ReviewContainer></ReviewContainer>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
