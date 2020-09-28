@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy';
 import {
   Grid,
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailedPage = (props) => {
   const classes = useStyles();
-  const { data, history } = props;
+  const { data, user, history, dispatch } = props;
 
   return (
     <div>
@@ -77,7 +78,12 @@ const DetailedPage = (props) => {
 
       <Grid container>
         <Grid item xs={3} className={classes.gridLayout}>
-          <DetailedSideBar data={data}></DetailedSideBar>
+          <DetailedSideBar
+            data={data}
+            history={history}
+            user={user}
+            dispatch={dispatch}
+          ></DetailedSideBar>
         </Grid>
 
         <Divider orientation="vertical" flexItem></Divider>
@@ -138,4 +144,10 @@ const DetailedPage = (props) => {
   );
 };
 
-export default DetailedPage;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userData.user,
+  };
+};
+
+export default connect(mapStateToProps)(DetailedPage);

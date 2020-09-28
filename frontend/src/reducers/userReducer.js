@@ -3,24 +3,32 @@ import {
   REGISTER_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SET_CALLBACK_ROUTE,
 } from '../actionConstants/actionTypes';
 
-const userReducer = (state = { user: null, accessToken: null }, action) => {
+const userReducer = (
+  state = { user: null, accessToken: null, previousPath: '/topAnime' },
+  action
+) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
       return {
+        ...state,
         user: action.payload.data,
         accessToken: action.payload.access_token,
       };
     case REGISTER_FAILURE:
-      return { user: null, accessToken: null };
+      return { ...state, user: null, accessToken: null };
     case LOGIN_SUCCESS:
       return {
+        ...state,
         user: action.payload.data,
         accessToken: action.payload.access_token,
       };
     case LOGIN_FAILURE:
-      return { user: null, accessToken: null };
+      return { ...state, user: null, accessToken: null };
+    case SET_CALLBACK_ROUTE:
+      return { ...state, previousPath: action.payload };
     default:
       return state;
   }

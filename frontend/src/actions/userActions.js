@@ -3,6 +3,7 @@ import {
   REGISTER_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SET_CALLBACK_ROUTE,
 } from '../actionConstants/actionTypes';
 
 export const registerSuccess = (newUser) => {
@@ -19,4 +20,8 @@ export const loginSuccess = (user) => {
 
 export const loginFailure = () => {
   return { type: LOGIN_FAILURE, payload: null };
+};
+
+export const redirectToAuthentication = (routePath) => {
+  return { type: SET_CALLBACK_ROUTE, payload: routePath };
 };

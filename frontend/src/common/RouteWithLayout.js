@@ -1,8 +1,22 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
 
 const RouteWithLayout = (props) => {
-  const { layout: Layout, component: Component, ...rest } = props;
+  const {
+    layout: Layout,
+    component: Component,
+    noLogin,
+    allAccess,
+    user,
+    previousPath,
+    ...rest
+  } = props;
+
+  // if the user is logged in, this will automatically redirect back to either home page or previously visited page
+  if (noLogin && user) {
+    return <Redirect to={previousPath}></Redirect>;
+  }
 
   return (
     <Route
@@ -16,4 +30,11 @@ const RouteWithLayout = (props) => {
   );
 };
 
-export default RouteWithLayout;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userData.user,
+    previousPath: state.userData.previousPath,
+  };
+};
+
+export default connect(mapStateToProps)(RouteWithLayout);

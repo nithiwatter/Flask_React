@@ -7,6 +7,7 @@ import {
   Divider,
   makeStyles,
 } from '@material-ui/core';
+import { redirectToAuthentication } from '../../actions/userActions';
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -31,7 +32,18 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailedSidebar = (props) => {
   const classes = useStyles();
-  const { data } = props;
+  const { data, history, dispatch, user } = props;
+
+  const handleProtectedActions = () => {
+    if (!user) {
+      // beware of concurrency when using history
+      // history object may get modified first
+      const oldPath = history.location.pathname + history.location.search;
+      // set the current location as previous path
+      dispatch(redirectToAuthentication(oldPath));
+      history.push('/login');
+    }
+  };
 
   return (
     <div>
@@ -50,8 +62,8 @@ const DetailedSidebar = (props) => {
             color="primary"
             variant="contained"
           >
-            <Button>Add to My List</Button>
-            <Button>Add to Favorites</Button>
+            <Button onClick={handleProtectedActions}>Add to My List</Button>
+            <Button onClick={handleProtectedActions}>Add to Favorites</Button>
           </ButtonGroup>
         </div>
       </Grid>

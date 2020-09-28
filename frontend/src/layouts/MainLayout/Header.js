@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -15,6 +15,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 // import blue from '@material-ui/core/colors/blue';
 import MenuIcon from '@material-ui/icons/Menu';
+import { redirectToAuthentication } from '../../actions/userActions';
 
 const drawerWidth = 240;
 
@@ -54,9 +55,19 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
+  const history = useHistory();
   // const theme = useTheme();
   // const matches = useMediaQuery(theme.breakpoints.up('sm'));
-  const { user, open, handleDrawerOpen } = props;
+  const { user, open, handleDrawerOpen, dispatch } = props;
+
+  const handleProtectedActions = (path) => {
+    return () => {
+      const oldPath = history.location.pathname + history.location.search;
+      // set the current location as previous path
+      dispatch(redirectToAuthentication(oldPath));
+      history.push(path);
+    };
+  };
 
   return (
     <AppBar
@@ -86,8 +97,7 @@ function Header(props) {
               variant="contained"
               color="secondary"
               className={classes.button}
-              component={Link}
-              to="/register"
+              onClick={handleProtectedActions('/register')}
             >
               Register
             </Button>
@@ -95,8 +105,7 @@ function Header(props) {
               variant="contained"
               color="secondary"
               className={clsx(classes.logIn, classes.button)}
-              component={Link}
-              to="/login"
+              onClick={handleProtectedActions('/login')}
             >
               Log In
             </Button>

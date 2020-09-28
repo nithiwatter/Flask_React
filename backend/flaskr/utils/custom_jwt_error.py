@@ -14,7 +14,6 @@ def unauthorized_loader(msg):
 
 @jwt_manager.expired_token_loader
 def expired_token_loader(data):
-    print(data)
     return jsonify({
         'status': 'failure',
         'message': 'Token has expired'

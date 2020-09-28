@@ -19,42 +19,56 @@ const Routes = () => {
         exact
         layout={MinimalContainer}
         path="/login"
+        noLogin={true}
+        allAccess={false}
       ></RouteWithLayout>
       <RouteWithLayout
         component={RegisterPage}
         exact
         layout={MinimalContainer}
         path="/register"
+        noLogin={true}
+        allAccess={false}
       ></RouteWithLayout>
       <RouteWithLayout
         component={TopAnime}
         exact
         layout={SideBar}
         path="/topAnime"
+        noLogin={false}
+        allAccess={true}
       />
       <RouteWithLayout
         component={TopManga}
         exact
         layout={SideBar}
         path="/topManga"
+        noLogin={false}
+        allAccess={true}
       />
       <RouteWithLayout
         component={SearchAnime}
         exact
         layout={SideBar}
         path="/anime"
+        noLogin={false}
+        allAccess={true}
       />
       <RouteWithLayout
         component={DetailedAnime}
         exact
         layout={SideBar}
         path="/anime/:id"
+        noLogin={false}
+        allAccess={true}
       />
       <RouteWithLayout
         component={SearchManga}
         exact
         layout={SideBar}
         path="/manga"
+        noLogin={false}
+        allAccess={true}
       />
     </Switch>
   );
