@@ -1,22 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ReactPlayer from 'react-player/lazy';
+import React from "react";
+import { connect } from "react-redux";
+import ReactPlayer from "react-player/lazy";
 import {
   Grid,
   Typography,
   Divider,
   IconButton,
   Dialog,
-  DialogContent,
   DialogTitle,
-  Link,
+  Button,
   makeStyles,
-} from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
-import HistoryIcon from '@material-ui/icons/History';
-import DetailedSideBar from './DetailedSideBar';
-import DetailedScoreBox from './DetailedScoreBox';
-import ReviewContainer from '../reviews/ReviewContainer';
+} from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import HistoryIcon from "@material-ui/icons/History";
+import DetailedSideBar from "./DetailedSideBar";
+import DetailedScoreBox from "./DetailedScoreBox";
+import ReviewContainer from "../reviews/ReviewContainer";
 
 const useStyles = makeStyles((theme) => ({
   gridLayout: {
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subTitle: {
     fontWeight: 700,
-    color: '#9e9e9e',
+    color: "#9e9e9e",
   },
   topicContainer: {
     marginBottom: theme.spacing(2),
@@ -50,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
   },
   reviewTitleContainer: {
-    display: 'flex',
+    display: "flex",
+    alignItems: "center",
   },
   formTitle: {
     backgroundColor: theme.palette.primary.main,
@@ -74,7 +74,7 @@ const DetailedPage = (props) => {
     <div>
       <Grid container className={classes.titleContainer}>
         <Grid item xs={12}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography variant="h6" className={classes.title}>
               {data.name}
             </Typography>
@@ -143,7 +143,7 @@ const DetailedPage = (props) => {
                 <div>
                   {data.background
                     ? data.background
-                    : 'No background information has been added to this title. Help improve our database by adding background information here.'}
+                    : "No background information has been added to this title. Help improve our database by adding background information here."}
                 </div>
               </Grid>
 
@@ -152,13 +152,14 @@ const DetailedPage = (props) => {
                   <Typography variant="body2" className={classes.topics}>
                     Reviews
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className={classes.topics}
-                    style={{ marginLeft: 'auto' }}
+                  <Button
+                    style={{ marginLeft: "auto" }}
+                    color="primary"
+                    onClick={handleClickOpen}
+                    size="small"
                   >
-                    <Link onClick={handleClickOpen}>Write a review</Link>
-                  </Typography>
+                    Write a review
+                  </Button>
                 </div>
 
                 <Divider className={classes.divider}></Divider>
@@ -171,16 +172,13 @@ const DetailedPage = (props) => {
         </Grid>
       </Grid>
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle classes={{ root: classes.formTitle }}>
-          <Typography variant="h6" style={{ fontWeight: 700, color: 'white' }}>
+      <Dialog open={open} disableBackdropClick scroll="body">
+        <DialogTitle classes={{ root: classes.formTitle }} disableTypography>
+          <Typography variant="h6" style={{ fontWeight: 700, color: "white" }}>
             Write Your Review
           </Typography>
         </DialogTitle>
-        <Divider></Divider>
-        <DialogContent>
-          <ReviewContainer></ReviewContainer>
-        </DialogContent>
+        <ReviewContainer handleClose={handleClose}></ReviewContainer>
       </Dialog>
     </div>
   );

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React from "react";
+import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import {
   List,
   ListItem,
@@ -8,24 +8,36 @@ import {
   Divider,
   Collapse,
   makeStyles,
-} from '@material-ui/core';
-import IconExpandLess from '@material-ui/icons/ExpandLess';
-import IconExpandMore from '@material-ui/icons/ExpandMore';
+} from "@material-ui/core";
+import IconExpandLess from "@material-ui/icons/ExpandLess";
+import IconExpandMore from "@material-ui/icons/ExpandMore";
 
-function activeRoute(title, path) {
+function activeRoute(title, path, location) {
   switch (title) {
-    case 'Anime':
-      return path.includes('/topAnime') || path.includes('/anime');
-    case 'Manga':
-      return path.includes('/topManga') || path.includes('/manga');
-    case 'Top Anime':
-      return path.includes('/topAnime');
-    case 'Top Manga':
-      return path.includes('/topManga');
-    case 'Search Anime':
-      return path.includes('/anime');
-    case 'Search Manga':
-      return path.includes('/manga');
+    case "Anime":
+      return path.includes("/topAnime") || path.includes("/anime");
+    case "Manga":
+      return path.includes("/topManga") || path.includes("/manga");
+    case "Top Anime":
+      return path.includes("/topAnime");
+    case "Top Manga":
+      return path.includes("/topManga");
+    case "Search Anime":
+      return path.includes("/anime");
+    case "Search Manga":
+      return path.includes("/manga");
+    case "Profile":
+    case "My Profile":
+      // need location to access query parameters
+      return location.pathname + location.search === "/user/profile";
+    case "My Favorites":
+      return (
+        location.pathname + location.search === "/user/profile?tab=favorites"
+      );
+    case "Watch Later":
+      return location.pathname + location.search === "/user/profile?tab=later";
+    case "Setting":
+      return path.includes("/user/profile/setting");
     default:
       return false;
   }
@@ -40,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const NavMenuItem = (props) => {
   const classes = useStyles();
   const match = useRouteMatch();
+  const location = useLocation();
   const { page } = props;
   const isExpandable = page.items && page.items.length > 0;
   const [open, setOpen] = React.useState(false);
@@ -55,11 +68,11 @@ const NavMenuItem = (props) => {
       component={page.href ? Link : null}
       to={page.href || null}
       onClick={handleClick}
-      selected={activeRoute(page.title, match.url)}
+      selected={activeRoute(page.title, match.url, location)}
     >
       {page.icon ? (
         <ListItemIcon
-          className={page.color === 'primary' ? classes.primary : null}
+          className={page.color === "primary" ? classes.primary : null}
         >
           {page.icon}
         </ListItemIcon>

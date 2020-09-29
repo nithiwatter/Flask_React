@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 
 const RouteWithLayout = (props) => {
   const {
@@ -16,6 +16,11 @@ const RouteWithLayout = (props) => {
   // if the user is logged in, this will automatically redirect back to either home page or previously visited page
   if (noLogin && user) {
     return <Redirect to={previousPath}></Redirect>;
+  }
+
+  // if the user tries to access protected pages, such as profile page
+  if (!noLogin && !allAccess && !user) {
+    return <Redirect to="/login"></Redirect>;
   }
 
   return (

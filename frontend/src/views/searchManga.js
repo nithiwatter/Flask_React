@@ -1,12 +1,7 @@
-import React from 'react';
-import ReviewContainer from '../common/reviews/ReviewContainer';
+import React from "react";
 
 const SearchManga = () => {
-  return (
-    <div>
-      <ReviewContainer></ReviewContainer>
-    </div>
-  );
+  return <div>Search Manga</div>;
 };
 
 export default SearchManga;

@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import clsx from "clsx";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -11,20 +11,20 @@ import {
   Avatar,
   // useTheme,
   // useMediaQuery,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // import blue from '@material-ui/core/colors/blue';
-import MenuIcon from '@material-ui/icons/Menu';
-import SmallAccountMenu from './SmallAccountMenu';
-import { logout, redirectToAuthentication } from '../../actions/userActions';
-import { openSnackbarExternal } from '../../common/snackbar/Notifier';
+import MenuIcon from "@material-ui/icons/Menu";
+import SmallAccountMenu from "./SmallAccountMenu";
+import { logout, redirectToAuthentication } from "../../actions/userActions";
+import { openSnackbarExternal } from "../../common/snackbar/Notifier";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -32,16 +32,16 @@ const useStyles = makeStyles((theme) => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   buttons: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   avatarContainer: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   // button: {
   //   color: theme.palette.getContrastText(blue[500]),
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
 }));
 
@@ -78,12 +78,12 @@ function Header(props) {
 
       // check what kind of menu is pressed
       switch (value) {
-        case 'Log out':
+        case "Log out":
           // clear it so next time the user needs to log in
-          localStorage.removeItem('jwt');
+          localStorage.removeItem("jwt");
           openSnackbarExternal({
-            severity: 'success',
-            message: 'Logged out successfully!',
+            severity: "success",
+            message: "Logged out successfully!",
           });
           return dispatch(logout());
         default:
@@ -131,18 +131,20 @@ function Header(props) {
         {!user && (
           <div className={classes.buttons}>
             <Button
+              disableElevation
               variant="contained"
               color="secondary"
               className={classes.button}
-              onClick={handleProtectedActions('/register')}
+              onClick={handleProtectedActions("/register")}
             >
               Register
             </Button>
             <Button
+              disableElevation
               variant="contained"
               color="secondary"
               className={clsx(classes.logIn, classes.button)}
-              onClick={handleProtectedActions('/login')}
+              onClick={handleProtectedActions("/login")}
             >
               Log In
             </Button>

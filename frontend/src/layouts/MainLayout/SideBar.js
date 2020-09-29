@@ -1,5 +1,5 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 import {
   CssBaseline,
   Drawer,
@@ -7,65 +7,91 @@ import {
   IconButton,
   Divider,
   makeStyles,
-} from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import MovieIcon from '@material-ui/icons/Movie';
-import PollIcon from '@material-ui/icons/Poll';
-import PollTwoToneIcon from '@material-ui/icons/PollTwoTone';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
-import FindInPageTwoToneIcon from '@material-ui/icons/FindInPageTwoTone';
-import RestorePageIcon from '@material-ui/icons/RestorePage';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Header from './Header';
-import NavMenuItem from './NavMenuItem';
+} from "@material-ui/core";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import MovieIcon from "@material-ui/icons/Movie";
+import PollIcon from "@material-ui/icons/Poll";
+import PollTwoToneIcon from "@material-ui/icons/PollTwoTone";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import FindInPageIcon from "@material-ui/icons/FindInPage";
+import FindInPageTwoToneIcon from "@material-ui/icons/FindInPageTwoTone";
+import RestorePageIcon from "@material-ui/icons/RestorePage";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import FaceIcon from "@material-ui/icons/Face";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import WatchLaterIcon from "@material-ui/icons/WatchLater";
+import SettingsIcon from "@material-ui/icons/Settings";
+import Header from "./Header";
+import NavMenuItem from "./NavMenuItem";
 
 const pages = [
   {
-    title: 'Anime',
+    title: "Anime",
     icon: <MovieIcon />,
-    color: 'primary',
+    color: "primary",
     items: [
       {
-        title: 'Top Anime',
-        href: '/topAnime',
+        title: "Top Anime",
+        href: "/topAnime",
         icon: <PollIcon />,
       },
       {
-        title: 'Search Anime',
-        href: '/anime',
+        title: "Search Anime",
+        href: "/anime",
         icon: <FindInPageIcon />,
       },
     ],
   },
   {
-    title: 'Manga',
+    title: "Manga",
     icon: <MenuBookIcon />,
-    color: 'primary',
+    color: "primary",
     items: [
       {
-        title: 'Top Manga',
-        href: '/topManga',
+        title: "Top Manga",
+        href: "/topManga",
         icon: <PollTwoToneIcon />,
       },
       {
-        title: 'Search Manga',
-        href: '/manga',
+        title: "Search Manga",
+        href: "/manga",
         icon: <FindInPageTwoToneIcon />,
       },
     ],
   },
   {
-    title: 'Search History',
+    title: "Search History",
     icon: <RestorePageIcon />,
-    href: '/searchHistory',
-    color: 'primary',
+    href: "/searchHistory",
+    color: "primary",
   },
   {
-    title: 'Profile',
+    title: "Profile",
     icon: <AccountCircleIcon />,
-    href: '/user/profile',
-    color: 'primary',
+    href: "/user/profile",
+    color: "primary",
+    items: [
+      {
+        title: "My Profile",
+        href: "/user/profile",
+        icon: <FaceIcon />,
+      },
+      {
+        title: "My Favorites",
+        href: "/user/profile?tab=favorites",
+        icon: <FavoriteIcon />,
+      },
+      {
+        title: "Watch Later",
+        href: "/user/profile?tab=later",
+        icon: <WatchLaterIcon />,
+      },
+      {
+        title: "Setting",
+        href: "/user/profile/setting",
+        icon: <SettingsIcon />,
+      },
+    ],
   },
 ];
 
@@ -73,41 +99,41 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   menuButton: {
     marginRight: 36,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: 'hidden',
+    overflowX: "hidden",
     width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
   },
   toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,

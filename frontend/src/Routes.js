@@ -1,15 +1,17 @@
-import React from 'react';
-import { Switch } from 'react-router-dom';
-import RouteWithLayout from './common/RouteWithLayout';
-import SideBar from './layouts/MainLayout/SideBar';
-import MinimalContainer from './layouts/MinimalLayout/MinimalContainer';
-import LoginPage from './views/loginPage';
-import RegisterPage from './views/registerPage';
-import TopAnime from './views/topAnime';
-import TopManga from './views/topManga';
-import SearchAnime from './views/searchAnime';
-import SearchManga from './views/searchManga';
-import DetailedAnime from './views/detailedAnime';
+import React from "react";
+import { Switch } from "react-router-dom";
+import RouteWithLayout from "./common/RouteWithLayout";
+import SideBar from "./layouts/MainLayout/SideBar";
+import MinimalContainer from "./layouts/MinimalLayout/MinimalContainer";
+import LoginPage from "./views/loginPage";
+import RegisterPage from "./views/registerPage";
+import ProfilePage from "./views/profilePage";
+import TopAnime from "./views/topAnime";
+import TopManga from "./views/topManga";
+
+import SearchAnime from "./views/searchAnime";
+import SearchManga from "./views/searchManga";
+import DetailedAnime from "./views/detailedAnime";
 
 const Routes = () => {
   return (
@@ -28,6 +30,14 @@ const Routes = () => {
         layout={MinimalContainer}
         path="/register"
         noLogin={true}
+        allAccess={false}
+      ></RouteWithLayout>
+      <RouteWithLayout
+        component={ProfilePage}
+        exact
+        layout={SideBar}
+        path="/user/profile"
+        noLogin={false}
         allAccess={false}
       ></RouteWithLayout>
       <RouteWithLayout
