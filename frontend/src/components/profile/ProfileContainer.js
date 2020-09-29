@@ -7,6 +7,9 @@ import {
   CardContent,
   CardMedia,
   Button,
+  Tabs,
+  Tab,
+  Paper,
   makeStyles,
 } from "@material-ui/core";
 
@@ -21,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     position: "absolute",
-    left: "10%",
+    left: "5%",
     bottom: "0%",
     transform: "translateY(50%)",
     height: 70,
@@ -66,8 +69,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileContainer = () => {
   const classes = useStyles();
+
+  const [value, setValue] = React.useState(false);
+
+  const handleChange = (_, newValue) => {
+    setValue(newValue);
+  };
   return (
-    <Grid container>
+    <Grid container spacing={3}>
       <Grid item xs={5}>
         <Card className={classes.card}>
           <CardMedia className={classes.media} component="div">
@@ -93,7 +102,18 @@ const ProfileContainer = () => {
         </Card>
       </Grid>
       <Grid item xs={7}>
-        Hello
+        <Paper>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+          >
+            <Tab label="My Favorites" />
+            <Tab label="Watch Later" />
+          </Tabs>
+        </Paper>
       </Grid>
     </Grid>
   );
