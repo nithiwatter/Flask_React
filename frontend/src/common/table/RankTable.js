@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 // some dates from the API have trouble with being parsed
 // import { format } from 'date-fns';
 import {
@@ -13,18 +13,19 @@ import {
   Typography,
   Button,
   Grow,
-  LinearProgress,
+  CircularProgress,
   makeStyles,
-} from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+} from '@material-ui/core';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import RankTableData from "./RankTableData";
+import RankTableData from './RankTableData';
 
 const useStyles = makeStyles((theme) => ({
   mainTitleContainer: {
-    display: "flex",
+    display: 'flex',
     marginBottom: theme.spacing(2),
+    alignItems: 'center',
   },
   mainTitle: {
     fontWeight: 700,
@@ -40,12 +41,19 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   paginationContainer: {
-    marginLeft: "auto",
+    marginLeft: 'auto',
   },
   bottomPaginationContainer: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     marginTop: theme.spacing(2),
+  },
+  visible: {
+    display: 'auto',
+    marginLeft: theme.spacing(2),
+  },
+  hidden: {
+    visibility: 'hidden',
   },
 }));
 
@@ -84,6 +92,12 @@ const RankTable = (props) => {
           >
             Waifu Tier List
           </Button>
+          <CircularProgress
+            className={loading ? classes.visible : classes.hidden}
+            color="secondary"
+            size={30}
+            disableShrink
+          />
           <div className={classes.paginationContainer}>
             {page > 0 ? (
               <Button
@@ -106,10 +120,10 @@ const RankTable = (props) => {
             </Button>
           </div>
         </div>
-        {loading ? <LinearProgress color="secondary"></LinearProgress> : null}
+
         {!loading ? (
           <React.Fragment>
-            <Grow in={true} style={{ transformOrigin: "top center" }}>
+            <Grow in={true} style={{ transformOrigin: 'top center' }}>
               <TableContainer component={Paper}>
                 <Table className={classes.table}>
                   <TableHead>

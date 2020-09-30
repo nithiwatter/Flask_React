@@ -1,28 +1,28 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { Typography, TableRow, TableCell, makeStyles } from "@material-ui/core";
-import StarRateIcon from "@material-ui/icons/StarRate";
-import SmallMenu from "./SmallMenu";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Typography, TableRow, TableCell, makeStyles } from '@material-ui/core';
+import StarRateIcon from '@material-ui/icons/StarRate';
+import SmallMenu from './SmallMenu';
 
 const useStyles = makeStyles((theme) => ({
   rankContainer: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   rank: {
     fontWeight: 700,
   },
   titleContainer: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
   },
   imageContainer: {
     flexShrink: 0,
   },
   image: {
     maxWidth: 75,
-    height: "auto",
+    height: 'auto',
   },
   textContainer: {
     marginLeft: theme.spacing(2),
@@ -30,15 +30,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: theme.palette.primary.main,
     fontWeight: 700,
-    textDecoration: "none",
-    "&:active": {
+    textDecoration: 'none',
+    '&:active': {
       color: theme.palette.primary.main,
     },
-    "&:visited": {
+    '&:visited': {
       color: theme.palette.primary.main,
     },
-    "&:hover": {
-      textDecoration: "underline",
+    '&:hover': {
+      textDecoration: 'underline',
     },
   },
 }));
