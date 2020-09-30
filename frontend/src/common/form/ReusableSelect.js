@@ -47,4 +47,5 @@ const ReusableSelect = (props) => {
   );
 };
 
+// could consider using memo to improve render performance
 export default ReusableSelect;

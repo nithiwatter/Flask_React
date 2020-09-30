@@ -13,7 +13,7 @@ import {
   Typography,
   Button,
   Grow,
-  LinearProgress,
+  CircularProgress,
   makeStyles,
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   mainTitleContainer: {
     display: "flex",
     marginBottom: theme.spacing(2),
+    alignItems: "center",
   },
   mainTitle: {
     fontWeight: 700,
@@ -46,6 +47,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     marginTop: theme.spacing(2),
+  },
+  visible: {
+    display: "auto",
+    marginLeft: theme.spacing(2),
+  },
+  hidden: {
+    visibility: "hidden",
   },
 }));
 
@@ -84,6 +92,12 @@ const RankTable = (props) => {
           >
             Waifu Tier List
           </Button>
+          <CircularProgress
+            className={loading ? classes.visible : classes.hidden}
+            color="secondary"
+            size={30}
+            disableShrink
+          />
           <div className={classes.paginationContainer}>
             {page > 0 ? (
               <Button
@@ -106,7 +120,6 @@ const RankTable = (props) => {
             </Button>
           </div>
         </div>
-        {loading ? <LinearProgress color="secondary"></LinearProgress> : null}
 
         {!loading ? (
           <React.Fragment>

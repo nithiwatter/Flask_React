@@ -19,7 +19,7 @@ export function fetchTop50Anime(page, size) {
 
       setTimeout(() => {
         dispatch({ type: TOP_50_FINISHED_API_REQUEST, payload: data.data });
-      }, 100);
+      }, 500);
     } catch (err) {}
   };
 }
