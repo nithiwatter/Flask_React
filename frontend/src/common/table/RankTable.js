@@ -107,6 +107,7 @@ const RankTable = (props) => {
           </div>
         </div>
         {loading ? <LinearProgress color="secondary"></LinearProgress> : null}
+
         {!loading ? (
           <React.Fragment>
             <Grow in={true} style={{ transformOrigin: "top center" }}>

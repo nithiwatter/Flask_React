@@ -8,7 +8,6 @@ import RegisterPage from "./views/registerPage";
 import ProfilePage from "./views/profilePage";
 import TopAnime from "./views/topAnime";
 import TopManga from "./views/topManga";
-
 import SearchAnime from "./views/searchAnime";
 import SearchManga from "./views/searchManga";
 import DetailedAnime from "./views/detailedAnime";
