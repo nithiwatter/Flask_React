@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ClickAwayListener,
   Grow,
@@ -6,7 +6,7 @@ import {
   Popper,
   MenuItem,
   MenuList,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const SmallAccountMenu = (props) => {
   const { open, anchorRef, handleClose } = props;
@@ -23,17 +23,17 @@ const SmallAccountMenu = (props) => {
         <Grow
           {...TransitionProps}
           style={{
-            transformOrigin: placement === 'bottom',
+            transformOrigin: placement === "bottom",
           }}
         >
           <Paper>
-            <ClickAwayListener onClickAway={handleClose}>
+            <ClickAwayListener onClickAway={handleClose("")}>
               <MenuList autoFocusItem={open}>
-                <MenuItem onClick={handleClose('Profile')}>Profile</MenuItem>
-                <MenuItem onClick={handleClose('My account')}>
+                <MenuItem onClick={handleClose("Profile")}>Profile</MenuItem>
+                <MenuItem onClick={handleClose("My account")}>
                   My account
                 </MenuItem>
-                <MenuItem onClick={handleClose('Log out')}>Log out</MenuItem>
+                <MenuItem onClick={handleClose("Log out")}>Log out</MenuItem>
               </MenuList>
             </ClickAwayListener>
           </Paper>

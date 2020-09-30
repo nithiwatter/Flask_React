@@ -68,7 +68,6 @@ const pages = [
   {
     title: "Profile",
     icon: <AccountCircleIcon />,
-    href: "/user/profile",
     color: "primary",
     items: [
       {

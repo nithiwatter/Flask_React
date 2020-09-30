@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: "none",
   },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
 }));
 
 function Header(props) {
@@ -154,7 +157,9 @@ function Header(props) {
           <React.Fragment>
             <div className={classes.avatarContainer}>
               <IconButton ref={anchorRef} onClick={handleToggle} size="small">
-                <Avatar>{user.email[0].toUpperCase()}</Avatar>
+                <Avatar className={classes.avatar}>
+                  {user.email[0].toUpperCase()}
+                </Avatar>
               </IconButton>
             </div>
             <SmallAccountMenu

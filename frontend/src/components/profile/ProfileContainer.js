@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation, Link } from "react-router-dom";
+import queryString from "query-string";
 import {
   Grid,
   Typography,
@@ -69,12 +71,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileContainer = () => {
   const classes = useStyles();
+  const location = useLocation();
+  const parsed = queryString.parse(location.search);
 
-  const [value, setValue] = React.useState(false);
+  let value = false;
 
-  const handleChange = (_, newValue) => {
-    setValue(newValue);
-  };
+  if (parsed.tab) {
+    if (parsed.tab === "favorites") {
+      value = 0;
+    } else if (parsed.tab === "later") {
+      value = 1;
+    }
+  }
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={5}>
@@ -105,13 +114,20 @@ const ProfileContainer = () => {
         <Paper>
           <Tabs
             value={value}
-            onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"
             centered
           >
-            <Tab label="My Favorites" />
-            <Tab label="Watch Later" />
+            <Tab
+              label="My Favorites"
+              component={Link}
+              to={"/user/profile?tab=favorites"}
+            />
+            <Tab
+              label="Watch Later"
+              component={Link}
+              to={"/user/profile?tab=later"}
+            />
           </Tabs>
         </Paper>
       </Grid>
