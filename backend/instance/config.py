@@ -4,3 +4,4 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:password@localhost/flask_react"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 JWT_SECRET_KEY = "SECRET_KEY"
+JWT_ACCESS_TOKEN_EXPIRES = False

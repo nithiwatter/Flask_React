@@ -12,8 +12,17 @@ import {
   Tabs,
   Tab,
   Paper,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  Table,
+  TableBody,
+  IconButton,
   makeStyles,
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -67,7 +76,44 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
     marginTop: theme.spacing(4),
   },
+  tableRoot: {
+    marginTop: theme.spacing(2),
+  },
+  headerCell: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+  titleContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  imageContainer: {
+    flexShrink: 0,
+  },
+  title: {
+    fontWeight: 700,
+  },
+  textContainer: {
+    marginLeft: theme.spacing(2),
+  },
+  readMore: {
+    color: theme.palette.primary.main,
+  },
+  more: {
+    color: "white",
+    marginLeft: theme.spacing(1),
+  },
 }));
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div hidden={value !== index} {...other}>
+      {value === index && <div>{children}</div>}
+    </div>
+  );
+}
 
 const ProfileContainer = () => {
   const classes = useStyles();
@@ -129,6 +175,87 @@ const ProfileContainer = () => {
               to={"/user/profile?tab=later"}
             />
           </Tabs>
+          <TabPanel value={value} index={0}>
+            <TableContainer className={classes.tableRoot}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell
+                      align="center"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Title
+                      <IconButton size="small" className={classes.more}>
+                        <MoreHorizIcon></MoreHorizIcon>
+                      </IconButton>
+                    </TableCell>
+
+                    <TableCell
+                      align="right"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Score
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="left">
+                      <div className={classes.titleContainer}>
+                        <div className={classes.imageContainer}>
+                          <Skeleton variant="rect" width={54} height={74} />
+                        </div>
+
+                        <div className={classes.textContainer}>
+                          <Typography variant="body2" className={classes.title}>
+                            Shingeki no Kyojin Season 3 Part 2
+                          </Typography>
+
+                          <Typography variant="body2">
+                            Seeking to restore humanity’s diminishing hope, the
+                            Survey Corps embark on a mission to retake Wall
+                            Maria, where the battle against the merciless
+                            "Titans" takes the stage once again. Returning to
+                            the...
+                          </Typography>
+                          <span className={classes.readMore}>Read More</span>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell align="right">9.07</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="left">
+                      <div className={classes.titleContainer}>
+                        <div className={classes.imageContainer}>
+                          <Skeleton variant="rect" width={54} height={74} />
+                        </div>
+
+                        <div className={classes.textContainer}>
+                          <Typography variant="body2" className={classes.title}>
+                            Shingeki no Kyojin Season 3 Part 2
+                          </Typography>
+
+                          <Typography variant="body2">
+                            Seeking to restore humanity’s diminishing hope, the
+                            Survey Corps embark on a mission to retake Wall
+                            Maria, where the battle against the merciless
+                            "Titans" takes the stage once again. Returning to
+                            the...
+                          </Typography>
+                          <span className={classes.readMore}>Read More</span>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell align="right">9.07</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
         </Paper>
       </Grid>
     </Grid>
