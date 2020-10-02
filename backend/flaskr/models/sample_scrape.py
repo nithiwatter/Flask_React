@@ -35,9 +35,11 @@ trailer_url_anime = []
 num_images = 0
 
 # cur_path = os.path.dirname(__file__)
-
 # new_path = os.path.relpath('animes_json.txt', cur_path)
-with open('..\\animes_json.txt', 'r') as json_file:
+print(os.getcwd())
+new_path = os.path.join(os.path.dirname(os.getcwd()), 'animes_json.txt')
+print(new_path)
+with open(new_path, 'r') as json_file:
     data = json.load(json_file)
     for i in range(len(data)):
         if "Hentai" in data[i]['rating']:
