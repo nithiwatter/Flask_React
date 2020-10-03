@@ -3,11 +3,11 @@ import requests
 import time
 import json
 # from datetime import datetime
-from jikanpy import Jikan
+# from jikanpy import Jikan
 
-jikan = Jikan()
+#jikan = Jikan()
 
-earth_seasons = ['spring', 'summer', 'fall', 'winter']
+#earth_seasons = ['spring', 'summer', 'fall', 'winter']
 
 id_anime = []
 name_anime = []
@@ -33,12 +33,10 @@ mal_image_path_anime = []
 image_path_anime = []
 trailer_url_anime = []
 num_images = 0
+genres_anime = []
 
-# cur_path = os.path.dirname(__file__)
-# new_path = os.path.relpath('animes_json.txt', cur_path)
-print(os.getcwd())
 new_path = os.path.join(os.path.dirname(os.getcwd()), 'animes_json.txt')
-print(new_path)
+
 with open(new_path, 'r') as json_file:
     data = json.load(json_file)
     for i in range(len(data)):
@@ -65,10 +63,11 @@ with open(new_path, 'r') as json_file:
         airing_end_anime.append(data[i]['aired']['to'])
         airing_str_anime.append(data[i]['aired']['string'])
 
-        # genre = []
-        # for j in range(len(data[i]['genres'])):
-        #     genre.append(data[i]['genres'][j]['name'])
-        # genres_anime.append(genre)
+        genre = []
+        for j in data[i]['genres']:
+            genre.append(j['name'])
+        genres_anime.append(genre)
+
         # downloading images from MAL cdn
         mal_image_path_anime.append(data[i]['image_url'])
         image_file_path = 'flaskr/static/anime_cover_images/{}.jpg'.format(

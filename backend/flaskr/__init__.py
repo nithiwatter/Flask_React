@@ -11,6 +11,7 @@ from flaskr.utils import custom_json_encoder
 # need to import models first
 from flaskr.models.anime_model import Anime
 from flaskr.models.user_model import User
+from flaskr.models.genre_model import Genre
 from flaskr.models import db
 
 # importing mock data
@@ -120,5 +121,18 @@ def create_app(test_config=None):
             db.session.merge(to_add)
             db.session.commit()
         return 'done'
+
+    @app.route('/add_genre')
+    def add_genre():
+        for i in range(len(genres_anime)):
+            for j in genres_anime[i]:
+                to_add = Genre(
+                    anime_id = id_anime[i],
+                    genre = j
+                )
+
+                db.session.merge(to_add)
+                db.session.commit()
+        return '<b>done</b>'
 
     return app
