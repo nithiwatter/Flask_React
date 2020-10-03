@@ -34,6 +34,7 @@ image_path_anime = []
 trailer_url_anime = []
 num_images = 0
 genres_anime = []
+studios_anime = []
 
 new_path = os.path.join(os.path.dirname(os.getcwd()), 'animes_json.txt')
 
@@ -67,6 +68,11 @@ with open(new_path, 'r') as json_file:
         for j in data[i]['genres']:
             genre.append(j['name'])
         genres_anime.append(genre)
+
+        studio = []
+        for j in data[i]['studios']:
+            studio.append(j['name'])
+        studios_anime.append(studio)
 
         # downloading images from MAL cdn
         mal_image_path_anime.append(data[i]['image_url'])
