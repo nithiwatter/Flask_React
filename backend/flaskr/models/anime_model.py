@@ -30,13 +30,12 @@ class Anime(db.Model):
     background: str
     rating: float
     anime_type: str
-    airing_start: str
-    airing_end: str
+    airing_start: datetime.datetime
+    airing_end: datetime.datetime
     airing_str: str
     anime_image_path: str
     mal_anime_image_path: str
     trailer_url: str
-    # genre: list
 
     # fields
     anime_id = db.Column(db.Integer, primary_key=True)
@@ -65,9 +64,9 @@ class Anime(db.Model):
 
     # relationships
     genre = db.relationship('Genre', secondary=anime_genre, lazy=True,
-        backref=db.backref('anime', lazy=True))
+                            backref=db.backref('anime', lazy=True))
     studio = db.relationship('Studio', secondary=anime_studio, lazy=True,
-        backref=db.backref('anime', lazy=True))
+                             backref=db.backref('anime', lazy=True))
 
     def __repr__(self):
-        return '(Anime | ID: {} | name:{} | synopsis:{} | rating:{} | type: {})'.format(self.anime_id, self.name, self.synopsis, self.rating, self.anime_type)
+        return '(Anime | ID: {} | name: {} | synopsis: {} | rating: {} | type: {})'.format(self.anime_id, self.name, self.synopsis, self.rating, self.anime_type)

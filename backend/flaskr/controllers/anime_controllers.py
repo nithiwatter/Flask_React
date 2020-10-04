@@ -1,3 +1,4 @@
+import dataclasses
 from flask import jsonify, request
 from flaskr.models.anime_model import Anime
 from flaskr.utils.helperFunctions import getPagination
@@ -37,8 +38,13 @@ def get_top_50_anime():
 
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
-    result.genre = list(result.genre)
+
+    # get all the fields we currently have (except genre and studio)
+    # manually add these
+    result_dict = dataclasses.asdict(result)
+    result_dict['genre'] = result.genre
+    result_dict['studio'] = result.studio
     res = {}
     res['status'] = 'success'
-    res['data'] = result
+    res['data'] = result_dict
     return jsonify(res)

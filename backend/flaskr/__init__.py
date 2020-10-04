@@ -134,7 +134,7 @@ def create_app(test_config=None):
         #     )
         #     db.session.merge(to_add)
         #     db.session.commit()
-        
+
         # for i in studios_anime:
         #     to_add = Studio(
         #         studio_id = i[0],
