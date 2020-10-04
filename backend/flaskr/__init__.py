@@ -119,26 +119,29 @@ def create_app(test_config=None):
                 mal_anime_image_path=mal_image_path_anime[i],
                 trailer_url=trailer_url_anime[i]
             )
+            # SQL Alchemy automatically handle genre and studio models to us
+            for j in anime_genre_rel[i]:
+                to_add.genre.append(Genre(genre_id=j[0], genre_name=j[1]))
+            for j in anime_studio_rel[i]:
+                to_add.studio.append(Studio(studio_id=j[0], studio_name=j[1]))
             db.session.merge(to_add)
             db.session.commit()
 
-        for i in range(len(genres_anime)):
-            for j in genres_anime[i]:
-                to_add = Genre(
-                    anime_id = id_anime[i],
-                    genre = j
-                )
-                db.session.merge(to_add)
-                db.session.commit()
+        # for i in genres_anime:
+        #     to_add = Genre(
+        #         genre_id = i[0],
+        #         genre_name =  i[1]
+        #     )
+        #     db.session.merge(to_add)
+        #     db.session.commit()
         
-        for i in range(len(studios_anime)):
-            for j in studios_anime[i]:
-                to_add = Studio(
-                    anime_id = id_anime[i],
-                    studio = j
-                )
-                db.session.merge(to_add)
-                db.session.commit()
+        # for i in studios_anime:
+        #     to_add = Studio(
+        #         studio_id = i[0],
+        #         studio_name = i[1]
+        #     )
+        #     db.session.merge(to_add)
+        #     db.session.commit()
 
         return '<img src="https://media1.tenor.com/images/678955ca4337fc9a61ceb342ecb26760/tenor.gif?itemid=7905894" title="i love emilia">'
 

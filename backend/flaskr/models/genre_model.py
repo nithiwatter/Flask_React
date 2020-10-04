@@ -7,12 +7,11 @@ from . import db
 @dataclass
 class Genre(db.Model):
     """Data model for genre."""
-    anime_id: int
-    genre: str
+    genre_id: int
+    genre_name: str
 
-    db.metadata.clear()
-    anime_id = db.Column(db.Integer, primary_key = True)
-    genre = db.Column(db.String(20), primary_key = True)
+    genre_id = db.Column(db.Integer, primary_key = True)
+    genre_name = db.Column(db.String(30), unique=True, nullable=False)
 
     def __repr__(self):
-        return 'ID: {} | genre: {}'.format(self.anime_id,self.genre)
+        return '(Genre | ID: {} | genre: {})'.format(self.genre_id,self.genre_name)

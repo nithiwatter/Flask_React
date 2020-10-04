@@ -37,6 +37,7 @@ def get_top_50_anime():
 
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
+    result.genre = list(result.genre)
     res = {}
     res['status'] = 'success'
     res['data'] = result

@@ -33,8 +33,10 @@ mal_image_path_anime = []
 image_path_anime = []
 trailer_url_anime = []
 num_images = 0
-genres_anime = []
-studios_anime = []
+genres_anime = set([])
+studios_anime = set([])
+anime_genre_rel = []
+anime_studio_rel = []
 
 new_path = os.path.join(os.path.dirname(os.getcwd()), 'animes_json.txt')
 
@@ -64,15 +66,18 @@ with open(new_path, 'r') as json_file:
         airing_end_anime.append(data[i]['aired']['to'])
         airing_str_anime.append(data[i]['aired']['string'])
 
-        genre = []
+        genre_temp = []
+        studio_temp = []
+        anime_genre_rel.append(genre_temp)
+        anime_studio_rel.append(studio_temp)
+        # adding tuples to eliminate duplicates
         for j in data[i]['genres']:
-            genre.append(j['name'])
-        genres_anime.append(genre)
+            genres_anime.add((j['mal_id'], j['name']))
+            genre_temp.append((j['mal_id'], j['name']))
 
-        studio = []
         for j in data[i]['studios']:
-            studio.append(j['name'])
-        studios_anime.append(studio)
+            studios_anime.add((j['mal_id'], j['name']))
+            studio_temp.append((j['mal_id'], j['name']))
 
         # downloading images from MAL cdn
         mal_image_path_anime.append(data[i]['image_url'])
