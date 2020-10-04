@@ -6,6 +6,8 @@ from dataclasses import dataclass
 # using the same instance of db initialized in __init__.py
 from . import db
 
+from .relationship_tables import anime_genre, anime_studio
+
 
 @dataclass
 class Anime(db.Model):
@@ -34,7 +36,9 @@ class Anime(db.Model):
     anime_image_path: str
     mal_anime_image_path: str
     trailer_url: str
+    # genre: list
 
+    # fields
     anime_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True, nullable=False)
     name_eng = db.Column(db.String(150))
@@ -58,6 +62,12 @@ class Anime(db.Model):
     anime_image_path = db.Column(db.String(150))
     mal_anime_image_path = db.Column(db.String(150))
     trailer_url = db.Column(db.String(500))
+
+    # relationships
+    genre = db.relationship('Genre', secondary=anime_genre, lazy=True,
+        backref=db.backref('anime', lazy=True))
+    studio = db.relationship('Studio', secondary=anime_studio, lazy=True,
+        backref=db.backref('anime', lazy=True))
 
     def __repr__(self):
         return '(Anime | ID: {} | name:{} | synopsis:{} | rating:{} | type: {})'.format(self.anime_id, self.name, self.synopsis, self.rating, self.anime_type)
