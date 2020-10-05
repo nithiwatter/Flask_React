@@ -71,40 +71,38 @@ const ReviewSmallDetail = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Grid item container alignContent="center">
-          <Skeleton variant="rect" width={50} height={65}></Skeleton>
-          <div className={classes.textContainer}>
-            <Typography
-              variant="body2"
-              component={NavLink}
-              to="#"
-              className={classes.userName}
-            >
-              User 1
+      <Grid item container alignContent="center">
+        <Skeleton variant="rect" width={50} height={65}></Skeleton>
+        <div className={classes.textContainer}>
+          <Typography
+            variant="body2"
+            component={NavLink}
+            to="#"
+            className={classes.userName}
+          >
+            User 1
             </Typography>
-            <Typography
-              variant="body2"
-              component={NavLink}
-              to="#"
-              className={classes.userReview}
-              style={{ fontSize: 12 }}
-            >
-              (All reviews)
+          <Typography
+            variant="body2"
+            component={NavLink}
+            to="#"
+            className={classes.userReview}
+            style={{ fontSize: 12 }}
+          >
+            (All reviews)
             </Typography>
-            <Typography variant="body2" className={classes.greyText}>
-              <span style={{ fontWeight: 700 }}>3,434</span> people found this
+          <Typography variant="body2" className={classes.greyText}>
+            <span style={{ fontWeight: 700 }}>3,434</span> people found this
               review helpful
             </Typography>
-          </div>
-          <div className={classes.details}>
-            <Typography variant="body2">Jan, 25 2010</Typography>
-            <Typography variant="body2" className={classes.greyText}>
-              64 of 64 episodes seen
+        </div>
+        <div className={classes.details}>
+          <Typography variant="body2">Jan, 25 2010</Typography>
+          <Typography variant="body2" className={classes.greyText}>
+            64 of 64 episodes seen
             </Typography>
-            <Typography variant="body2">Overall rating: 10</Typography>
-          </div>
-        </Grid>
+          <Typography variant="body2">Overall rating: 10</Typography>
+        </div>
       </Grid>
       <Divider></Divider>
       <div className={classes.review}>
