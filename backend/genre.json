@@ -1,0 +1,166 @@
+[
+    {
+        "genre_id": 1,
+        "genre_name": "Action"
+    },
+    {
+        "genre_id": 2,
+        "genre_name": "Adventure"
+    },
+    {
+        "genre_id": 3,
+        "genre_name": "Cars"
+    },
+    {
+        "genre_id": 4,
+        "genre_name": "Comedy"
+    },
+    {
+        "genre_id": 5,
+        "genre_name": "Dementia"
+    },
+    {
+        "genre_id": 6,
+        "genre_name": "Demons"
+    },
+    {
+        "genre_id": 8,
+        "genre_name": "Drama"
+    },
+    {
+        "genre_id": 9,
+        "genre_name": "Ecchi"
+    },
+    {
+        "genre_id": 10,
+        "genre_name": "Fantasy"
+    },
+    {
+        "genre_id": 11,
+        "genre_name": "Game"
+    },
+    {
+        "genre_id": 35,
+        "genre_name": "Harem"
+    },
+    {
+        "genre_id": 13,
+        "genre_name": "Historical"
+    },
+    {
+        "genre_id": 14,
+        "genre_name": "Horror"
+    },
+    {
+        "genre_id": 43,
+        "genre_name": "Josei"
+    },
+    {
+        "genre_id": 15,
+        "genre_name": "Kids"
+    },
+    {
+        "genre_id": 16,
+        "genre_name": "Magic"
+    },
+    {
+        "genre_id": 17,
+        "genre_name": "Martial Arts"
+    },
+    {
+        "genre_id": 18,
+        "genre_name": "Mecha"
+    },
+    {
+        "genre_id": 38,
+        "genre_name": "Military"
+    },
+    {
+        "genre_id": 19,
+        "genre_name": "Music"
+    },
+    {
+        "genre_id": 7,
+        "genre_name": "Mystery"
+    },
+    {
+        "genre_id": 20,
+        "genre_name": "Parody"
+    },
+    {
+        "genre_id": 39,
+        "genre_name": "Police"
+    },
+    {
+        "genre_id": 40,
+        "genre_name": "Psychological"
+    },
+    {
+        "genre_id": 22,
+        "genre_name": "Romance"
+    },
+    {
+        "genre_id": 21,
+        "genre_name": "Samurai"
+    },
+    {
+        "genre_id": 23,
+        "genre_name": "School"
+    },
+    {
+        "genre_id": 24,
+        "genre_name": "Sci-Fi"
+    },
+    {
+        "genre_id": 42,
+        "genre_name": "Seinen"
+    },
+    {
+        "genre_id": 25,
+        "genre_name": "Shoujo"
+    },
+    {
+        "genre_id": 26,
+        "genre_name": "Shoujo Ai"
+    },
+    {
+        "genre_id": 27,
+        "genre_name": "Shounen"
+    },
+    {
+        "genre_id": 28,
+        "genre_name": "Shounen Ai"
+    },
+    {
+        "genre_id": 36,
+        "genre_name": "Slice of Life"
+    },
+    {
+        "genre_id": 29,
+        "genre_name": "Space"
+    },
+    {
+        "genre_id": 30,
+        "genre_name": "Sports"
+    },
+    {
+        "genre_id": 31,
+        "genre_name": "Super Power"
+    },
+    {
+        "genre_id": 37,
+        "genre_name": "Supernatural"
+    },
+    {
+        "genre_id": 41,
+        "genre_name": "Thriller"
+    },
+    {
+        "genre_id": 32,
+        "genre_name": "Vampire"
+    },
+    {
+        "genre_id": 33,
+        "genre_name": "Yaoi"
+    }
+]

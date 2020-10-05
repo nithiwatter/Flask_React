@@ -104,8 +104,6 @@ const RegisterBox = (props) => {
                     '/api/user/register',
                     newUser
                   );
-                  // update the store with this new user
-                  props.dispatch(registerSuccess(data));
                   // artificially generate some timeout for loading bar
                   await new Promise((resolve) => {
                     setTimeout(() => {
@@ -113,6 +111,10 @@ const RegisterBox = (props) => {
                       resolve();
                     }, 500);
                   });
+
+                  // update the store with this new user
+                  props.dispatch(registerSuccess(data));
+
                   openSnackbarExternal({
                     severity: 'success',
                     message: 'Registered successfully',

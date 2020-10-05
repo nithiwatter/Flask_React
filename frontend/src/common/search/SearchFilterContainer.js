@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core';
 import { Formik } from 'formik';
 import SimpleSearchBar from './SimpleSearchBar';
@@ -35,7 +36,7 @@ const formObj = {
 
 class SearchFilterContainer extends Component {
   render() {
-    const { classes, history } = this.props;
+    const { genreList, studioList, genreObj, classes, history } = this.props;
 
     return (
       <Formik
@@ -44,12 +45,10 @@ class SearchFilterContainer extends Component {
           animeTitle: '',
           animeType: 'All',
           animeStatus: 'All',
-          animeProducer: 'All',
+          // here, null will represent All; { studio_id: 'All', studio_name: 'All } also represents All
+          animeProducer: null,
           animeGenre: {
-            all: true,
-            romance: false,
-            comedy: false,
-            action: false,
+            ...genreObj
           },
           animeStartDate: null,
           animeEndDate: null,
@@ -72,6 +71,8 @@ class SearchFilterContainer extends Component {
               <AdvanceSearchOptions
                 formObj={formObj}
                 values={values}
+                studioList={studioList}
+                genreList={genreList}
                 handleChange={setFieldValue}
               ></AdvanceSearchOptions>
             </div>
@@ -82,4 +83,10 @@ class SearchFilterContainer extends Component {
   }
 }
 
-export default withStyles(styles)(SearchFilterContainer);
+const mapStateToProps = (state) => ({
+  genreList: state.search.genreList,
+  studioList: state.search.studioList,
+  genreObj: state.search.genreObj
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(SearchFilterContainer));

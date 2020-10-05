@@ -25,8 +25,6 @@ class SearchAnime extends Component {
     const {
       searchDidMount,
       searchListPending,
-      genreList,
-      studioList,
       classes,
     } = this.props;
 
@@ -42,8 +40,6 @@ class SearchAnime extends Component {
     return (
       <React.Fragment>
         <SearchMainContainer
-          genreList={genreList}
-          studioList={studioList}
         ></SearchMainContainer>
       </React.Fragment>
     );
@@ -54,8 +50,6 @@ const mapStateToProps = (state) => {
   return {
     searchDidMount: state.search.didMount,
     searchListPending: state.search.listPending,
-    genreList: state.search.genreList,
-    studioList: state.search.studioList,
   };
 };
 

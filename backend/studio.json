@@ -1,0 +1,634 @@
+[
+    {
+        "studio_id": 1286,
+        "studio_name": "10Gauge"
+    },
+    {
+        "studio_id": 1079,
+        "studio_name": "3xCube"
+    },
+    {
+        "studio_id": 441,
+        "studio_name": "8bit"
+    },
+    {
+        "studio_id": 56,
+        "studio_name": "A-1 Pictures"
+    },
+    {
+        "studio_id": 1257,
+        "studio_name": "A-Real"
+    },
+    {
+        "studio_id": 60,
+        "studio_name": "Actas"
+    },
+    {
+        "studio_id": 30,
+        "studio_name": "Ajia-Do"
+    },
+    {
+        "studio_id": 521,
+        "studio_name": "Anpro"
+    },
+    {
+        "studio_id": 38,
+        "studio_name": "Arms"
+    },
+    {
+        "studio_id": 8,
+        "studio_name": "Artland"
+    },
+    {
+        "studio_id": 406,
+        "studio_name": "Asahi Production"
+    },
+    {
+        "studio_id": 473,
+        "studio_name": "Ascension"
+    },
+    {
+        "studio_id": 163,
+        "studio_name": "Asread"
+    },
+    {
+        "studio_id": 1350,
+        "studio_name": "B.CMAY PICTURES"
+    },
+    {
+        "studio_id": 1258,
+        "studio_name": "Bandai Namco Pictures"
+    },
+    {
+        "studio_id": 271,
+        "studio_name": "Barnum Studio"
+    },
+    {
+        "studio_id": 322,
+        "studio_name": "Bee Media"
+    },
+    {
+        "studio_id": 1706,
+        "studio_name": "Beijing Rocen Digital"
+    },
+    {
+        "studio_id": 4,
+        "studio_name": "Bones"
+    },
+    {
+        "studio_id": 112,
+        "studio_name": "Brain's Base"
+    },
+    {
+        "studio_id": 397,
+        "studio_name": "Bridge"
+    },
+    {
+        "studio_id": 1075,
+        "studio_name": "C-Station"
+    },
+    {
+        "studio_id": 605,
+        "studio_name": "C2C"
+    },
+    {
+        "studio_id": 1808,
+        "studio_name": "CG Year"
+    },
+    {
+        "studio_id": 291,
+        "studio_name": "CoMix Wave Films"
+    },
+    {
+        "studio_id": 957,
+        "studio_name": "Connect"
+    },
+    {
+        "studio_id": 1195,
+        "studio_name": "Creators in Pack"
+    },
+    {
+        "studio_id": 228,
+        "studio_name": "Daewon Media"
+    },
+    {
+        "studio_id": 287,
+        "studio_name": "David Production"
+    },
+    {
+        "studio_id": 51,
+        "studio_name": "Diomedea"
+    },
+    {
+        "studio_id": 276,
+        "studio_name": "DLE"
+    },
+    {
+        "studio_id": 95,
+        "studio_name": "Doga Kobo"
+    },
+    {
+        "studio_id": 1025,
+        "studio_name": "Dongwoo A&E"
+    },
+    {
+        "studio_id": 1133,
+        "studio_name": "dwarf"
+    },
+    {
+        "studio_id": 1263,
+        "studio_name": "Dynamo Pictures"
+    },
+    {
+        "studio_id": 593,
+        "studio_name": "Egg"
+    },
+    {
+        "studio_id": 191,
+        "studio_name": "Eiken"
+    },
+    {
+        "studio_id": 1264,
+        "studio_name": "EMT Squared"
+    },
+    {
+        "studio_id": 354,
+        "studio_name": "Encourage Films"
+    },
+    {
+        "studio_id": 866,
+        "studio_name": "Fanworks"
+    },
+    {
+        "studio_id": 91,
+        "studio_name": "feel."
+    },
+    {
+        "studio_id": 1135,
+        "studio_name": "FOREST Hunting One"
+    },
+    {
+        "studio_id": 1314,
+        "studio_name": "Gaina"
+    },
+    {
+        "studio_id": 6,
+        "studio_name": "Gainax"
+    },
+    {
+        "studio_id": 36,
+        "studio_name": "Gallop"
+    },
+    {
+        "studio_id": 400,
+        "studio_name": "Gathering"
+    },
+    {
+        "studio_id": 309,
+        "studio_name": "GoHands"
+    },
+    {
+        "studio_id": 3,
+        "studio_name": "Gonzo"
+    },
+    {
+        "studio_id": 1325,
+        "studio_name": "Haoliners Animation League"
+    },
+    {
+        "studio_id": 346,
+        "studio_name": "Hoods Entertainment"
+    },
+    {
+        "studio_id": 1276,
+        "studio_name": "HS Pictures Studio"
+    },
+    {
+        "studio_id": 898,
+        "studio_name": "I.Gzwei"
+    },
+    {
+        "studio_id": 193,
+        "studio_name": "Idea Factory"
+    },
+    {
+        "studio_id": 1169,
+        "studio_name": "ILCA"
+    },
+    {
+        "studio_id": 475,
+        "studio_name": "Ishikawa Pro"
+    },
+    {
+        "studio_id": 7,
+        "studio_name": "J.C.Staff"
+    },
+    {
+        "studio_id": 432,
+        "studio_name": "Kachidoki Studio"
+    },
+    {
+        "studio_id": 330,
+        "studio_name": "Kanaban Graphics"
+    },
+    {
+        "studio_id": 1947,
+        "studio_name": "Kate Arrow"
+    },
+    {
+        "studio_id": 47,
+        "studio_name": "Khara"
+    },
+    {
+        "studio_id": 290,
+        "studio_name": "Kinema Citrus"
+    },
+    {
+        "studio_id": 2,
+        "studio_name": "Kyoto Animation"
+    },
+    {
+        "studio_id": 833,
+        "studio_name": "Kyotoma"
+    },
+    {
+        "studio_id": 1268,
+        "studio_name": "L\u00b2Studio"
+    },
+    {
+        "studio_id": 1087,
+        "studio_name": "Lay-duce"
+    },
+    {
+        "studio_id": 456,
+        "studio_name": "Lerche"
+    },
+    {
+        "studio_id": 839,
+        "studio_name": "LIDENFILMS"
+    },
+    {
+        "studio_id": 11,
+        "studio_name": "Madhouse"
+    },
+    {
+        "studio_id": 32,
+        "studio_name": "Manglobe"
+    },
+    {
+        "studio_id": 569,
+        "studio_name": "MAPPA"
+    },
+    {
+        "studio_id": 1296,
+        "studio_name": "Marza Animation Planet"
+    },
+    {
+        "studio_id": 1237,
+        "studio_name": "Millepensee"
+    },
+    {
+        "studio_id": 1077,
+        "studio_name": "MMDGP"
+    },
+    {
+        "studio_id": 1387,
+        "studio_name": "Neft Film"
+    },
+    {
+        "studio_id": 852,
+        "studio_name": "Nexus"
+    },
+    {
+        "studio_id": 22,
+        "studio_name": "Nippon Animation"
+    },
+    {
+        "studio_id": 70,
+        "studio_name": "Nomad"
+    },
+    {
+        "studio_id": 1809,
+        "studio_name": "October Media"
+    },
+    {
+        "studio_id": 1005,
+        "studio_name": "Oddjob"
+    },
+    {
+        "studio_id": 1281,
+        "studio_name": "Office DCI"
+    },
+    {
+        "studio_id": 1300,
+        "studio_name": "Office Nobu"
+    },
+    {
+        "studio_id": 28,
+        "studio_name": "OLM"
+    },
+    {
+        "studio_id": 1231,
+        "studio_name": "OLM Digital"
+    },
+    {
+        "studio_id": 334,
+        "studio_name": "Ordet"
+    },
+    {
+        "studio_id": 132,
+        "studio_name": "P.A. Works"
+    },
+    {
+        "studio_id": 911,
+        "studio_name": "Passione"
+    },
+    {
+        "studio_id": 1229,
+        "studio_name": "Pie in the sky"
+    },
+    {
+        "studio_id": 1129,
+        "studio_name": "Pierrot Plus"
+    },
+    {
+        "studio_id": 1290,
+        "studio_name": "Pollyanna Graphics"
+    },
+    {
+        "studio_id": 1023,
+        "studio_name": "Polygon Pictures"
+    },
+    {
+        "studio_id": 1746,
+        "studio_name": "Pops Inc."
+    },
+    {
+        "studio_id": 10,
+        "studio_name": "Production I.G"
+    },
+    {
+        "studio_id": 1053,
+        "studio_name": "Production IMS"
+    },
+    {
+        "studio_id": 196,
+        "studio_name": "Production Reed"
+    },
+    {
+        "studio_id": 1067,
+        "studio_name": "Rising Force"
+    },
+    {
+        "studio_id": 1618,
+        "studio_name": "Rockwell Eyes"
+    },
+    {
+        "studio_id": 1934,
+        "studio_name": "Saigo no Shudan"
+    },
+    {
+        "studio_id": 765,
+        "studio_name": "Sakura Create"
+    },
+    {
+        "studio_id": 537,
+        "studio_name": "SANZIGEN"
+    },
+    {
+        "studio_id": 41,
+        "studio_name": "Satelight"
+    },
+    {
+        "studio_id": 541,
+        "studio_name": "Seven"
+    },
+    {
+        "studio_id": 35,
+        "studio_name": "Seven Arcs"
+    },
+    {
+        "studio_id": 1569,
+        "studio_name": "Seven Arcs Pictures"
+    },
+    {
+        "studio_id": 44,
+        "studio_name": "Shaft"
+    },
+    {
+        "studio_id": 1667,
+        "studio_name": "Shanghai Foch Film Culture Investment"
+    },
+    {
+        "studio_id": 1324,
+        "studio_name": "Shimogumi"
+    },
+    {
+        "studio_id": 247,
+        "studio_name": "Shin-Ei Animation"
+    },
+    {
+        "studio_id": 235,
+        "studio_name": "Shirogumi"
+    },
+    {
+        "studio_id": 1119,
+        "studio_name": "Shuka"
+    },
+    {
+        "studio_id": 1278,
+        "studio_name": "Signal.MD"
+    },
+    {
+        "studio_id": 300,
+        "studio_name": "Silver Link."
+    },
+    {
+        "studio_id": 1189,
+        "studio_name": "Sola Digital Arts"
+    },
+    {
+        "studio_id": 1768,
+        "studio_name": "Sparkly Key Animation Studio"
+    },
+    {
+        "studio_id": 2023,
+        "studio_name": "Spoon"
+    },
+    {
+        "studio_id": 1197,
+        "studio_name": "Steve N' Steven"
+    },
+    {
+        "studio_id": 1127,
+        "studio_name": "Studio 3Hz"
+    },
+    {
+        "studio_id": 13,
+        "studio_name": "Studio 4\u00b0C"
+    },
+    {
+        "studio_id": 1209,
+        "studio_name": "Studio A-CAT"
+    },
+    {
+        "studio_id": 999,
+        "studio_name": "Studio Animal"
+    },
+    {
+        "studio_id": 555,
+        "studio_name": "Studio Chizu"
+    },
+    {
+        "studio_id": 1033,
+        "studio_name": "Studio Colorido"
+    },
+    {
+        "studio_id": 126,
+        "studio_name": "Studio Comet"
+    },
+    {
+        "studio_id": 1927,
+        "studio_name": "Studio Crocodile"
+    },
+    {
+        "studio_id": 37,
+        "studio_name": "Studio Deen"
+    },
+    {
+        "studio_id": 21,
+        "studio_name": "Studio Ghibli"
+    },
+    {
+        "studio_id": 418,
+        "studio_name": "Studio Gokumi"
+    },
+    {
+        "studio_id": 101,
+        "studio_name": "Studio Hibari"
+    },
+    {
+        "studio_id": 1,
+        "studio_name": "Studio Pierrot"
+    },
+    {
+        "studio_id": 1523,
+        "studio_name": "Studio Ponoc"
+    },
+    {
+        "studio_id": 443,
+        "studio_name": "Studio PuYUKAI"
+    },
+    {
+        "studio_id": 1244,
+        "studio_name": "Studio VOLN"
+    },
+    {
+        "studio_id": 1266,
+        "studio_name": "Studio! Cucuri"
+    },
+    {
+        "studio_id": 14,
+        "studio_name": "Sunrise"
+    },
+    {
+        "studio_id": 118,
+        "studio_name": "SynergySP"
+    },
+    {
+        "studio_id": 1421,
+        "studio_name": "Takara Tomy A.R.T.S"
+    },
+    {
+        "studio_id": 2075,
+        "studio_name": "Taomee"
+    },
+    {
+        "studio_id": 103,
+        "studio_name": "Tatsunoko Production"
+    },
+    {
+        "studio_id": 94,
+        "studio_name": "Telecom Animation Film"
+    },
+    {
+        "studio_id": 200,
+        "studio_name": "Tezuka Productions"
+    },
+    {
+        "studio_id": 229,
+        "studio_name": "The Answer Studio"
+    },
+    {
+        "studio_id": 73,
+        "studio_name": "TMS Entertainment"
+    },
+    {
+        "studio_id": 120,
+        "studio_name": "TNK"
+    },
+    {
+        "studio_id": 18,
+        "studio_name": "Toei Animation"
+    },
+    {
+        "studio_id": 587,
+        "studio_name": "Tomason"
+    },
+    {
+        "studio_id": 1265,
+        "studio_name": "Tomovies"
+    },
+    {
+        "studio_id": 803,
+        "studio_name": "Trigger"
+    },
+    {
+        "studio_id": 1103,
+        "studio_name": "TROYCA"
+    },
+    {
+        "studio_id": 2022,
+        "studio_name": "TYMOTE"
+    },
+    {
+        "studio_id": 333,
+        "studio_name": "TYO Animations"
+    },
+    {
+        "studio_id": 43,
+        "studio_name": "ufotable"
+    },
+    {
+        "studio_id": 472,
+        "studio_name": "Usagi Ou"
+    },
+    {
+        "studio_id": 945,
+        "studio_name": "Vasoon Animation"
+    },
+    {
+        "studio_id": 1396,
+        "studio_name": "W-Toon Studio"
+    },
+    {
+        "studio_id": 314,
+        "studio_name": "White Fox"
+    },
+    {
+        "studio_id": 858,
+        "studio_name": "Wit Studio"
+    },
+    {
+        "studio_id": 27,
+        "studio_name": "Xebec"
+    },
+    {
+        "studio_id": 1560,
+        "studio_name": "Yaoyorozu"
+    },
+    {
+        "studio_id": 218,
+        "studio_name": "Zexcs"
+    }
+]

@@ -1,6 +1,7 @@
 # need this to access dataclass listed in the db class obj
 import dataclasses
 from flask import jsonify, request
+from flask.json import dump
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
@@ -21,6 +22,14 @@ def get_search_lists():
     res['data'] = {}
     res['data']['genre'] = genre_list
     res['data']['studio'] = studio_list
+
+    # for creating json files to be read in the frontend
+    # need to dump this everytime if we decide to create new genre
+    # with open('genre.json', 'w') as json_file:
+    #     dump(genre_list, json_file)
+
+    # with open('studio.json', 'w') as json_file:
+    #     dump(studio_list, json_file)
 
     return jsonify(res)
 

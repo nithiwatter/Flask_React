@@ -12,6 +12,7 @@ import {
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SimpleDropDown from './SimpleDropDown';
+import SimpleAutocomplete from './SimpleAutocomplete';
 import SimpleCheckBoxGroup from './SimpleCheckBoxGroup';
 import SimpleDatePicker from './SimpleDatePicker';
 
@@ -56,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
 
 const AdvanceSearchOptions = (props) => {
   const classes = useStyles();
-  const { formObj, values, handleChange: handleFieldChange } = props;
-  const [checked, setChecked] = React.useState(true);
+  const { studioList, genreList, formObj, values, handleChange: handleFieldChange } = props;
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
@@ -118,12 +119,13 @@ const AdvanceSearchOptions = (props) => {
                 </Typography>
               </Grid>
               <Grid item container xs={6} alignItems="center">
-                <SimpleDropDown
-                  value={values.animeProducer}
+                <SimpleAutocomplete
                   valueType="animeProducer"
-                  valueOptions={formObj.animeProducer}
-                  handleDropDownChange={handleFieldChange}
-                ></SimpleDropDown>
+                  valueOptions={studioList}
+                  valueName="studio_name"
+                  label="Studio"
+                  handleDropDownChange={handleFieldChange}>
+                </SimpleAutocomplete>
               </Grid>
 
               <Grid item xs={12}>
@@ -171,7 +173,9 @@ const AdvanceSearchOptions = (props) => {
             <SimpleCheckBoxGroup
               values={values.animeGenre}
               valueType="animeGenre"
-              tagCollection={formObj.animeGenre}
+              tagCollection={genreList}
+              tagId='genre_id'
+              tagName='genre_name'
               setFieldValue={handleFieldChange}
             ></SimpleCheckBoxGroup>
           </div>

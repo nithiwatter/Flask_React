@@ -11,16 +11,27 @@ export function startLoadingList() {
     try {
       dispatch({ type: LIST_LOADING });
       const { data } = await axios.get("/api/anime/searchLists");
+      const genre = [{ genre_id: 'All', genre_name: 'All' }, ...data.data.genre];
+      const studio = [{ studio_id: 'All', studio_name: 'All' }, ...data.data.studio];
+      const genreObj = {};
+
+      for (const g of genre) {
+        genreObj[g['genre_name']] = false;
+      }
+
+      genreObj['All'] = true;
+
       setTimeout(() => {
         dispatch({
           type: LIST_FINISHED,
           payload: {
-            genre: data.data.genre,
-            studio: data.data.studio,
+            genre,
+            studio,
+            genreObj
           },
         });
       }, 1000);
-    } catch (err) {}
+    } catch (err) { }
   };
 }
 
@@ -33,6 +44,6 @@ export function startSearching() {
       setTimeout(() => {
         dispatch({ type: SEARCH_FINISHED });
       }, 1000);
-    } catch (err) {}
+    } catch (err) { }
   };
 }

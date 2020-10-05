@@ -13,6 +13,7 @@ const searchReducer = (
     searchResults: [],
     genreList: [],
     studioList: [],
+    genreObj: {}
   },
   action
 ) => {
@@ -25,6 +26,7 @@ const searchReducer = (
         listPending: false,
         genreList: action.payload.genre,
         studioList: action.payload.studio,
+        genreObj: action.payload.genreObj
       };
     case SEARCH_PENDING:
       return { ...state, searchPending: true };

@@ -8,6 +8,7 @@ import { startSearching } from '../../actions/searchActions';
 class SearchMainContainer extends Component {
   componentDidMount() {
     console.log(this.props.history.location);
+    // will need to handle search here also
   }
 
   componentDidUpdate(prevProps) {

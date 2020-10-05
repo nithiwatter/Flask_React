@@ -111,9 +111,8 @@ const LoginBox = (props) => {
                   });
 
                   // update the store with this new user
-                  console.log(data);
-
                   props.dispatch(loginSuccess(data));
+
                   // if rememberMe is true, set the jwt token into local storage
                   if (values.rememberMe)
                     localStorage.setItem('jwt', data.access_token);
