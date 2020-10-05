@@ -16,10 +16,8 @@ export function startLoadingList() {
       const genreObj = {};
 
       for (const g of genre) {
-        genreObj[g['genre_name']] = false;
+        genreObj[g['genre_name']] = true;
       }
-
-      genreObj['All'] = true;
 
       setTimeout(() => {
         dispatch({

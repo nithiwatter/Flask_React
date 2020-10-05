@@ -18,20 +18,6 @@ const styles = () => ({
 const formObj = {
   animeType: ['All', 'TV', 'OVA', 'Movie', 'Special'],
   animeStatus: ['All', 'Finished Airing', 'Currently Airing', 'Not Yet Aired'],
-  animeProducer: [
-    'All',
-    'Production I.G.',
-    'Sunrise',
-    'Shaft',
-    'Kyoto Animation',
-    'A1 Pictures',
-  ],
-  animeGenre: [
-    { label: 'All', value: 'all' },
-    { label: 'Romance', value: 'romance' },
-    { label: 'Comedy', value: 'comedy' },
-    { label: 'Action', value: 'action' },
-  ],
 };
 
 class SearchFilterContainer extends Component {
