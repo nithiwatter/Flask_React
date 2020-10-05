@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import userReducer from './userReducer';
-import searchReducer from './searchReducer';
-import top50AnimeReducer from './top50AnimeReducer';
-import detailedAnimeReducer from './detailedAnimeReducer';
+import { combineReducers } from "redux";
+import userReducer from "./userReducer";
+import searchReducer from "./searchReducer";
+import top50AnimeReducer from "./top50AnimeReducer";
+import detailedAnimeReducer from "./detailedAnimeReducer";
 
 const rootReducer = combineReducers({
   userData: userReducer,

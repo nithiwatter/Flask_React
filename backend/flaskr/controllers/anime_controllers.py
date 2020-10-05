@@ -1,6 +1,9 @@
+# need this to access dataclass listed in the db class obj
 import dataclasses
 from flask import jsonify, request
 from flaskr.models.anime_model import Anime
+from flaskr.models.genre_model import Genre
+from flaskr.models.studio_model import Studio
 from flaskr.utils.helperFunctions import getPagination
 
 
@@ -8,6 +11,19 @@ def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
 
     return jsonify(test_result)
+
+
+def get_search_lists():
+    genre_list = Genre.query.all()
+    studio_list = Studio.query.all()
+    res = {}
+    res['status'] = 'success'
+    res['data'] = {}
+    res['data']['genre'] = genre_list
+    res['data']['studio'] = studio_list
+
+    return jsonify(res)
+
 
 # need to work on caching to improve offset performance
 # is size really important?
