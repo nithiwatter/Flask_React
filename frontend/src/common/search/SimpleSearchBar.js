@@ -49,6 +49,7 @@ const SimpleSearchBar = (props) => {
     // delay on every keystroke until the user stops typing for a while
     const delayDebounceFn = setTimeout(() => {
       // send API request here
+
     }, 2000);
 
     return () => clearTimeout(delayDebounceFn);

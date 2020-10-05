@@ -24,7 +24,7 @@ def get_search_lists():
     res['data']['studio'] = studio_list
 
     # for creating json files to be read in the frontend
-    # need to dump this everytime if we decide to create new genre
+    # need to dump this everytime if we decide to create new genre?
     # with open('genre.json', 'w') as json_file:
     #     dump(genre_list, json_file)
 
@@ -72,4 +72,15 @@ def get_specific_anime(anime_id):
     res = {}
     res['status'] = 'success'
     res['data'] = result_dict
+    return jsonify(res)
+
+
+def live_search():
+    args = request.args
+    keyword = args['keyword']
+
+    result = Anime.query.filter(Anime.name.contains(keyword)).limit(10).all()
+    res = {}
+    res['status'] = 'success'
+    res['data'] = result
     return jsonify(res)
