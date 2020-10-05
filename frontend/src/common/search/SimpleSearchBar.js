@@ -38,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
   mainTitle: {
     fontWeight: 700,
   },
+  searchOutput: {
+    height: 300,
+    width: '100%',
+    border: '1px solid red',
+    position: 'absolute',
+    top: '100%',
+    zIndex: 1
+  }
 }));
 
 const SimpleSearchBar = (props) => {
@@ -99,6 +107,7 @@ const SimpleSearchBar = (props) => {
         >
           <ClearIcon></ClearIcon>
         </IconButton>
+        <Paper className={classes.searchOutput}></Paper>
       </Paper>
     </React.Fragment>
   );
