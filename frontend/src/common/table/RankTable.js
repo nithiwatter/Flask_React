@@ -94,9 +94,7 @@ const RankTable = (props) => {
           </Button>
           <CircularProgress
             className={loading ? classes.visible : classes.hidden}
-            color="secondary"
             size={30}
-            disableShrink
           />
           <div className={classes.paginationContainer}>
             {page > 0 ? (

@@ -79,6 +79,7 @@ def live_search():
     args = request.args
     keyword = args['keyword']
 
+    # could add order by to this query? Performance issue?
     result = Anime.query.filter(Anime.name.contains(keyword)).limit(10).all()
     res = {}
     res['status'] = 'success'
