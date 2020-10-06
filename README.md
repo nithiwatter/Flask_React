@@ -3,7 +3,8 @@
 <br />
 <p align="center">
   <img src="https://i1.wp.com/animeeverything.online/wp-content/uploads/2019/11/68373083.jpg?w=1920&ssl=1" alt="Logo" width="300" height="200">
-
+  <img src="/images/tumblr_4ed011d2feb1b65e438303967b5dc78a_658e3f0c_540.gif" alt="Logo" width="300" height="200">
+  
   <h3 align="center">A Fullstack Anime Database Website</h3>
 
   <p align="center">
@@ -71,31 +72,7 @@ npm install npm@latest -g
 ```
 
 ### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+To be added...
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -109,7 +86,7 @@ Project Link: [https://github.com/nithiwatter/Flask_React](https://github.com/ni
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[landing-page]: /landing.PNG
-[detail-page]: /livesearch.PNG
-[search-page]: /search.PNG
-[livesearch-page]: /livesearch.PNG
+[landing-page]: /images/landing.PNG
+[detail-page]: /images/livesearch.PNG
+[search-page]: /images/search.PNG
+[livesearch-page]: /images/livesearch.PNG
