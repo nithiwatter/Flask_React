@@ -24,16 +24,18 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
-* [Contributing](#contributing)
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Landing Page][landing-page]]
-[![Detail Page][detail-page]]
-[![Search Page][search-page]]
-[![Livesearch Page][livesearch-page]]
+![Landing Page][landing-page]
+
+![Detail Page][detail-page]
+
+![Search Page][search-page]
+
+![Livesearch Page][livesearch-page]
 
 This is a fullstack group project created as a MAL-cloned website. In case you do not know what MAL is, it is the largest anime database website. We pulled and cleaned data from MAL's exposed APIs, then populate those into our SQL database. We then built a Flask backend that can communicate with a React frontend through json send via http. This is a (hopefully) fully-responsive single page application, rather than server-sided rendered (like the official MAL). Its UI is inspired by Google Material Design and powered by the great Material-UI library. All hail weebs :)
 
