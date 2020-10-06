@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <img src="https://i1.wp.com/animeeverything.online/wp-content/uploads/2019/11/68373083.jpg?w=1920&ssl=1" alt="Logo" width="300" height="200">
+  <img src="https://i.redd.it/a3x3vrlnc1621.jpg" alt="Logo" width="300" height="200">
   <img src="/images/tumblr_4ed011d2feb1b65e438303967b5dc78a_658e3f0c_540.gif" alt="Logo" width="300" height="200">
   
   <h3 align="center">A Fullstack Anime Database Website</h3>
