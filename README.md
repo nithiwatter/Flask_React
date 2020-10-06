@@ -89,6 +89,6 @@ Project Link: [https://github.com/nithiwatter/Flask_React](https://github.com/ni
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [landing-page]: /images/landing.PNG
-[detail-page]: /images/livesearch.PNG
+[detail-page]: /images/detail.PNG
 [search-page]: /images/search.PNG
 [livesearch-page]: /images/livesearch.PNG
