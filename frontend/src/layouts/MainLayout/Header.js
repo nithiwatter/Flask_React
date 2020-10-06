@@ -16,8 +16,10 @@ import { makeStyles } from "@material-ui/core/styles";
 // import blue from '@material-ui/core/colors/blue';
 import MenuIcon from "@material-ui/icons/Menu";
 import SmallAccountMenu from "./SmallAccountMenu";
+import SearchIcon from "@material-ui/icons/Search";
 import { logout, redirectToAuthentication } from "../../actions/userActions";
 import { openSnackbarExternal } from "../../common/snackbar/Notifier";
+import { SHOW_SEARCH_OVERLAY } from "../../actionConstants/actionTypes";
 
 const drawerWidth = 240;
 
@@ -58,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: theme.palette.secondary.main,
+  },
+  search: {
+    marginRight: theme.spacing(2),
+    color: "white",
   },
 }));
 
@@ -109,6 +115,10 @@ function Header(props) {
     };
   };
 
+  const showSearchOverlay = () => {
+    dispatch({ type: SHOW_SEARCH_OVERLAY, payload: null });
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -133,6 +143,9 @@ function Header(props) {
 
         {!user && (
           <div className={classes.buttons}>
+            <IconButton className={classes.search} onClick={showSearchOverlay}>
+              <SearchIcon></SearchIcon>
+            </IconButton>
             <Button
               disableElevation
               variant="contained"
