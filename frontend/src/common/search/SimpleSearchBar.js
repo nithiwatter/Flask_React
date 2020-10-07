@@ -56,8 +56,9 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleSearchBar = (props) => {
   const classes = useStyles();
-  const { valueType, handleSearch, formikSubmit } = props;
-  const [value, setValue] = React.useState("");
+  const { initialValue, valueType, handleSearch, formikSubmit } = props;
+  // initialValue to change initial state based on url query string
+  const [value, setValue] = React.useState(initialValue);
   const [show, setShow] = React.useState(false);
   const [searching, setSearching] = React.useState(false);
   const [searchResult, setSearchResult] = React.useState([]);
@@ -102,6 +103,9 @@ const SimpleSearchBar = (props) => {
 
   // for handling keyboard inputs
   const handleInputChange = (e) => {
+    if (!show) {
+      setShow(true);
+    }
     setValue(e.target.value);
   };
 
@@ -114,6 +118,7 @@ const SimpleSearchBar = (props) => {
       e.preventDefault();
       // setFieldValue for formik here
       handleSearch(valueType, value, false);
+      setShow(false);
       formikSubmit();
     }
   };

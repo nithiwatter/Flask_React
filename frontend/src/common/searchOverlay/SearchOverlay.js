@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { InputBase, IconButton, makeStyles } from "@material-ui/core";
 import { useTransition, animated } from "react-spring";
 import CloseIcon from "@material-ui/icons/Close";
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LiveSearchResult = (props) => {
+  const history = useHistory();
   const { showSearchOverlay, dispatch } = props;
 
   const transitions = useTransition(showSearchOverlay, null, {
@@ -58,6 +60,15 @@ const LiveSearchResult = (props) => {
     dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
   };
 
+  const handleSubmit = (e) => {
+    console.log(1);
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
+      history.push(`/anime?name=${e.target.value}`);
+    }
+  };
+
   return transitions.map(
     ({ item, key, props }) =>
       item && (
@@ -65,13 +76,14 @@ const LiveSearchResult = (props) => {
           <div className={classes.root}>
             <div className={classes.iconContainer}>
               <IconButton className={classes.icon} onClick={hideSearchOverlay}>
-                <CloseIcon></CloseIcon>
+                <CloseIcon style={{ fontSize: 50 }}></CloseIcon>
               </IconButton>
             </div>
             <div className={classes.textfieldContainer}>
               <InputBase
                 placeholder="Search"
                 className={classes.textfield}
+                onKeyDown={handleSubmit}
                 autoFocus
               />
               <IconButton className={classes.arrow}>

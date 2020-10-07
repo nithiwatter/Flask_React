@@ -70,6 +70,8 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
   const classes = useStyles();
   const history = useHistory();
+  // check if we are currently at /anime
+  const isAtAnime = history.location.pathname === "/anime" ? true : null;
   // const theme = useTheme();
   // const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const { user, open, handleDrawerOpen, dispatch } = props;
@@ -143,9 +145,15 @@ function Header(props) {
 
         {!user && (
           <div className={classes.buttons}>
-            <IconButton className={classes.search} onClick={showSearchOverlay}>
-              <SearchIcon></SearchIcon>
-            </IconButton>
+            {!isAtAnime && (
+              <IconButton
+                className={classes.search}
+                onClick={showSearchOverlay}
+              >
+                <SearchIcon></SearchIcon>
+              </IconButton>
+            )}
+
             <Button
               disableElevation
               variant="contained"
@@ -169,6 +177,15 @@ function Header(props) {
         {user && (
           <React.Fragment>
             <div className={classes.avatarContainer}>
+              {!isAtAnime && (
+                <IconButton
+                  className={classes.search}
+                  onClick={showSearchOverlay}
+                >
+                  <SearchIcon></SearchIcon>
+                </IconButton>
+              )}
+
               <IconButton ref={anchorRef} onClick={handleToggle} size="small">
                 <Avatar className={classes.avatar}>
                   {user.email[0].toUpperCase()}

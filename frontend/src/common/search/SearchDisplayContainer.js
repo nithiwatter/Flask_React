@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Typography, withStyles } from '@material-ui/core';
-import SearchDisplayTable from './SearchDisplayTable';
+import React, { Component } from "react";
+import { Typography, withStyles } from "@material-ui/core";
+import SearchDisplayTable from "./SearchDisplayTable";
 
 const styles = (theme) => ({
   titleContainer: {
@@ -16,9 +16,9 @@ class SearchDisplayContainer extends Component {
   state = {};
   render() {
     const { history, classes } = this.props;
-    console.log('render results');
 
-    if (history.location.search !== '') {
+    // need this check to prevent search result from showing when didMount
+    if (history.location.search !== "") {
       return (
         <React.Fragment>
           <div className={classes.titleContainer}>

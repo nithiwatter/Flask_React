@@ -26,14 +26,16 @@ class App extends Component {
       <React.Fragment>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <CssBaseline></CssBaseline>
-          <SearchOverlay></SearchOverlay>
-          <div className={clsx({ [classes.root]: showSearchOverlay })}>
-            <Router>
+
+          <Router>
+            <SearchOverlay></SearchOverlay>
+            <div className={clsx({ [classes.root]: showSearchOverlay })}>
               <AuthGuard>
                 <Routes></Routes>
               </AuthGuard>
-            </Router>
-          </div>
+            </div>
+          </Router>
+
           <Notifier></Notifier>
         </MuiPickersUtilsProvider>
       </React.Fragment>
