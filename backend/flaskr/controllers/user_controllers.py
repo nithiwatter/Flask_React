@@ -1,3 +1,4 @@
+import datetime
 import uuid
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from flask import jsonify, request
@@ -9,7 +10,7 @@ def register():
     try:
         new_uuid = uuid.uuid4()
         new_user = User(user_id=new_uuid, email=request.json['email'],
-                        password=request.json['password'])
+                        password=request.json['password'], joined_at=datetime.date.today())
         db.session.add(new_user)
         db.session.commit()
 

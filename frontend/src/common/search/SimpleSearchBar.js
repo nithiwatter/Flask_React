@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     position: "relative",
-    alignItems: "center"
+    alignItems: "center",
   },
   iconButton: {
     position: "absolute",
@@ -55,23 +55,23 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 100,
   },
   rootSearch: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: '5px'
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: theme.spacing(2),
   },
   bottom: {
-    color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
   },
   top: {
     color: theme.palette.primary.main,
-    animationDuration: '550ms',
-    position: 'absolute',
+    animationDuration: "550ms",
+    position: "absolute",
     left: 0,
   },
   circle: {
-    strokeLinecap: 'round',
+    strokeLinecap: "round",
   },
 }));
 
@@ -86,7 +86,7 @@ const SimpleSearchBar = (props) => {
 
   // for showing and hiding fetched API results
   const handleOpen = () => {
-    if (!show && value !== '') {
+    if (!show && value !== "") {
       setShow(true);
     }
   };
@@ -128,7 +128,7 @@ const SimpleSearchBar = (props) => {
     if (!show) {
       setShow(true);
     }
-    if (e.target.value === '') {
+    if (e.target.value === "") {
       setSearchResult([]);
       setShow(false);
     }
@@ -167,12 +167,12 @@ const SimpleSearchBar = (props) => {
               onKeyDown={handleSubmit}
             />
           </div>
-          {searching &&
+          {searching && (
             <div className={classes.rootSearch}>
               <CircularProgress
                 variant="determinate"
                 className={classes.bottom}
-                size={40}
+                size={20}
                 thickness={4}
                 value={100}
               />
@@ -183,27 +183,31 @@ const SimpleSearchBar = (props) => {
                 classes={{
                   circle: classes.circle,
                 }}
-                size={40}
+                size={20}
                 thickness={4}
               />
-            </div>}
+            </div>
+          )}
 
-          {!searching && <React.Fragment>
-            <IconButton
-              className={clsx(classes.iconButton, classes.searchIconButton, {
-                [classes.iconButtonHidden]: value !== "",
-              })}
-            >
-              <SearchIcon></SearchIcon>
-            </IconButton>
-            <IconButton
-              className={clsx(classes.iconButton, {
-                [classes.iconButtonHidden]: value === "",
-              })}
-              onClick={handleInputClear}
-            >
-              <ClearIcon></ClearIcon>
-            </IconButton></React.Fragment>}
+          {!searching && (
+            <React.Fragment>
+              <IconButton
+                className={clsx(classes.iconButton, classes.searchIconButton, {
+                  [classes.iconButtonHidden]: value !== "",
+                })}
+              >
+                <SearchIcon></SearchIcon>
+              </IconButton>
+              <IconButton
+                className={clsx(classes.iconButton, {
+                  [classes.iconButtonHidden]: value === "",
+                })}
+                onClick={handleInputClear}
+              >
+                <ClearIcon></ClearIcon>
+              </IconButton>
+            </React.Fragment>
+          )}
 
           {show && (
             <Paper className={classes.searchOutput}>

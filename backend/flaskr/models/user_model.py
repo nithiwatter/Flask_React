@@ -1,3 +1,5 @@
+import datetime
+
 from dataclasses import dataclass
 
 from . import db
@@ -13,10 +15,12 @@ class User(db.Model):
     user_id: str
     email: str
     password: str
+    joined_at: datetime.datetime
 
     user_id = db.Column(UUIDType(), primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    joined_at = db.Column(db.DateTime)
 
     def __repr__(self):
         return '(User | user_id: {} | email:{} | password:{})'.format(self.user_id, self.email, self.password)
