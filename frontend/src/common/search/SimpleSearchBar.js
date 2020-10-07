@@ -83,7 +83,7 @@ const SimpleSearchBar = (props) => {
       if (value === "") {
         // do we need this setState?
         // setSearching(false);
-        setSearchResult([]);
+        // setSearchResult([]);
         return;
       }
 
@@ -111,6 +111,9 @@ const SimpleSearchBar = (props) => {
 
   const handleInputClear = () => {
     setValue("");
+    // clear all results if the input is cleared
+    // faster here than in useEffect (which uses debouncing)
+    setSearchResult([]);
   };
 
   const handleSubmit = (e) => {

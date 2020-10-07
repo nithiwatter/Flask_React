@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: "white",
-    margin: theme.spacing(2),
+    margin: theme.spacing(4),
     marginLeft: "auto",
   },
   textfieldContainer: {
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const LiveSearchResult = (props) => {
   const history = useHistory();
   const { showSearchOverlay, dispatch } = props;
+  const [value, setValue] = React.useState('');
 
   const transitions = useTransition(showSearchOverlay, null, {
     from: {
@@ -61,11 +62,21 @@ const LiveSearchResult = (props) => {
   };
 
   const handleSubmit = (e) => {
-    console.log(1);
     if (e.keyCode === 13) {
       e.preventDefault();
       dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
       history.push(`/anime?name=${e.target.value}`);
+    }
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleClickSearch = (_) => {
+    if (value !== '') {
+      dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
+      history.push(`/anime?name=${value}`);
     }
   };
 
@@ -84,9 +95,10 @@ const LiveSearchResult = (props) => {
                 placeholder="Search"
                 className={classes.textfield}
                 onKeyDown={handleSubmit}
+                onChange={handleChange}
                 autoFocus
               />
-              <IconButton className={classes.arrow}>
+              <IconButton className={classes.arrow} onClick={handleClickSearch}>
                 <ArrowForwardIcon style={{ fontSize: 100 }}></ArrowForwardIcon>
               </IconButton>
             </div>

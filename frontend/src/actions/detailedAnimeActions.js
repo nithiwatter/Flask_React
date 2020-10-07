@@ -15,7 +15,7 @@ export function fetchDetailedAnime(animeId) {
           type: DETAILED_ANIME_FINISHED_API_REQUEST,
           payload: data.data,
         });
-      }, 100);
-    } catch (err) {}
+      }, 500);
+    } catch (err) { }
   };
 }

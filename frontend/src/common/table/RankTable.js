@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSpring, animated } from 'react-spring';
 // some dates from the API have trouble with being parsed
 // import { format } from 'date-fns';
 import {
@@ -60,17 +61,23 @@ const useStyles = makeStyles((theme) => ({
 const RankTable = (props) => {
   const classes = useStyles();
   const { data, loading, page, size } = props;
-
+  const animationProps = useSpring({
+    from: { opacity: 0, transform: 'translateX(-100%)' },
+    to: { opacity: 1, transform: 'translateX(0%)' }
+  });
 
   return (
     <React.Fragment>
       <div>
         <div className={classes.mainTitleContainer}>
-          <Typography variant="h5" className={classes.mainTitle}>
-            Top Anime Series
+          <animated.div style={animationProps}>
+            <Typography variant="h5" className={classes.mainTitle}>
+              Top Anime Series
           </Typography>
+          </animated.div>
+
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             className={classes.button}
             disabled={loading}
@@ -78,7 +85,7 @@ const RankTable = (props) => {
             My Favorites
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             className={classes.button}
             disabled={loading}
@@ -86,7 +93,7 @@ const RankTable = (props) => {
             Watch Later
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             className={classes.button}
             disabled={loading}
