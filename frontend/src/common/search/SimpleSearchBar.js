@@ -6,6 +6,7 @@ import {
   Input,
   Paper,
   ClickAwayListener,
+  CircularProgress,
   makeStyles,
 } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     position: "relative",
+    alignItems: "center"
   },
   iconButton: {
     position: "absolute",
@@ -52,6 +54,25 @@ const useStyles = makeStyles((theme) => ({
     top: "110%",
     zIndex: 100,
   },
+  rootSearch: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: '5px'
+  },
+  bottom: {
+    color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+  },
+  top: {
+    color: theme.palette.primary.main,
+    animationDuration: '550ms',
+    position: 'absolute',
+    left: 0,
+  },
+  circle: {
+    strokeLinecap: 'round',
+  },
 }));
 
 const SimpleSearchBar = (props) => {
@@ -65,7 +86,7 @@ const SimpleSearchBar = (props) => {
 
   // for showing and hiding fetched API results
   const handleOpen = () => {
-    if (!show) {
+    if (!show && value !== '') {
       setShow(true);
     }
   };
@@ -103,8 +124,13 @@ const SimpleSearchBar = (props) => {
 
   // for handling keyboard inputs
   const handleInputChange = (e) => {
+    // two cases (will always clear search result when the input is blank)
     if (!show) {
       setShow(true);
+    }
+    if (e.target.value === '') {
+      setSearchResult([]);
+      setShow(false);
     }
     setValue(e.target.value);
   };
@@ -114,6 +140,7 @@ const SimpleSearchBar = (props) => {
     // clear all results if the input is cleared
     // faster here than in useEffect (which uses debouncing)
     setSearchResult([]);
+    setShow(false);
   };
 
   const handleSubmit = (e) => {
@@ -140,21 +167,44 @@ const SimpleSearchBar = (props) => {
               onKeyDown={handleSubmit}
             />
           </div>
-          <IconButton
-            className={clsx(classes.iconButton, classes.searchIconButton, {
-              [classes.iconButtonHidden]: value !== "",
-            })}
-          >
-            <SearchIcon></SearchIcon>
-          </IconButton>
-          <IconButton
-            className={clsx(classes.iconButton, {
-              [classes.iconButtonHidden]: value === "",
-            })}
-            onClick={handleInputClear}
-          >
-            <ClearIcon></ClearIcon>
-          </IconButton>
+          {searching &&
+            <div className={classes.rootSearch}>
+              <CircularProgress
+                variant="determinate"
+                className={classes.bottom}
+                size={40}
+                thickness={4}
+                value={100}
+              />
+              <CircularProgress
+                variant="indeterminate"
+                disableShrink
+                className={classes.top}
+                classes={{
+                  circle: classes.circle,
+                }}
+                size={40}
+                thickness={4}
+              />
+            </div>}
+
+          {!searching && <React.Fragment>
+            <IconButton
+              className={clsx(classes.iconButton, classes.searchIconButton, {
+                [classes.iconButtonHidden]: value !== "",
+              })}
+            >
+              <SearchIcon></SearchIcon>
+            </IconButton>
+            <IconButton
+              className={clsx(classes.iconButton, {
+                [classes.iconButtonHidden]: value === "",
+              })}
+              onClick={handleInputClear}
+            >
+              <ClearIcon></ClearIcon>
+            </IconButton></React.Fragment>}
+
           {show && (
             <Paper className={classes.searchOutput}>
               <LiveSearchResult

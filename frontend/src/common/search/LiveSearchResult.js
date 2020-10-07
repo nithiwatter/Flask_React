@@ -18,21 +18,19 @@ const useStyles = makeStyles((theme) => ({
 
 const LiveSearchResult = (props) => {
     const classes = useStyles();
-    const { searching, searchResult } = props;
+    const { searchResult } = props;
 
     if (searchResult.length === 0) {
         return <div className={classes.root}>
-            {searching && <div className={classes.searchingLoader}>Searching...</div>}
             <Typography
                 variant="body2"
                 style={{ fontWeight: 700 }}
             >
-                No results yet. Start searching...
+                No results found.
             </Typography>
         </div>;
     }
     return (<div className={classes.root}>
-        {searching && <div className={classes.searchingLoader}>Searching...</div>}
         {searchResult.map(result => <LiveSearchDetail key={result.anime_id} result={result}></LiveSearchDetail>)}
     </div>);
 };
