@@ -12,7 +12,7 @@ import {
   Paper,
   Typography,
   Button,
-  Grow,
+  // Grow,
   CircularProgress,
   makeStyles,
 } from "@material-ui/core";
@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 const RankTable = (props) => {
   const classes = useStyles();
   const { data, loading, page, size } = props;
+
 
   return (
     <React.Fragment>
@@ -121,50 +122,50 @@ const RankTable = (props) => {
 
         {!loading ? (
           <React.Fragment>
-            <Grow in={true} style={{ transformOrigin: "top center" }}>
-              <TableContainer component={Paper}>
-                <Table className={classes.table}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell classes={{ head: classes.headerCell }}>
-                        Rank
+            {/* <Grow in={true} style={{ transformOrigin: "top center" }}> */}
+            <TableContainer component={Paper}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell classes={{ head: classes.headerCell }}>
+                      Rank
                       </TableCell>
-                      <TableCell
-                        align="center"
-                        classes={{ head: classes.headerCell }}
-                      >
-                        Title
+                    <TableCell
+                      align="center"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Title
                       </TableCell>
-                      <TableCell
-                        align="right"
-                        classes={{ head: classes.headerCell }}
-                      >
-                        Score
+                    <TableCell
+                      align="right"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Score
                       </TableCell>
-                      <TableCell
-                        align="right"
-                        classes={{ head: classes.headerCell }}
-                      >
-                        Your Score
+                    <TableCell
+                      align="right"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Your Score
                       </TableCell>
-                      <TableCell
-                        align="right"
-                        classes={{ head: classes.headerCell }}
-                      >
-                        Status
+                    <TableCell
+                      align="right"
+                      classes={{ head: classes.headerCell }}
+                    >
+                      Status
                       </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <RankTableData
-                      data={data}
-                      page={page}
-                      size={size}
-                    ></RankTableData>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grow>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <RankTableData
+                    data={data}
+                    page={page}
+                    size={size}
+                  ></RankTableData>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {/* </Grow> */}
 
             <div className={classes.bottomPaginationContainer}>
               {page > 0 ? (

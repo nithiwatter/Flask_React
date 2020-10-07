@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import clsx from "clsx";
-import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { withStyles } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,17 +8,9 @@ import Routes from "./Routes";
 import Notifier from "./common/snackbar/Notifier";
 import SearchOverlay from "./common/searchOverlay/SearchOverlay";
 
-const styles = () => ({
-  root: {
-    height: "100vh",
-    overflow: "hidden",
-  },
-});
 
 class App extends Component {
   render() {
-    const { showSearchOverlay, classes } = this.props;
-
     return (
       <React.Fragment>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -29,11 +18,9 @@ class App extends Component {
 
           <Router>
             <SearchOverlay></SearchOverlay>
-            <div className={clsx({ [classes.root]: showSearchOverlay })}>
-              <AuthGuard>
-                <Routes></Routes>
-              </AuthGuard>
-            </div>
+            <AuthGuard>
+              <Routes></Routes>
+            </AuthGuard>
           </Router>
 
           <Notifier></Notifier>
@@ -43,10 +30,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    showSearchOverlay: state.searchOverlay.show,
-  };
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(App));
+export default App;

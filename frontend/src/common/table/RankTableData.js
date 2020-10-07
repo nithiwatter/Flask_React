@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import { NavLink } from 'react-router-dom';
 import { Typography, TableRow, TableCell, makeStyles } from '@material-ui/core';
 import StarRateIcon from '@material-ui/icons/StarRate';
@@ -46,18 +47,24 @@ const useStyles = makeStyles((theme) => ({
 const RankTableData = (props) => {
   const classes = useStyles();
   const { data, page, size } = props;
+  const animationProps = useSpring({
+    from: { opacity: 0, transform: 'translateX(-100%)' },
+    to: { opacity: 1, transform: 'translateX(0%)' }
+  });
 
   return (
     <React.Fragment>
       {data.map((entry, i) => (
         <TableRow key={entry.anime_id}>
           <TableCell>
-            <Typography variant="h4" className={classes.rank}>
-              {page * size + i + 1}
-            </Typography>
+            <animated.div style={animationProps}>
+              <Typography variant="h4" className={classes.rank}>
+                {page * size + i + 1}
+              </Typography>
+            </animated.div>
           </TableCell>
           <TableCell align="left">
-            <div className={classes.titleContainer}>
+            <animated.div className={classes.titleContainer} style={animationProps}>
               <div className={classes.imageContainer}>
                 <img
                   src={entry.mal_anime_image_path}
@@ -81,17 +88,19 @@ const RankTableData = (props) => {
                   {entry.members.toLocaleString()} members
                 </Typography>
               </div>
-            </div>
+            </animated.div>
           </TableCell>
           <TableCell align="right">
-            <div className={classes.rankContainer}>
+            <animated.div className={classes.rankContainer} style={animationProps}>
               <StarRateIcon></StarRateIcon>
               <div>{entry.rating}</div>
-            </div>
+            </animated.div>
           </TableCell>
-          <TableCell align="right">N/A</TableCell>
           <TableCell align="right">
-            <SmallMenu></SmallMenu>
+            <animated.div style={animationProps}>N/A</animated.div>
+          </TableCell>
+          <TableCell align="right">
+            <animated.div style={animationProps}><SmallMenu></SmallMenu></animated.div>
           </TableCell>
         </TableRow>
       ))}
