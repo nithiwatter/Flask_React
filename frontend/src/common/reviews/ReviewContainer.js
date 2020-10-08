@@ -65,11 +65,14 @@ class ReviewContainer extends Component {
       <Formik
         initialValues={{
           status: "",
+          // need to parse this back to int
           episodesWatched: "",
           score: "",
           startDate: null,
           endDate: null,
           rewatchValue: "",
+          // need to parse this back to int
+          totalTimesRewatched: "",
           comment: "",
         }}
         onSubmit={(values) => {
@@ -137,10 +140,18 @@ class ReviewContainer extends Component {
                   ></ReusableSelect>
                 </div>
                 <div className={classes.specialInput}>
+                  <ReusableNumberInput
+                    value={values.totalTimesRewatched}
+                    label="Total Times Rewatched"
+                    type="totalTimesRewatched"
+                    setFieldValue={setFieldValue}
+                  ></ReusableNumberInput>
+                </div>
+                <div className={classes.specialInput}>
                   <TextField
                     label="Enter Your Comments Here"
                     multiline
-                    rows={4}
+                    rows={6}
                     value={values.comment}
                     className={classes.textInput}
                     onChange={(e) => setFieldValue("comment", e.target.value)}

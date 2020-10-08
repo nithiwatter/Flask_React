@@ -16,11 +16,13 @@ class User(db.Model):
     email: str
     password: str
     joined_at: datetime.datetime
+    status: str
 
     user_id = db.Column(UUIDType(), primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     joined_at = db.Column(db.DateTime)
+    status = db.Column(db.Text)
 
     def __repr__(self):
         return '(User | user_id: {} | email:{} | password:{})'.format(self.user_id, self.email, self.password)

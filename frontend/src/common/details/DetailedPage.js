@@ -9,9 +9,11 @@ import {
   Dialog,
   DialogTitle,
   Button,
+  Slide,
   makeStyles,
 } from "@material-ui/core";
 import HistoryIcon from "@material-ui/icons/History";
+import CloseIcon from "@material-ui/icons/Close";
 import DetailedSideBar from "./DetailedSideBar";
 import DetailedScoreBox from "./DetailedScoreBox";
 import ReviewContainer from "../reviews/ReviewContainer";
@@ -54,11 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
   formTitle: {
     backgroundColor: theme.palette.primary.main,
+    display: "flex",
+    alignItems: "center",
   },
   moreReview: {
     marginLeft: theme.spacing(1),
   },
+  closeIcon: {
+    marginLeft: "auto",
+    color: "white",
+  },
 }));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const DetailedPage = (props) => {
   const classes = useStyles();
@@ -182,11 +194,19 @@ const DetailedPage = (props) => {
         </Grid>
       </Grid>
 
-      <Dialog open={open} disableBackdropClick scroll="body">
+      <Dialog
+        fullScreen
+        open={open}
+        disableBackdropClick
+        TransitionComponent={Transition}
+      >
         <DialogTitle classes={{ root: classes.formTitle }} disableTypography>
           <Typography variant="h6" style={{ fontWeight: 700, color: "white" }}>
             Write Your Review
           </Typography>
+          <IconButton className={classes.closeIcon} onClick={handleClose}>
+            <CloseIcon></CloseIcon>
+          </IconButton>
         </DialogTitle>
         <ReviewContainer handleClose={handleClose}></ReviewContainer>
       </Dialog>

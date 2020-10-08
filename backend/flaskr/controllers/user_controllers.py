@@ -10,7 +10,7 @@ def register():
     try:
         new_uuid = uuid.uuid4()
         new_user = User(user_id=new_uuid, email=request.json['email'],
-                        password=request.json['password'], joined_at=datetime.date.today())
+                        password=request.json['password'], joined_at=datetime.date.today(), status="")
         db.session.add(new_user)
         db.session.commit()
 
