@@ -99,6 +99,23 @@ const AdvanceSearchOptions = (props) => {
                 ></SimpleDropDown>
               </Grid>
 
+              <Grid container>
+                <Grid item container xs={6} alignItems="center">
+                  <Typography variant="body2" className={classes.selectTitle}>
+                    Select Anime Score:
+                </Typography>
+                </Grid>
+                <Grid item container xs={6} alignItems="center">
+                  <SimpleDropDown
+                    value={values.animeScore}
+                    valueType="animeScore"
+                    valueOptions={formObj.animeScore}
+                    handleDropDownChange={handleFieldChange}
+                    hasNameAndValue={true}
+                  ></SimpleDropDown>
+                </Grid>
+              </Grid>
+
               <Grid item container xs={6} alignItems="center">
                 <Typography variant="body2" className={classes.selectTitle}>
                   Select Anime Status:

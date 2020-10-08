@@ -13,8 +13,8 @@ class SearchBarContainer extends Component {
     const location = history.location;
     const parsed = queryString.parse(location.search);
     let value = "";
-    if (parsed.name) {
-      value = parsed.name;
+    if (parsed.title) {
+      value = parsed.title;
     }
     this.setState({ readFromQS: true, value });
   }

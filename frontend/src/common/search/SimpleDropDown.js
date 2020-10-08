@@ -10,14 +10,25 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleDropDown = (props) => {
   const classes = useStyles();
-  const { value, handleDropDownChange, valueType, valueOptions } = props;
-
-  console.log('render');
-  console.log(valueType);
+  const { value, handleDropDownChange, valueType, valueOptions, hasNameAndValue } = props;
 
   const handleChange = (event) => {
     handleDropDownChange(valueType, event.target.value);
   };
+
+  if (hasNameAndValue) {
+    return <div>
+      <FormControl className={classes.formControl}>
+        <Select value={value} onChange={handleChange}>
+          {valueOptions.map((val) => (
+            <MenuItem key={val.name} value={val.value}>
+              {val.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>;
+  }
 
   return (
     <div>
