@@ -85,3 +85,21 @@ def live_search():
     res['status'] = 'success'
     res['data'] = result
     return jsonify(res)
+
+def advanced_search():
+    args = request.args
+    anime_title = args['title']
+    anime_type = args['type']
+    anime_score = args['score']
+    anime_status = args['status']
+    anime_producer = args['producer']
+    anime_start = args['startDate']
+    anime_end = args['endDate']
+    anime_genre = args['genre']
+
+    result = Anime.query.filter(Anime.name.contains(anime_title)).all()
+    result = result.all()
+    res = {}
+    res['status'] = 'success'
+    res['data'] = result
+    return jsonify(res)
