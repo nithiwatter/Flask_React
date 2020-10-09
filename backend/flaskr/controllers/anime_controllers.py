@@ -85,3 +85,10 @@ def live_search():
     res['status'] = 'success'
     res['data'] = result
     return jsonify(res)
+
+
+def advanced_search():
+    args = request.args
+    print(args)
+
+    return 'done'

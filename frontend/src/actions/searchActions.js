@@ -33,15 +33,20 @@ export function startLoadingList() {
   };
 }
 
-export function startSearching() {
+export function startSearching(queryString) {
   return async function (dispatch) {
     try {
       dispatch({ type: SEARCH_PENDING });
-
+      console.log('sending API request to /api/anime/advancedSearch' + queryString);
+      await axios.get(`/api/anime/advancedSearch${queryString}`);
       // mock API call
       setTimeout(() => {
         dispatch({ type: SEARCH_FINISHED });
       }, 1000);
-    } catch (err) { }
+    } catch (err) { 
+      setTimeout(() => {
+        dispatch({ type: SEARCH_FINISHED });
+      }, 1000);
+    }
   };
 }

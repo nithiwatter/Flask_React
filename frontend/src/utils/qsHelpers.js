@@ -16,9 +16,11 @@ export const createSearchFilterQS = (valuesObj) => {
     if (valuesObj.animeEndDate) endDate = format(new Date(valuesObj.animeEndDate), 'MM/dd/yyyy');
     let genre = 'All';
     let genreQS = 'genre';
+    let moreThanOneGenre = false;
     // if All is false
     if (!valuesObj.animeGenre.All) {
         genre = '';
+        moreThanOneGenre = true;
         for (const genreKey in valuesObj.animeGenre) {
             if (valuesObj.animeGenre[genreKey]) {
                 genre += genreKey + ',';
@@ -27,10 +29,10 @@ export const createSearchFilterQS = (valuesObj) => {
         genreQS = '[]genre';
     }
     // need to take care of the trailing ,
-    if (genre.length !== 0) {
+    if (moreThanOneGenre && genre.length !== 0) {
         genre = genre.substring(0, genre.length - 1);
     }
-    else {
+    else if (moreThanOneGenre) {
         throw new Error('At least one genre needs to be selected!');
     }
 
