@@ -7,8 +7,10 @@ import { startSearching } from "../../actions/searchActions";
 
 class SearchMainContainer extends Component {
   componentDidMount() {
-    console.log(this.props.history.location);
     // will need to handle search here also
+    if (this.props.location.search) {
+      this.props.dispatch(startSearching(this.props.location.search));
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -19,7 +21,8 @@ class SearchMainContainer extends Component {
       this.props.location.search !== prevProps.location.search
     ) {
       console.log("Searching!");
-      this.props.dispatch(startSearching());
+      console.log(this.props.location.search)
+      this.props.dispatch(startSearching(this.props.location.search));
     }
   }
 
