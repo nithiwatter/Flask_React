@@ -8,7 +8,6 @@ from . import db
 
 from .relationship_tables import anime_genre, anime_studio
 
-
 @dataclass
 class Anime(db.Model):
     """Data model for anime."""
