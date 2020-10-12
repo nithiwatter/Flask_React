@@ -6,6 +6,7 @@ from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
 from flaskr.utils.helperFunctions import getPagination
+from datetime import datetime
 
 
 def test_method():
@@ -96,16 +97,29 @@ def advanced_search():
     anime_start = args['startDate']
     anime_end = args['endDate']
     anime_genre = args['genre']
-
-    result = Anime.query.filter(Anime.name.contains(anime_title)).all()
-    result = result.all()
+    result = Anime.query
+    if anime_title != 'All':
+        result = result.filter(Anime.name.contains(anime_title))
+    if anime_type != 'All':
+        result = result.filter(Anime.anime_type == anime_type)
+    if anime_score != 'All':
+        anime_score = float(anime_score)
+        result = result.filter(Anime.rating >= anime_score)
+    if anime_status != 'All':
+        result = result.filter(Anime.status == anime_status)
+    if anime_producer != 'All':
+        result = result.filter(Anime.studio == anime_producer)
+    if anime_genre != 'All':
+        result = result.filter(Anime.genre == anime_genre)
+    if anime_start != 'All':
+        dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
+        result = result.filter(Anime.airing_start > dtstart)
+    if anime_end != 'All':
+        dtend = datetime.strptime(anime_end, '%m/%d/%Y')
+        result = result.filter(Anime.airing_end < dtend)
+    result = result.limit(10).all()
     res = {}
     res['status'] = 'success'
     res['data'] = result
     return jsonify(res)
 
-def advanced_search():
-    args = request.args
-    print(args)
-
-    return 'done'

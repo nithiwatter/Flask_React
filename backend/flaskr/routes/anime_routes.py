@@ -12,4 +12,3 @@ bp.route('/liveSearch', methods=['GET'])(main_controller.live_search)
 bp.route('/advancedSearch', methods=['GET'])(main_controller.advanced_search)
 bp.route('/<anime_id>',
          methods=['GET'])(main_controller.get_specific_anime)
-bp.route('/advancedSearch', methods=['GET'])(main_controller.advanced_search)
