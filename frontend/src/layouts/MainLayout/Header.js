@@ -21,6 +21,8 @@ import { logout, redirectToAuthentication } from "../../actions/userActions";
 import { openSnackbarExternal } from "../../common/snackbar/Notifier";
 import { SHOW_SEARCH_OVERLAY } from "../../actionConstants/actionTypes";
 
+//React themes/templates inspired by Material-UI. Released under MIT License
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -45,13 +47,6 @@ const useStyles = makeStyles((theme) => ({
   avatarContainer: {
     marginLeft: "auto",
   },
-  // button: {
-  //   color: theme.palette.getContrastText(blue[500]),
-  //   backgroundColor: blue[500],
-  //   '&:hover': {
-  //     backgroundColor: blue[700],
-  //   },
-  // },
   logIn: {
     marginLeft: theme.spacing(2),
   },
