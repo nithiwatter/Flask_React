@@ -37,10 +37,10 @@
 
 ![Livesearch Page][livesearch-page]
 
-This is a fullstack group project created as a MAL-cloned website. In case you do not know what MAL is, it is the largest anime database website. We pulled and cleaned data from MAL's exposed APIs, then populate those into our SQL database. We then built a Flask backend that can communicate with a React frontend through json send via http. This is a (hopefully) fully-responsive single page application, rather than server-sided rendered (like the official MAL). Its UI is inspired by Google Material Design and powered by the great Material-UI library. All hail weebs :)
+This is a fullstack group project created as a MAL-cloned website. In case you do not know what MAL is, it is the largest anime database website. We pulled and cleaned data from MAL's exposed APIs, then populate those into our SQL database. We then built a Flask backend that can communicate with a React frontend through json send via http. This is a fully-responsive single page application, rather than server-sided rendered (like the official MAL). Its UI is inspired by Google Material Design and powered by the great Material-UI library. All hail weebs :)
 
 Features:
-* Beatiful, responsive, and clean representation of data
+* Beautiful, Responsive, and Clean representation of data
 * Loading indicators while waiting for json
 * Complex and reusable forms for submitting search and writing reviews
 * On-the-fly live search which pulls autosuggest recommendations from the backend without excessive API calls (achieved via memoizing keystrokes)
