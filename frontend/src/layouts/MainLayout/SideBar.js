@@ -24,6 +24,8 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import Header from "./Header";
 import NavMenuItem from "./NavMenuItem";
 
+//React themes/templates inspired by Material-UI. Released under MIT License
+
 const pages = [
   {
     title: "Anime",
