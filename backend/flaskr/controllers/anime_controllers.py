@@ -111,6 +111,7 @@ def advanced_search():
         result = result.filter(Anime.studio == anime_producer)
     if anime_genre != 'All':
         result = result.filter(Anime.genre == anime_genre)
+        #for genre and studio, need to initially join anime on anime to genre and genre (and studio as well), then use queries
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
         result = result.filter(Anime.airing_start > dtstart)
