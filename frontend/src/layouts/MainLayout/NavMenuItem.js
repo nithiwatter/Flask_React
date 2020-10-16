@@ -12,6 +12,8 @@ import {
 import IconExpandLess from "@material-ui/icons/ExpandLess";
 import IconExpandMore from "@material-ui/icons/ExpandMore";
 
+//React themes/templates inspired by Material-UI. Released under MIT License
+
 function activeRoute(title, path, location) {
   switch (title) {
     case "Anime":

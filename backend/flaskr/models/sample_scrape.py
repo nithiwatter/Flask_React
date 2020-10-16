@@ -2,7 +2,6 @@ import os
 import requests
 import time
 import json
-# from datetime import datetime
 # from jikanpy import Jikan
 
 #jikan = Jikan()
