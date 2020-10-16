@@ -12,13 +12,17 @@ export function switchPage() {
 export function fetchTop50Anime(page, size) {
   return async function (dispatch) {
     try {
-      dispatch({ type: TOP_50_START_API_REQUEST, payload: null });
+      dispatch(
+        {type: TOP_50_START_API_REQUEST, payload: null}
+      );
       const { data } = await axios.get(
         `/api/anime/topAnime?page=${page}&size=${size}`
       );
 
       setTimeout(() => {
-        dispatch({ type: TOP_50_FINISHED_API_REQUEST, payload: data.data });
+        dispatch(
+          {type: TOP_50_FINISHED_API_REQUEST, payload: data.data}
+        );
       }, 500);
     } catch (err) {}
   };
