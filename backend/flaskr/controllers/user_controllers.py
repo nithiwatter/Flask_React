@@ -1,10 +1,9 @@
 import datetime
-import uuid
+import uuid #library for userid
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from flask import jsonify, request
 from sqlalchemy import exc
 from flaskr.models.user_model import User, db
-
 
 def register():
     try:
@@ -26,7 +25,6 @@ def register():
         res['status'] = 'failure'
         res['message'] = 'This email alreadys exists in the record. Please log in!'
         return jsonify(res), 400
-
 
 def login():
     try:
@@ -50,7 +48,6 @@ def login():
 # protected route that will assess the validity of the jwt token
 # if valid, will return the user data to the frontend
 # used for automatic login
-
 
 @jwt_required
 def getIdentity():
