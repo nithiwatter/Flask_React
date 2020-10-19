@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <img src="https://i.redd.it/a3x3vrlnc1621.jpg" alt="Logo" width="700" height="600">
- # <img src="/images/tumblr_4ed011d2feb1b65e438303967b5dc78a_658e3f0c_540.gif" alt="Logo" width="300" height="200">
+  <img src="/images/tumblr_4ed011d2feb1b65e438303967b5dc78a_658e3f0c_540.gif" alt="Logo" width="300" height="200">
   
   <h3 align="center">A Fullstack Anime Database Website</h3>
 
