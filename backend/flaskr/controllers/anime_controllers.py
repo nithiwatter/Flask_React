@@ -5,9 +5,11 @@ from flask.json import dump
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
+from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
 from datetime import datetime
-
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
@@ -98,6 +100,9 @@ def advanced_search():
     anime_end = args['endDate']
     anime_genre = args['genre']
     result = Anime.query
+    pre = result.count()
+    result = result.join(Anime.genre)
+    post = result.count()
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
     if anime_type != 'All':
@@ -108,10 +113,13 @@ def advanced_search():
     if anime_status != 'All':
         result = result.filter(Anime.status == anime_status)
     if anime_producer != 'All':
-        result = result.filter(Anime.studio == anime_producer)
+        result = result.join(Anime.studio)
+        result = result.filter(Studio.studio_id == anime_producer)
     if anime_genre != 'All':
-        result = result.filter(Anime.genre == anime_genre)
-        #for genre and studio, need to initially join anime on anime to genre and genre (and studio as well), then use queries
+        genre_list = anime_genre.split(',')
+        for genre in genre_list:
+            result = result.filter(Anime.genre.any(Genre.genre_name == genre))
+        post = result.count()
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
         result = result.filter(Anime.airing_start > dtstart)
@@ -122,5 +130,7 @@ def advanced_search():
     res = {}
     res['status'] = 'success'
     res['data'] = result
+    res['pre'] = pre
+    res['post'] = post
     return jsonify(res)
 
