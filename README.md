@@ -76,7 +76,6 @@ npm install npm@latest -g
 ### Installation
 To download the requisite modules for the front-end, run the following code in .\Flask_React\frontend
 ```
-cd frontend
 npm install
 ```
 
