@@ -37,10 +37,10 @@
 
 ![Livesearch Page][livesearch-page]
 
-This is a fullstack group project created as a MAL-cloned website. In case you do not know what MAL is, it is the largest anime database website. We pulled and cleaned data from MAL's exposed APIs, then populate those into our SQL database. We then built a Flask backend that can communicate with a React frontend through json send via http. This is a (hopefully) fully-responsive single page application, rather than server-sided rendered (like the official MAL). Its UI is inspired by Google Material Design and powered by the great Material-UI library. All hail weebs :)
+This is a fullstack group project created as a MAL-cloned website. In case you do not know what MAL is, it is the largest anime database website. We pulled and cleaned data from MAL's exposed APIs, then populate those into our SQL database. We then built a Flask backend that can communicate with a React frontend through json send via http. This is a fully-responsive single page application, rather than server-sided rendered (like the official MAL). Its UI is inspired by Google Material Design and powered by the great Material-UI library. All hail weebs :)
 
 Features:
-* Beatiful, responsive, and clean representation of data
+* Beautiful, Responsive, and Clean representation of data
 * Loading indicators while waiting for json
 * Complex and reusable forms for submitting search and writing reviews
 * On-the-fly live search which pulls autosuggest recommendations from the backend without excessive API calls (achieved via memoizing keystrokes)
@@ -74,12 +74,33 @@ npm install npm@latest -g
 ```
 
 ### Installation
-To be added...
+To download the requisite modules for the front-end, run the following code in .\Flask_React\frontend
+```
+npm install
+```
 
+For the backend, run the following commands in .\Flask_React\backend
+```
+pip install -r requirements.txt
+```
+
+### Getting Started
+To start the frontend, run the following command in .\Flask_React\frontend
+```
+npm start
+```
+
+To start the backend, run the following command in .\Flask_React\backend
+```
+flask run
+```
+After the frontend and backend has started, all of the working features in the frontend should be usable.
 <!-- ROADMAP -->
 ## Roadmap
-To be added...
-
+Reviews  
+User Profile  
+Watch Later  
+Favorite Animes
 
 <!-- CONTACT -->
 ## Contact

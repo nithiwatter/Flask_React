@@ -5,14 +5,15 @@ from flask.json import dump
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
+from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
-
+from datetime import datetime
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
-
     return jsonify(test_result)
-
 
 def get_search_lists():
     genre_list = Genre.query.all()
@@ -30,13 +31,11 @@ def get_search_lists():
 
     # with open('studio.json', 'w') as json_file:
     #     dump(studio_list, json_file)
-
     return jsonify(res)
 
 
 # need to work on caching to improve offset performance
 # is size really important?
-
 
 def get_top_50_anime():
     # getting the query strings
@@ -60,7 +59,6 @@ def get_top_50_anime():
     res['data'] = result
     return jsonify(res)
 
-
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
 
@@ -74,8 +72,8 @@ def get_specific_anime(anime_id):
     res['data'] = result_dict
     return jsonify(res)
 
-
 def live_search():
+    # live search functionality improvements?
     args = request.args
     keyword = args['keyword']
 
@@ -86,9 +84,52 @@ def live_search():
     res['data'] = result
     return jsonify(res)
 
-
+#Parses query 
 def advanced_search():
     args = request.args
-    print(args)
+    anime_title = args['title']
+    anime_type = args['type']
+    anime_score = args['score']
+    anime_status = args['status']
+    anime_producer = args['producer']
+    anime_start = args['startDate']
+    anime_end = args['endDate']
+    anime_genre = args['genre']
+    result = Anime.query
+    pre = result.count()
+    result = result.join(Anime.genre)
+    post = result.count()
+    
+    #Filter all queries
+    if anime_title != 'All':
+        result = result.filter(Anime.name.contains(anime_title))
+    if anime_type != 'All':
+        result = result.filter(Anime.anime_type == anime_type)
+    if anime_score != 'All':
+        anime_score = float(anime_score)
+        result = result.filter(Anime.rating >= anime_score)
+    if anime_status != 'All':
+        result = result.filter(Anime.status == anime_status)
+    if anime_producer != 'All':
+        result = result.join(Anime.studio)
+        result = result.filter(Studio.studio_id == anime_producer)
+    if anime_genre != 'All':
+        genre_list = anime_genre.split(',')
+        for genre in genre_list:
+            result = result.filter(Anime.genre.any(Genre.genre_name == genre))
+        post = result.count()
+    if anime_start != 'All':
+        dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
+        result = result.filter(Anime.airing_start > dtstart)
+    if anime_end != 'All':
+        dtend = datetime.strptime(anime_end, '%m/%d/%Y')
+        result = result.filter(Anime.airing_end < dtend)
+        
+    result = result.limit(10).all()
+    res = {}
+    res['status'] = 'success'
+    res['data'] = result
+    res['pre'] = pre
+    res['post'] = post
+    return jsonify(res)
 
-    return 'done'

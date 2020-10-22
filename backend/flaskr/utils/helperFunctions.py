@@ -1,5 +1,6 @@
 def getPagination(page, size):
-    limit = size
-    offset = page * limit
+    total = size 
+    #Generally setting size=50
+    offset = page * total
 
-    return limit, offset
+    return total, offset
