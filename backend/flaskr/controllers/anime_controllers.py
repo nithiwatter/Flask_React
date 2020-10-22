@@ -10,6 +10,7 @@ from flaskr.utils.helperFunctions import getPagination
 from datetime import datetime
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy import func
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
@@ -96,13 +97,6 @@ def advanced_search():
     anime_end = args['endDate']
     anime_genre = args['genre']
     result = Anime.query
-    result = result.join(Anime.genre)
-<<<<<<< HEAD
-=======
-    post = result.count()
-    
-    #Filter all queries
->>>>>>> 1427857d9977905d20e3e7193b06ea0f7adf2de2
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
     if anime_type != 'All':
@@ -116,15 +110,18 @@ def advanced_search():
         result = result.join(Anime.studio)
         result = result.filter(Studio.studio_id == anime_producer)
     if anime_genre != 'All':
+        result = result.join(Anime.genre)
         genre_list = anime_genre.split(',')
-        for genre in genre_list:
-            result = result.filter(Anime.genre.any(Genre.genre_name == genre))
+        result = result.filter(Genre.genre_name.in_(genre_list))
+        result = result.group_by(Anime.anime_id).having(
+            func.count(Genre.genre_name) == len(genre_list))
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
-        result = result.filter(Anime.airing_start > dtstart)
+        result = result.filter(Anime.airing_start >= dtstart)
     if anime_end != 'All':
         dtend = datetime.strptime(anime_end, '%m/%d/%Y')
-        result = result.filter(Anime.airing_end < dtend)
+        dtend = dtend.replace(hour = 23, minute = 59, second = 59)
+        result = result.filter(Anime.airing_end <= dtend)
         
     result = result.limit(10).all()
     res = {}
