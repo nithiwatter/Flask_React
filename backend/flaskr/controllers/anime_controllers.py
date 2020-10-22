@@ -100,9 +100,7 @@ def advanced_search():
     anime_end = args['endDate']
     anime_genre = args['genre']
     result = Anime.query
-    pre = result.count()
     result = result.join(Anime.genre)
-    post = result.count()
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
     if anime_type != 'All':
@@ -119,7 +117,6 @@ def advanced_search():
         genre_list = anime_genre.split(',')
         for genre in genre_list:
             result = result.filter(Anime.genre.any(Genre.genre_name == genre))
-        post = result.count()
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
         result = result.filter(Anime.airing_start > dtstart)
@@ -130,7 +127,5 @@ def advanced_search():
     res = {}
     res['status'] = 'success'
     res['data'] = result
-    res['pre'] = pre
-    res['post'] = post
     return jsonify(res)
 
