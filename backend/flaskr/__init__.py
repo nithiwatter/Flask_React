@@ -43,7 +43,7 @@ def create_app(test_config=None):
         # env variables are loaded by dot-env by default (should be specified in .flaskenv)
         app.config.from_pyfile('config.py', silent=True)
     else:
-        # load the test config if passed in
+        # load the test config if passed in successfully
         app.config.from_mapping(test_config)
 
     # custom Encoder to parse datetime object
@@ -126,22 +126,6 @@ def create_app(test_config=None):
                 to_add.studio.append(Studio(studio_id=j[0], studio_name=j[1]))
             db.session.merge(to_add)
             db.session.commit()
-
-        # for i in genres_anime:
-        #     to_add = Genre(
-        #         genre_id = i[0],
-        #         genre_name =  i[1]
-        #     )
-        #     db.session.merge(to_add)
-        #     db.session.commit()
-
-        # for i in studios_anime:
-        #     to_add = Studio(
-        #         studio_id = i[0],
-        #         studio_name = i[1]
-        #     )
-        #     db.session.merge(to_add)
-        #     db.session.commit()
 
         return '<img src="https://media1.tenor.com/images/678955ca4337fc9a61ceb342ecb26760/tenor.gif?itemid=7905894" title="i love emilia">'
 

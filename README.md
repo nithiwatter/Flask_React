@@ -74,12 +74,33 @@ npm install npm@latest -g
 ```
 
 ### Installation
-To be added...
+To download the requisite modules for the front-end, run the following code in .\Flask_React\frontend
+```
+npm install
+```
 
+For the backend, run the following commands in .\Flask_React\backend
+```
+pip install -r requirements.txt
+```
+
+### Getting Started
+To start the frontend, run the following command in .\Flask_React\frontend
+```
+npm start
+```
+
+To start the backend, run the following command in .\Flask_React\backend
+```
+flask run
+```
+After the frontend and backend has started, all of the working features in the frontend should be usable.
 <!-- ROADMAP -->
 ## Roadmap
-To be added...
-
+Reviews  
+User Profile  
+Watch Later  
+Favorite Animes
 
 <!-- CONTACT -->
 ## Contact

@@ -13,9 +13,7 @@ from sqlalchemy import create_engine
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
-
     return jsonify(test_result)
-
 
 def get_search_lists():
     genre_list = Genre.query.all()
@@ -33,13 +31,11 @@ def get_search_lists():
 
     # with open('studio.json', 'w') as json_file:
     #     dump(studio_list, json_file)
-
     return jsonify(res)
 
 
 # need to work on caching to improve offset performance
 # is size really important?
-
 
 def get_top_50_anime():
     # getting the query strings
@@ -63,7 +59,6 @@ def get_top_50_anime():
     res['data'] = result
     return jsonify(res)
 
-
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
 
@@ -77,8 +72,8 @@ def get_specific_anime(anime_id):
     res['data'] = result_dict
     return jsonify(res)
 
-
 def live_search():
+    # live search functionality improvements?
     args = request.args
     keyword = args['keyword']
 
@@ -89,6 +84,7 @@ def live_search():
     res['data'] = result
     return jsonify(res)
 
+#Parses query 
 def advanced_search():
     args = request.args
     anime_title = args['title']
@@ -101,6 +97,12 @@ def advanced_search():
     anime_genre = args['genre']
     result = Anime.query
     result = result.join(Anime.genre)
+<<<<<<< HEAD
+=======
+    post = result.count()
+    
+    #Filter all queries
+>>>>>>> 1427857d9977905d20e3e7193b06ea0f7adf2de2
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
     if anime_type != 'All':
@@ -123,6 +125,7 @@ def advanced_search():
     if anime_end != 'All':
         dtend = datetime.strptime(anime_end, '%m/%d/%Y')
         result = result.filter(Anime.airing_end < dtend)
+        
     result = result.limit(10).all()
     res = {}
     res['status'] = 'success'
