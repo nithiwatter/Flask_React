@@ -88,14 +88,14 @@ def live_search():
 #Parses query 
 def advanced_search():
     args = request.args
-    anime_title = args['title']
-    anime_type = args['type']
-    anime_score = args['score']
-    anime_status = args['status']
-    anime_producer = args['producer']
-    anime_start = args['startDate']
-    anime_end = args['endDate']
-    anime_genre = args['genre']
+    anime_title = args['title'] if 'title' in args else 'All'
+    anime_type = args['type'] if 'type' in args else 'All'
+    anime_score = args['score'] if 'score' in args else 'All'
+    anime_status = args['status'] if 'status' in args else 'All'
+    anime_producer = args['producer'] if 'producer' in args else 'All'
+    anime_start = args['startDate'] if 'startDate' in args else 'All'
+    anime_end = args['endDate'] if 'endDate' in args else 'All'
+    anime_genre = args['genre'] if 'genre' in args else 'All'
     result = Anime.query
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
