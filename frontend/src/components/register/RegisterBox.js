@@ -1,9 +1,9 @@
-import React from 'react';
-import axios from 'axios';
-import * as Yup from 'yup';
-import { connect } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import React from "react";
+import axios from "axios";
+import * as Yup from "yup";
+import { connect } from "react-redux";
+import { Link as RouterLink } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
 import {
   Avatar,
   Button,
@@ -11,57 +11,57 @@ import {
   Grid,
   Container,
   LinearProgress,
-} from '@material-ui/core';
-import { TextField } from 'formik-material-ui';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { registerSuccess, registerFailure } from '../../actions/userActions';
-import { openSnackbarExternal } from '../../common/snackbar/Notifier';
+} from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import { registerSuccess, registerFailure } from "../../actions/userActions";
+import { openSnackbarExternal } from "../../common/snackbar/Notifier";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'relative',
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: "relative",
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   overallContainer: {
-    border: '2px solid',
+    border: "2px solid",
     borderColor: theme.palette.primary.dark,
-    outline: '10px solid',
+    outline: "10px solid",
     outlineColor: theme.palette.primary.light,
     padding: theme.spacing(4),
   },
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
   emiliaImage: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     right: 0,
-    maxHeight: '600px',
+    maxHeight: "600px",
     zIndex: -1,
   },
   irohaImage: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    left: '-100px',
-    maxHeight: '700px',
+    left: "-100px",
+    maxHeight: "700px",
     zIndex: -1,
   },
 }));
@@ -85,14 +85,14 @@ const RegisterBox = (props) => {
             </Typography>
             <Formik
               initialValues={{
-                email: '',
-                password: '',
+                email: "",
+                password: "",
               }}
               validationSchema={Yup.object({
                 email: Yup.string()
-                  .email('Invalid email address')
-                  .required('Required'),
-                password: Yup.string().required('Required'),
+                  .email("Invalid email address")
+                  .required("Required"),
+                password: Yup.string().required("Required"),
               })}
               onSubmit={async (values, { setSubmitting }) => {
                 try {
@@ -101,13 +101,13 @@ const RegisterBox = (props) => {
                     password: values.password,
                   };
                   const { data } = await axios.post(
-                    '/api/user/register',
+                    "/api/user/register",
                     newUser
                   );
                   // artificially generate some timeout for loading bar
                   await new Promise((resolve) => {
                     setTimeout(() => {
-                      setSubmitting(false);
+                      // setSubmitting(false);
                       resolve();
                     }, 500);
                   });
@@ -116,8 +116,8 @@ const RegisterBox = (props) => {
                   props.dispatch(registerSuccess(data));
 
                   openSnackbarExternal({
-                    severity: 'success',
-                    message: 'Registered successfully',
+                    severity: "success",
+                    message: "Registered successfully",
                   });
                   // push history to previous page?
                 } catch (err) {
@@ -125,7 +125,7 @@ const RegisterBox = (props) => {
                   props.dispatch(registerFailure());
                   setSubmitting(false);
                   openSnackbarExternal({
-                    severity: 'error',
+                    severity: "error",
                     message: err.response.data.message,
                   });
                 }
@@ -169,7 +169,7 @@ const RegisterBox = (props) => {
                   <Grid container justify="flex-end">
                     <Grid item>
                       <Link component={RouterLink} to="/login" variant="body2">
-                        {'Already have an account? Log in'}
+                        {"Already have an account? Log in"}
                       </Link>
                     </Grid>
                   </Grid>
@@ -180,7 +180,7 @@ const RegisterBox = (props) => {
                         to="/topAnime"
                         variant="body2"
                       >
-                        {'Back to main page'}
+                        {"Back to main page"}
                       </Link>
                     </Grid>
                   </Grid>
