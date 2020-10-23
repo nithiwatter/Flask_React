@@ -153,6 +153,13 @@ const SimpleSearchBar = (props) => {
     }
   };
 
+  const handleSearchByIcon = (e) => {
+    e.stopPropagation();
+    handleSearch(valueType, value, false);
+    setShow(false);
+    formikSubmit();
+  };
+
   return (
     <React.Fragment>
       <ClickAwayListener onClickAway={handleClose}>
@@ -195,6 +202,7 @@ const SimpleSearchBar = (props) => {
                 className={clsx(classes.iconButton, classes.searchIconButton, {
                   [classes.iconButtonHidden]: value !== "",
                 })}
+                onClick={handleSearchByIcon}
               >
                 <SearchIcon></SearchIcon>
               </IconButton>

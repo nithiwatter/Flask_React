@@ -147,33 +147,6 @@ const SearchDisplayResult = (props) => {
                 </TableCell>
               </TableRow>
             ))}
-            {/* <TableRow>
-              <TableCell align="left">
-                <div className={classes.titleContainer}>
-                  <div className={classes.imageContainer}>
-                    <Skeleton variant="rect" width={54} height={74} />
-                  </div>
-
-                  <div className={classes.textContainer}>
-                    <Typography variant="body2" className={classes.title}>
-                      Shingeki no Kyojin Season 3 Part 2
-                    </Typography>
-
-                    <Typography variant="body2">
-                      Seeking to restore humanity’s diminishing hope, the Survey
-                      Corps embark on a mission to retake Wall Maria, where the
-                      battle against the merciless "Titans" takes the stage once
-                      again. Returning to the...
-                    </Typography>
-                    <span className={classes.readMore}>Read More</span>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell align="right">TV</TableCell>
-              <TableCell align="right">10</TableCell>
-              <TableCell align="right">9.07</TableCell>
-              <TableCell align="right">740,357</TableCell>
-            </TableRow> */}
           </TableBody>
         </Table>
       </TableContainer>
