@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   ButtonGroup,
@@ -6,8 +6,8 @@ import {
   Typography,
   Divider,
   makeStyles,
-} from '@material-ui/core';
-import { redirectToAuthentication } from '../../actions/userActions';
+} from "@material-ui/core";
+import { redirectToAuthentication } from "../../actions/userActions";
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: 255,
-    height: 'auto',
+    height: "auto",
   },
 }));
 
+// need to clean up and check null entries
 const DetailedSidebar = (props) => {
   const classes = useStyles();
   const { data, history, dispatch, user } = props;
@@ -41,7 +42,7 @@ const DetailedSidebar = (props) => {
       const oldPath = history.location.pathname + history.location.search;
       // set the current location as previous path
       dispatch(redirectToAuthentication(oldPath));
-      history.push('/login');
+      history.push("/login");
     }
   };
 
@@ -112,7 +113,8 @@ const DetailedSidebar = (props) => {
         </Typography>
         <Divider className={classes.divider}></Divider>
         <div>
-          <span style={{ fontWeight: 700 }}>Score:</span> {data.rating}
+          <span style={{ fontWeight: 700 }}>Score:</span>{" "}
+          {data.rating ? data.rating : "N/A"}
         </div>
         <div>
           <span style={{ fontWeight: 700 }}>Rank:</span> #{data.rank}
@@ -122,11 +124,11 @@ const DetailedSidebar = (props) => {
           {data.popularity}
         </div>
         <div>
-          <span style={{ fontWeight: 700 }}>Members:</span>{' '}
+          <span style={{ fontWeight: 700 }}>Members:</span>{" "}
           {data.members.toLocaleString()}
         </div>
         <div>
-          <span style={{ fontWeight: 700 }}>Favorites:</span>{' '}
+          <span style={{ fontWeight: 700 }}>Favorites:</span>{" "}
           {data.favorites.toLocaleString()}
         </div>
       </div>

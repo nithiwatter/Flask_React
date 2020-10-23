@@ -4,8 +4,8 @@ import { withStyles } from "@material-ui/core";
 import { Formik } from "formik";
 import SearchBarContainer from "./SearchBarContainer";
 import AdvanceSearchOptions from "./AdvanceSearchOptions";
-import { createSearchFilterQS } from '../../utils/qsHelpers';
-import { openSnackbarExternal } from '../snackbar/Notifier';
+import { createSearchFilterQS } from "../../utils/qsHelpers";
+import { openSnackbarExternal } from "../snackbar/Notifier";
 
 const styles = () => ({
   mainContainer: {
@@ -31,12 +31,28 @@ const formObj = {
     { name: "(3) Very Bad", value: 3 },
     { name: "(2) Horrible", value: 2 },
     { name: "(1) Appalling", value: 1 },
-  ]
+  ],
 };
 
 class SearchFilterContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { checked: false };
+    this.handleChangeSwitch = this.handleChangeSwitch.bind(this);
+    this.handleCloseSwitch = this.handleCloseSwitch.bind(this);
+  }
+
+  handleChangeSwitch = () => {
+    this.setState({ checked: !this.state.checked });
+  };
+
+  handleCloseSwitch = () => {
+    this.setState({ checked: false });
+  };
+
   render() {
     const { genreList, studioList, genreObj, classes, history } = this.props;
+    const { checked } = this.state;
 
     return (
       <Formik
@@ -56,13 +72,13 @@ class SearchFilterContainer extends Component {
         }}
         onSubmit={(values) => {
           try {
-            console.log(values);
+            // console.log(values);
             const qs = createSearchFilterQS(values);
             history.push(`/anime${qs}`);
+            this.handleCloseSwitch();
           } catch (err) {
-            openSnackbarExternal({ severity: 'error', message: err.message });
+            openSnackbarExternal({ severity: "error", message: err.message });
           }
-
         }}
       >
         {({ values, setFieldValue, submitForm }) => {
@@ -82,6 +98,8 @@ class SearchFilterContainer extends Component {
                 studioList={studioList}
                 genreList={genreList}
                 handleChange={setFieldValue}
+                checked={checked}
+                handleChangeSwitch={this.handleChangeSwitch}
               ></AdvanceSearchOptions>
             </div>
           );

@@ -13,7 +13,8 @@ const searchReducer = (
     searchResults: [],
     genreList: [],
     studioList: [],
-    genreObj: {}
+    genreObj: {},
+    total: 0,
   },
   action
 ) => {
@@ -26,12 +27,17 @@ const searchReducer = (
         listPending: false,
         genreList: action.payload.genre,
         studioList: action.payload.studio,
-        genreObj: action.payload.genreObj
+        genreObj: action.payload.genreObj,
       };
     case SEARCH_PENDING:
       return { ...state, searchPending: true };
     case SEARCH_FINISHED:
-      return { ...state, searchPending: false };
+      return {
+        ...state,
+        searchPending: false,
+        searchResults: action.payload.searchResults,
+        total: action.payload.total,
+      };
     default:
       return state;
   }

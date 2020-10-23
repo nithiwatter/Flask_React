@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const LiveSearchResult = (props) => {
   const history = useHistory();
   const { showSearchOverlay, dispatch } = props;
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
 
   const transitions = useTransition(showSearchOverlay, null, {
     from: {
@@ -65,7 +65,7 @@ const LiveSearchResult = (props) => {
     if (e.keyCode === 13) {
       e.preventDefault();
       dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
-      history.push(`/anime?name=${e.target.value}`);
+      history.push(`/anime?title=${e.target.value}`);
     }
   };
 
@@ -74,7 +74,7 @@ const LiveSearchResult = (props) => {
   };
 
   const handleClickSearch = (_) => {
-    if (value !== '') {
+    if (value !== "") {
       dispatch({ type: HIDE_SEARCH_OVERLAY, payload: null });
       history.push(`/anime?name=${value}`);
     }

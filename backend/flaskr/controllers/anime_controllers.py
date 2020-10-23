@@ -2,18 +2,20 @@
 import dataclasses
 from flask import jsonify, request
 from flask.json import dump
+from flaskr.models import db
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
 from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
 from datetime import datetime
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+from sqlalchemy import func
+
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
     return jsonify(test_result)
+
 
 def get_search_lists():
     genre_list = Genre.query.all()
@@ -59,6 +61,7 @@ def get_top_50_anime():
     res['data'] = result
     return jsonify(res)
 
+
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
 
@@ -72,6 +75,7 @@ def get_specific_anime(anime_id):
     res['data'] = result_dict
     return jsonify(res)
 
+
 def live_search():
     # live search functionality improvements?
     args = request.args
@@ -84,23 +88,22 @@ def live_search():
     res['data'] = result
     return jsonify(res)
 
-#Parses query 
+# Parses query
+
+
 def advanced_search():
     args = request.args
-    anime_title = args['title']
-    anime_type = args['type']
-    anime_score = args['score']
-    anime_status = args['status']
-    anime_producer = args['producer']
-    anime_start = args['startDate']
-    anime_end = args['endDate']
-    anime_genre = args['genre']
+    anime_title = args['title'] if 'title' in args else 'All'
+    anime_type = args['type'] if 'type' in args else 'All'
+    anime_score = args['score'] if 'score' in args else 'All'
+    anime_status = args['status'] if 'status' in args else 'All'
+    anime_producer = args['producer'] if 'producer' in args else 'All'
+    anime_start = args['startDate'] if 'startDate' in args else 'All'
+    anime_end = args['endDate'] if 'endDate' in args else 'All'
+    anime_genre = args['genre'] if 'genre' in args else 'All'
     result = Anime.query
-    pre = result.count()
-    result = result.join(Anime.genre)
-    post = result.count()
-    
-    #Filter all queries
+
+    # Filter all queries
     if anime_title != 'All':
         result = result.filter(Anime.name.contains(anime_title))
     if anime_type != 'All':
@@ -114,22 +117,31 @@ def advanced_search():
         result = result.join(Anime.studio)
         result = result.filter(Studio.studio_id == anime_producer)
     if anime_genre != 'All':
+        result = result.join(Anime.genre)
         genre_list = anime_genre.split(',')
-        for genre in genre_list:
-            result = result.filter(Anime.genre.any(Genre.genre_name == genre))
-        post = result.count()
+
+        result = result.filter(Genre.genre_name.in_(genre_list))
+        result = result.group_by(Anime.anime_id).having(
+            func.count(Genre.genre_name) == len(genre_list))
+
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
         result = result.filter(Anime.airing_start > dtstart)
     if anime_end != 'All':
         dtend = datetime.strptime(anime_end, '%m/%d/%Y')
-        result = result.filter(Anime.airing_end < dtend)
-        
+        dtend = dtend.replace(hour=23, minute=59, second=59)
+        result = result.filter(Anime.airing_end <= dtend)
+
+    total = result.count()
+
+    # for debugging if genre and studio really yield the correct filtered output
+    for a in result:
+        print(a.name, a.airing_start, a.genre)
+        print('-------------------')
+
     result = result.limit(10).all()
     res = {}
     res['status'] = 'success'
     res['data'] = result
-    res['pre'] = pre
-    res['post'] = post
+    res['total'] = total
     return jsonify(res)
-

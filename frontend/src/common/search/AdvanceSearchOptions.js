@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Paper,
   Collapse,
@@ -8,17 +8,17 @@ import {
   Divider,
   Grid,
   makeStyles,
-} from '@material-ui/core';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import SettingsIcon from '@material-ui/icons/Settings';
-import SimpleDropDown from './SimpleDropDown';
-import SimpleAutocomplete from './SimpleAutocomplete';
-import SimpleCheckBoxGroup from './SimpleCheckBoxGroup';
-import SimpleDatePicker from './SimpleDatePicker';
+} from "@material-ui/core";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import SettingsIcon from "@material-ui/icons/Settings";
+import SimpleDropDown from "./SimpleDropDown";
+import SimpleAutocomplete from "./SimpleAutocomplete";
+import SimpleCheckBoxGroup from "./SimpleCheckBoxGroup";
+import SimpleDatePicker from "./SimpleDatePicker";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing(2),
   },
   container: {
@@ -28,22 +28,22 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   labelContainer: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
   },
   tableContainer: {
     marginBottom: theme.spacing(2),
-    height: 'auto',
+    height: "auto",
   },
   titleContainer: {
-    display: 'flex',
+    display: "flex",
   },
   divider: {
     marginBottom: theme.spacing(1),
   },
   selectContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   selectTitle: {
     fontWeight: 700,
@@ -57,18 +57,21 @@ const useStyles = makeStyles((theme) => ({
 
 const AdvanceSearchOptions = (props) => {
   const classes = useStyles();
-  const { studioList, genreList, formObj, values, handleChange: handleFieldChange } = props;
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
+  const {
+    studioList,
+    genreList,
+    formObj,
+    values,
+    handleChange: handleFieldChange,
+    checked,
+    handleChangeSwitch,
+  } = props;
 
   return (
     <div className={classes.root}>
       <div className={classes.labelContainer}>
         <FormControlLabel
-          control={<Switch checked={checked} onChange={handleChange} />}
+          control={<Switch checked={checked} onChange={handleChangeSwitch} />}
           label="Advanced Search"
         />
       </div>
@@ -103,7 +106,7 @@ const AdvanceSearchOptions = (props) => {
                 <Grid item container xs={6} alignItems="center">
                   <Typography variant="body2" className={classes.selectTitle}>
                     Select Anime Score:
-                </Typography>
+                  </Typography>
                 </Grid>
                 <Grid item container xs={6} alignItems="center">
                   <SimpleDropDown
@@ -141,8 +144,8 @@ const AdvanceSearchOptions = (props) => {
                   valueOptions={studioList}
                   valueName="studio_name"
                   label="Studio"
-                  handleDropDownChange={handleFieldChange}>
-                </SimpleAutocomplete>
+                  handleDropDownChange={handleFieldChange}
+                ></SimpleAutocomplete>
               </Grid>
 
               <Grid item xs={12}>
@@ -191,8 +194,8 @@ const AdvanceSearchOptions = (props) => {
               values={values.animeGenre}
               valueType="animeGenre"
               tagCollection={genreList}
-              tagId='genre_id'
-              tagName='genre_name'
+              tagId="genre_id"
+              tagName="genre_name"
               setFieldValue={handleFieldChange}
             ></SimpleCheckBoxGroup>
           </div>

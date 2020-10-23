@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Paper,
@@ -6,7 +6,7 @@ import {
   Typography,
   Divider,
   makeStyles,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   scoreDivider: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   scoreDetails: {
-    fontSize: '18px',
+    fontSize: "18px",
   },
   scoreContainer: {
     padding: theme.spacing(1),
@@ -26,14 +26,15 @@ const useStyles = makeStyles((theme) => ({
   scoreBox: {
     backgroundColor: theme.palette.primary.main,
     borderRadius: 2,
-    padding: '2px',
+    padding: "2px",
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    color: 'white',
-    fontSize: '14px',
+    color: "white",
+    fontSize: "14px",
   },
 }));
 
+// need to clean up and check null entries
 const DetailedScoreBox = (props) => {
   const classes = useStyles();
   const { data } = props;
@@ -48,12 +49,12 @@ const DetailedScoreBox = (props) => {
           </Grid>
           <Grid item container xs={12} justify="center">
             <Typography variant="h5" style={{ fontWeight: 700 }}>
-              {data.rating}
+              {data.rating ? data.rating : "N/A"}
             </Typography>
           </Grid>
           <Grid item container xs={12} justify="center">
             <Typography variant="body2">
-              {data.scored_by ? data.scored_by.toLocaleString() : '-'} users
+              {data.scored_by ? data.scored_by.toLocaleString() : "N/A"} users
             </Typography>
           </Grid>
         </Grid>

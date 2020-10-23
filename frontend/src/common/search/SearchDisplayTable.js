@@ -1,5 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -11,8 +12,8 @@ import {
   Typography,
   CircularProgress,
   makeStyles,
-} from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+} from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   titleContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   imageContainer: {
     flexShrink: 0,
@@ -37,17 +38,34 @@ const useStyles = makeStyles((theme) => ({
   },
   readMore: {
     color: theme.palette.primary.main,
+    textDecoration: "none",
+    "&:active": {
+      color: theme.palette.primary.main,
+    },
+    "&:visited": {
+      color: theme.palette.primary.main,
+    },
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
   loading: {
     marginTop: theme.spacing(4),
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
+  },
+  total: {
+    marginBottom: theme.spacing(2),
+  },
+  image: {
+    width: 54,
+    height: "auto",
   },
 }));
 
 const SearchDisplayResult = (props) => {
   const classes = useStyles();
-  const { searchPending } = props;
+  const { searchPending, searchResults, total } = props;
 
   if (searchPending) {
     return (
@@ -59,6 +77,10 @@ const SearchDisplayResult = (props) => {
 
   return (
     <React.Fragment>
+      <Typography
+        className={classes.total}
+        variant="h6"
+      >{`${total} search results`}</Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table}>
           <TableHead>
@@ -81,7 +103,51 @@ const SearchDisplayResult = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
+            {searchResults.map((anime) => (
+              <TableRow key={anime.anime_id}>
+                <TableCell align="left">
+                  <div className={classes.titleContainer}>
+                    <div className={classes.imageContainer}>
+                      {!anime.mal_anime_image_path && (
+                        <Skeleton variant="rect" width={54} height={74} />
+                      )}
+                      {anime.mal_anime_image_path && (
+                        <img
+                          src={anime.mal_anime_image_path}
+                          alt=""
+                          className={classes.image}
+                        />
+                      )}
+                    </div>
+
+                    <div className={classes.textContainer}>
+                      <Typography variant="body2" className={classes.title}>
+                        {anime.name}
+                      </Typography>
+
+                      <Typography variant="body2">
+                        {anime.synopsis.substring(0, 300)}...
+                      </Typography>
+                      <Link
+                        to={`/anime/${anime.anime_id}`}
+                        className={classes.readMore}
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell align="right">{anime.anime_type}</TableCell>
+                <TableCell align="right">
+                  {anime.num_episodes ? anime.num_episodes : "N/A"}
+                </TableCell>
+                <TableCell align="right">{anime.rating}</TableCell>
+                <TableCell align="right">
+                  {anime.members.toLocaleString()}
+                </TableCell>
+              </TableRow>
+            ))}
+            {/* <TableRow>
               <TableCell align="left">
                 <div className={classes.titleContainer}>
                   <div className={classes.imageContainer}>
@@ -107,7 +173,7 @@ const SearchDisplayResult = (props) => {
               <TableCell align="right">10</TableCell>
               <TableCell align="right">9.07</TableCell>
               <TableCell align="right">740,357</TableCell>
-            </TableRow>
+            </TableRow> */}
           </TableBody>
         </Table>
       </TableContainer>
@@ -118,6 +184,8 @@ const SearchDisplayResult = (props) => {
 const mapStateToProps = (state) => {
   return {
     searchPending: state.search.searchPending,
+    searchResults: state.search.searchResults,
+    total: state.search.total,
   };
 };
 
