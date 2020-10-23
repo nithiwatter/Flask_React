@@ -126,7 +126,7 @@ def advanced_search():
 
     if anime_start != 'All':
         dtstart = datetime.strptime(anime_start, '%m/%d/%Y')
-        result = result.filter(Anime.airing_start > dtstart)
+        result = result.filter(Anime.airing_start >= dtstart)
     if anime_end != 'All':
         dtend = datetime.strptime(anime_end, '%m/%d/%Y')
         dtend = dtend.replace(hour=23, minute=59, second=59)
