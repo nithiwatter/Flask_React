@@ -9,7 +9,7 @@ from . import db
 # import uuid
 
 @dataclass
-class watchLater(db.Model):
+class Favorites(db.Model):
     """Data model for watch later"""
     user_id: str
     anime_id: int
@@ -18,5 +18,5 @@ class watchLater(db.Model):
     anime_id = db.Column(db.Integer, db.ForeignKey('anime.anime_id'), primary_key=True)
 
     def __repr__(self):
-        return '(watchLater | user_id: {} | anime_id: {})'.format(self.user_id,self.anime_id)
+        return '(Favorites | user_id: {} | anime_id: {})'.format(self.user_id,self.anime_id)
 
