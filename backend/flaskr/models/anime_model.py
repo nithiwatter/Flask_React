@@ -66,6 +66,7 @@ class Anime(db.Model):
                             backref=db.backref('anime', lazy=True))
     studio = db.relationship('Studio', secondary=anime_studio, lazy=True,
                              backref=db.backref('anime', lazy=True))
+    watchLater = db.relationship('watchLater')
 
     def __repr__(self):
         return '(Anime | ID: {} | name: {} | synopsis: {} | rating: {} | type: {})'.format(self.anime_id, self.name, self.synopsis, self.rating, self.anime_type)
