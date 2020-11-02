@@ -145,3 +145,13 @@ def advanced_search():
     res['data'] = result
     res['total'] = total
     return jsonify(res)
+
+def get_reviews():
+    res = {}
+    res['status'] = 'success'
+    return jsonify(res)
+
+def post_reviews():
+    res = {}
+    res['status'] = 'success'
+    return jsonify(res)

@@ -15,6 +15,7 @@ from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
 from flaskr.models.watch_later_model import watchLater
 from flaskr.models.favorites_model import Favorites
+from flaskr.models.review_model import Review
 from flaskr.models import db
 
 # importing mock data
@@ -138,4 +139,17 @@ def create_app(test_config=None):
         db.session.commit()
         return '<img src="https://media1.tenor.com/images/72a449017113abf6716656a18ac85582/tenor.gif?itemid=17382357" title="yukino best girl">'
     
+    @app.route('/test_review')
+    def test_review():
+        to_add = Review(
+            review_id = uuid.uuid4(),
+            user_id = uuid.uuid4(),
+            anime_id = "12345",
+            review_rating = "100",
+            review_content = "hi! this is alex"
+        )
+        db.session.merge(to_add)
+        db.session.commit()
+        return 'test_review finished!'
+
     return app
