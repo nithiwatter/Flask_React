@@ -1,7 +1,7 @@
 # Funcation takes in page number and size of page and returns offset information
 def getPagination(page, size):
-    total = size 
+    limit = size 
     #Generally setting size=50
-    numoffset = page * total
+    offset = page * total
 
-    return total, numoffset
+    return limit, offset
