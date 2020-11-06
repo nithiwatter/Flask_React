@@ -2,20 +2,20 @@
 import dataclasses
 from flask import jsonify, request
 from flask.json import dump
+#Importing Models from flaskr
 from flaskr.models import db
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
 from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
+
 from datetime import datetime
 from sqlalchemy import func
-
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
     return jsonify(test_result)
-
 
 def get_search_lists():
     genre_list = Genre.query.all()
@@ -25,25 +25,16 @@ def get_search_lists():
     res['data'] = {}
     res['data']['genre'] = genre_list
     res['data']['studio'] = studio_list
-
-    # for creating json files to be read in the frontend
-    # need to dump this everytime if we decide to create new genre?
-    # with open('genre.json', 'w') as json_file:
-    #     dump(genre_list, json_file)
-
-    # with open('studio.json', 'w') as json_file:
-    #     dump(studio_list, json_file)
+    
     return jsonify(res)
 
-
 # need to work on caching to improve offset performance
-# is size really important?
+# Size matters for speed
 
 def get_top_50_anime():
-    # getting the query strings
     args = request.args
 
-    # default values of page and size
+    # default values of page and size are 0 and 50 respectively
     page = 0
     if 'page' in args.keys():
         page = int(args['page'])
