@@ -13,6 +13,8 @@ from flaskr.models.anime_model import Anime
 from flaskr.models.user_model import User
 from flaskr.models.genre_model import Genre
 from flaskr.models.studio_model import Studio
+from flaskr.models.watch_later_model import watchLater
+from flaskr.models.favorites_model import Favorites
 from flaskr.models import db
 
 # importing mock data
@@ -123,5 +125,13 @@ def create_app(test_config=None):
     @app.errorhandler(404)
     def not_found(e):
         return app.send_static_file('index.html')
+
+    @app.route('/test')
+    def test():
+        to_add = Favorites(
+            user_id="0x2A5377A0BBF54DACBE9712008D001138", anime_id=33042)
+        db.session.merge(to_add)
+        db.session.commit()
+        return '<img src="https://media1.tenor.com/images/72a449017113abf6716656a18ac85582/tenor.gif?itemid=17382357" title="yukino best girl">'
 
     return app

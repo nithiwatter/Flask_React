@@ -1,5 +1,6 @@
-from . import db
 
+# using the same instance of db initialized in __init__.py
+from . import db
 
 anime_genre = db.Table('anime_to_genre',
     db.Column('anime_id', db.Integer, db.ForeignKey('anime.anime_id'), primary_key=True), 

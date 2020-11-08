@@ -19,8 +19,7 @@ def register():
         res['access_token'] = create_access_token(identity=new_uuid)
         return jsonify(res)
     except exc.IntegrityError:
-        # most likely due to duplicate emails
-        # Integrity error is for duplicated records
+        # most likely due to duplicate email -> Integrity error is for duplicated records
         res = {}
         res['status'] = 'failure'
         res['message'] = 'This email alreadys exists in the record. Please log in!'

@@ -9,7 +9,6 @@ from . import db
 from sqlalchemy_utils import UUIDType
 import uuid
 
-
 @dataclass
 class Review(db.Model):
     """Data model for review."""
