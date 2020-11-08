@@ -22,7 +22,8 @@ from flaskr.models.sample_scrape import *
 def create_app(test_config=None):
     # create and configure the app
     # true means will load config.py from the instance folder
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True,
+                static_folder='../build', static_url_path='/')
 
     # ensure the instance folder exists (by creating the folder)
     try:
@@ -42,6 +43,8 @@ def create_app(test_config=None):
         # loaded variables are config variables, not env variables
         # env variables are loaded by dot-env by default (should be specified in .flaskenv)
         app.config.from_pyfile('config.py', silent=True)
+    elif test_config == 'azure':
+        app.config.from_pyfile('azure_config.py', silent=True)
     else:
         # load the test config if passed in successfully
         app.config.from_mapping(test_config)
@@ -71,23 +74,10 @@ def create_app(test_config=None):
         app.register_blueprint(anime_routes.bp)
         app.register_blueprint(user_routes.bp)
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        # test with adding a simple anime
-        # db.session.add(Anime(name="testtest"))
-        # db.session.commit()
-        # test querying users
-        res = User.query.all()
-        print(res)
-        return jsonify(res)
-
-    @app.route('/add_user')
-    def add_user():
-        new_user = User(user_id=uuid.uuid4(), email="acda", password="bcda")
-        db.session.merge(new_user)
-        db.session.commit()
-        return 'done'
+    # a simple page that tests deployment
+    @app.route('/test_deploy')
+    def test_deploy():
+        return 'Deploy on Azure successfully!'
 
     @app.route('/add_anime')
     def add_anime():
@@ -128,5 +118,10 @@ def create_app(test_config=None):
             db.session.commit()
 
         return '<img src="https://media1.tenor.com/images/678955ca4337fc9a61ceb342ecb26760/tenor.gif?itemid=7905894" title="i love emilia">'
+
+    # a simple page that tests the React build directory
+    @app.errorhandler(404)
+    def not_found(e):
+        return app.send_static_file('index.html')
 
     return app

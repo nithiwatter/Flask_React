@@ -37,12 +37,14 @@ studios_anime = set([])
 anime_genre_rel = []
 anime_studio_rel = []
 
-new_path = os.path.join(os.path.dirname(os.getcwd()), 'animes_json.txt')
+new_path = os.path.join(os.getcwd(), 'animes_json.txt')
 
 with open(new_path, 'r') as json_file:
     data = json.load(json_file)
     for i in range(len(data)):
         if "Hentai" in data[i]['rating']:
+            continue
+        if data[i]['mal_id'] == 2406:
             continue
         id_anime.append(data[i]['mal_id'])
         name_anime.append(data[i]['title'])
