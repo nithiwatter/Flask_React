@@ -1,2 +1,2 @@
-FLASK_APP="flaskr:create_app('azure')"
+FLASK_APP=flaskr
 FLASK_ENV=development
