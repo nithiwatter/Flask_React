@@ -1,46 +1,14 @@
-version: '3.5'
+version: "3.5"
 
 services:
   db:
-    command: --innodb_use_native_aio=0
     container_name: flask-mysql
-    image: mysql
-    restart: always
+    image: nithiwatter/cs316-database-repository
+    build:
+      context: ./mysql/
+      dockerfile: Dockerfile
     ports:
-      - '8083:3306'
-    volumes:
-      - ./data:/var/lib/mysql
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=password
-  backend:
-    container_name: flask-backend
-    restart: always
-    build:
-      context: ./backend/
-      dockerfile: Dockerfile
-    ports:
-      - '5000:5000'
-    volumes:
-      - ./backend:/app
-      - backend-env-cache:/app/backend-env
-    # environment:
-    #   - FLASK_APP=/app/backend.py
-    #   - FLASK_ENV=development
-    #   - FLASK_DEBUG=true
-  client:
-    container_name: react-frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app
-      - frontend-node-cache:/usr/src/app/node_modules
-    ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-volumes:
-  backend-env-cache: {}
-  frontend-node-cache: {}
+      - MYSQL_DATABASE=Flask_React

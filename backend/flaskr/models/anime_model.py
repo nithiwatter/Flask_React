@@ -15,6 +15,7 @@ class Anime(db.Model):
     anime_id: int
     name: str
     name_eng: str
+    # Most likely will not use name_jpn
     name_jpn: str
     num_episodes: int
     source: str
@@ -34,6 +35,7 @@ class Anime(db.Model):
     airing_str: str
     anime_image_path: str
     mal_anime_image_path: str
+    # Pass YT link through to front end
     trailer_url: str
 
     # fields

@@ -3,6 +3,7 @@ import dataclasses
 import uuid
 from flask import jsonify, request
 from flask.json import dump
+#Importing Models from flaskr
 from flaskr.models import db
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
@@ -11,15 +12,15 @@ from flaskr.models.studio_model import Studio
 from flaskr.models.user_model import User
 from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
+
 from datetime import datetime
 from sqlalchemy import func
-
 
 def test_method():
     test_result = Anime.query.order_by(Anime.rating.desc()).limit(50).all()
     return jsonify(test_result)
 
-
+#Returns the search lists
 def get_search_lists():
     genre_list = Genre.query.all()
     studio_list = Studio.query.all()
@@ -28,25 +29,17 @@ def get_search_lists():
     res['data'] = {}
     res['data']['genre'] = genre_list
     res['data']['studio'] = studio_list
-
-    # for creating json files to be read in the frontend
-    # need to dump this everytime if we decide to create new genre?
-    # with open('genre.json', 'w') as json_file:
-    #     dump(genre_list, json_file)
-
-    # with open('studio.json', 'w') as json_file:
-    #     dump(studio_list, json_file)
+    
     return jsonify(res)
 
-
 # need to work on caching to improve offset performance
-# is size really important?
+# Size matters for speed
 
+#Returns Top 50 Anime by Rating
 def get_top_50_anime():
-    # getting the query strings
     args = request.args
 
-    # default values of page and size
+    # default values of page and size are 0 and 50 respectively
     page = 0
     if 'page' in args.keys():
         page = int(args['page'])
@@ -64,7 +57,7 @@ def get_top_50_anime():
     res['data'] = result
     return jsonify(res)
 
-
+#Gets anime from specific Query
 def get_specific_anime(anime_id):
     result = Anime.query.get(anime_id)
 
@@ -78,22 +71,19 @@ def get_specific_anime(anime_id):
     res['data'] = result_dict
     return jsonify(res)
 
-
+#Live search functionality
 def live_search():
     # live search functionality improvements?
     args = request.args
     keyword = args['keyword']
 
-    # could add order by to this query? Performance issue?
     result = Anime.query.filter(Anime.name.contains(keyword)).limit(10).all()
     res = {}
     res['status'] = 'success'
     res['data'] = result
     return jsonify(res)
 
-# Parses query
-
-
+#Searches based upon additional criteria
 def advanced_search():
     args = request.args
     anime_title = args['title'] if 'title' in args else 'All'

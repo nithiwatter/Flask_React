@@ -1,7 +1,9 @@
 import datetime
 
+# need this to jsonify sql query
 from dataclasses import dataclass
 
+# using the same instance of db initialized in __init__.py
 from . import db
 
 # MySQL currently does not support UUID (use this library to fall back to BINARY(16) immediately)
