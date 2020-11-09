@@ -180,7 +180,7 @@ def post_reviews():
     if User.query.filter(User.user_id == review_user).first() == None:
         res['status'] = 'failure: user does not exist'
         return jsonify(res)
-    if review_rating > 10 or review_rating < 1
+    if review_rating > 10 or review_rating < 1:
         res['status'] = 'failure: invalid rating'
         return jsonify(res)
     to_add = Review(
