@@ -171,6 +171,7 @@ def post_reviews():
     review_anime = args['anime'] if 'anime' in args else None
     review_rating = args['rating'] if 'rating' in args else None
     review_content = args['content'] if 'content' in args else None
+    review_user = uuid.UUID(review_user)
     if review_user == None or review_anime == None or review_rating == None:
         res['status'] = 'failure: user, anime, or rating not passed in'
         return jsonify(res)
@@ -180,7 +181,7 @@ def post_reviews():
     if User.query.filter(User.user_id == review_user).first() == None:
         res['status'] = 'failure: user does not exist'
         return jsonify(res)
-    if review_rating > 10 or review_rating < 1:
+    if int(review_rating) > 10 or int(review_rating) < 1:
         res['status'] = 'failure: invalid rating'
         return jsonify(res)
     to_add = Review(
