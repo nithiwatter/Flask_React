@@ -1,11 +1,14 @@
 # need this to access dataclass listed in the db class obj
 import dataclasses
+import uuid
 from flask import jsonify, request
 from flask.json import dump
 from flaskr.models import db
 from flaskr.models.anime_model import Anime
 from flaskr.models.genre_model import Genre
+from flaskr.models.review_model import Review
 from flaskr.models.studio_model import Studio
+from flaskr.models.user_model import User
 from flaskr.models.relationship_tables import anime_studio, anime_genre
 from flaskr.utils.helperFunctions import getPagination
 from datetime import datetime
@@ -147,11 +150,48 @@ def advanced_search():
     return jsonify(res)
 
 def get_reviews():
+    args = request.args
+    review_user = args['user'] if 'user' in args else 'All'
+    review_anime = args['anime'] if 'anime' in args else 'All'
+    result = Review.query
+    if review_anime != 'All':
+        result = result.filter(Review.anime_id == review_anime)
+    if review_user != 'All':
+        result = result.filter(Review.user_id == review_user)
     res = {}
+    result = result.all()
+    res['data'] = result
     res['status'] = 'success'
     return jsonify(res)
 
 def post_reviews():
+    args = request.args
     res = {}
+    review_user = args['user'] if 'user' in args else None
+    review_anime = args['anime'] if 'anime' in args else None
+    review_rating = args['rating'] if 'rating' in args else None
+    review_content = args['content'] if 'content' in args else None
+    if review_user == None or review_anime == None or review_rating == None:
+        res['status'] = 'failure: user, anime, or rating not passed in'
+        return jsonify(res)
+    if Anime.query.filter(Anime.anime_id == review_anime).first() == None:
+        res['status'] = 'failure: anime does not exist'
+        return jsonify(res)
+    if User.query.filter(User.user_id == review_user).first() == None:
+        res['status'] = 'failure: user does not exist'
+        return jsonify(res)
+    if review_rating > 10 or review_rating < 1
+        res['status'] = 'failure: invalid rating'
+        return jsonify(res)
+    to_add = Review(
+            review_id = uuid.uuid4(),
+            user_id = review_user,
+            anime_id = review_anime,
+            review_rating = review_rating,
+            review_content = review_content
+        )
+    db.session.merge(to_add)
+    db.session.commit()
+    res['data'] = to_add
     res['status'] = 'success'
     return jsonify(res)
